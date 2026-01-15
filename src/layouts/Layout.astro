@@ -1,11 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content="Gommi - Gomitas simbióticas con Probióticos + Prebióticos. Bienestar digestivo diario, delicioso y fácil. 2 gomitas al día." />
+		<meta name="keywords" content="gomitas, probióticos, prebióticos, bienestar digestivo, salud intestinal, suplemento natural" />
+		<meta property="og:title" content="Gommi - Gomitas Simbióticas" />
+		<meta property="og:description" content="Bienestar digestivo diario, delicioso y fácil. Probióticos + Prebióticos en gomitas." />
+		<meta property="og:type" content="website" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+		<title>Gommi - Gomitas Simbióticas | Probióticos + Prebióticos</title>
 	</head>
 	<body>
 		<slot />
@@ -13,10 +21,22 @@
 </html>
 
 <style>
+	:root {
+		--color-primary: #E91E8C;
+		--color-primary-light: #FFE4EC;
+		--color-secondary: #4ECDC4;
+		--color-secondary-light: #B8F0EC;
+		--color-text: #2D3748;
+		--color-text-light: #718096;
+		--color-white: #FFFFFF;
+	}
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
+		font-family: 'Nunito', sans-serif;
+		background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 50%, var(--color-secondary-light) 100%);
 	}
 </style>
