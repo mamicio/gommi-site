@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
+---
+
+<Layout title="Blog - Gommi">
+	<div class="blog-container">
+		<header class="blog-header">
+			<a href="/" class="logo">
+				<img src={logoGommi.src} alt="Gommi" class="logo-img" />
+			</a>
+		</header>
+
+		<main class="construction">
+			<div class="construction-content">
+				<div class="construction-icon">🚧</div>
+				<h1>Blog en construcción</h1>
+				<p>Estamos preparando contenido increíble sobre bienestar digestivo, tips de salud y mucho más.</p>
+				<p class="coming-soon">¡Muy pronto!</p>
+				<a href="/" class="button primary">Volver al inicio</a>
+			</div>
+		</main>
+
+		<footer class="blog-footer">
+			<p>© 2025 Gommi. Todos los derechos reservados.</p>
+		</footer>
+	</div>
+</Layout>
+
+<style>
+	:root {
+		--primary: #E91E8C;
+		--primary-light: #FFE4EC;
+		--primary-dark: #C4177A;
+		--secondary: #4ECDC4;
+		--text: #2D3748;
+		--text-light: #718096;
+		--white: #FFFFFF;
+	}
+
+	.blog-container {
+		font-family: 'Nunito', sans-serif;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.blog-header {
+		padding: 1.5rem 2rem;
+		background: var(--white);
+		box-shadow: 0 2px 20px rgba(233, 30, 140, 0.1);
+	}
+
+	.logo {
+		display: inline-block;
+	}
+
+	.logo-img {
+		height: 50px;
+		width: auto;
+	}
+
+	.construction {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 4rem 2rem;
+		background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 50%, #B8F0EC 100%);
+	}
+
+	.construction-content {
+		text-align: center;
+		max-width: 500px;
+	}
+
+	.construction-icon {
+		font-size: 5rem;
+		margin-bottom: 1.5rem;
+		animation: bounce 2s ease-in-out infinite;
+	}
+
+	@keyframes bounce {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-15px); }
+	}
+
+	.construction-content h1 {
+		font-size: 2.5rem;
+		color: var(--primary);
+		margin: 0 0 1rem;
+	}
+
+	.construction-content p {
+		font-size: 1.125rem;
+		color: var(--text);
+		line-height: 1.7;
+		margin: 0 0 1rem;
+	}
+
+	.coming-soon {
+		font-size: 1.5rem !important;
+		font-weight: 800;
+		color: var(--secondary) !important;
+		margin-bottom: 2rem !important;
+	}
+
+	.button {
+		display: inline-block;
+		padding: 1rem 2rem;
+		border-radius: 50px;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 1rem;
+		transition: all 0.3s;
+	}
+
+	.button.primary {
+		background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+		color: var(--white);
+		box-shadow: 0 4px 15px rgba(233, 30, 140, 0.3);
+	}
+
+	.button.primary:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 8px 25px rgba(233, 30, 140, 0.4);
+	}
+
+	.blog-footer {
+		padding: 1.5rem 2rem;
+		background: var(--text);
+		text-align: center;
+	}
+
+	.blog-footer p {
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.875rem;
+		margin: 0;
+	}
+
+	@media screen and (max-width: 768px) {
+		.construction-content h1 {
+			font-size: 1.75rem;
+		}
+
+		.construction-icon {
+			font-size: 4rem;
+		}
+	}
+</style>

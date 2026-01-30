@@ -10,24 +10,27 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 				<img src={logoGommi.src} alt="Gommi" class="logo-img" />
 			</div>
 			<ul class="nav-links">
+				<li><a href="#producto">Producto</a></li>
+				<li><a href="#que-es-gommi">¿Qué es Gommi?</a></li>
 				<li><a href="#beneficios">Beneficios</a></li>
 				<li><a href="#como-funciona">¿Cómo funciona?</a></li>
+				<li><a href="#ingredientes">Ingredientes y Ciencia</a></li>
 				<li><a href="#testimonios">Testimonios</a></li>
+				<li><a href="#contacto">Contacto</a></li>
+				<li><a href="/blog" class="nav-blog">Blog</a></li>
 			</ul>
 			<a href="https://www.instagram.com/gommi_oficial/" target="_blank" class="cta-button">Comprar</a>
 		</nav>
 	</header>
 
 	<main>
-		<section id="hero">
+		<section id="producto">
 			<div class="hero-content">
-				<span class="badge">Probióticos + Prebióticos</span>
-				<h1>Gomitas Simbióticas</h1>
-				<p class="tagline">Bienestar digestivo diario, <strong>delicioso</strong> y <strong>fácil</strong></p>
-				<p class="dose">Solo 2 gomitas al día</p>
+				<h1>Gommi: gomitas que cuidan tu intestino de forma rica y consciente</h1>
+				<h2 class="subtitle">Probióticos + prebióticos en gomitas sin azúcar, diseñadas para mejorar tu digestión, reducir la inflamación y acompañarte todos los días.</h2>
 				<div class="hero-buttons">
-					<a href="https://www.instagram.com/gommi_oficial/" target="_blank" class="button primary">Quiero las mías</a>
-					<a href="#beneficios" class="button secondary">Conocer más</a>
+					<a href="#como-funciona" class="button primary">Quiero cuidar mi digestión</a>
+					<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button secondary">Quiero mis gomitas</a>
 				</div>
 			</div>
 			<div class="hero-image">
@@ -40,47 +43,68 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			</div>
 		</section>
 
+		<section id="problema">
+			<div class="problema-content">
+				<h2>Si tu intestino no está bien, tu cuerpo lo siente</h2>
+				<p>Inflamación, pesadez, estreñimiento, diarrea o malestar después de comer no son normales. Muchas personas viven así sin saber que su intestino necesita apoyo diario.</p>
+				<p class="problema-cta">¡Por eso, necesitas Gommi!</p>
+			</div>
+		</section>
+
+		<section id="que-es-gommi">
+			<div class="que-es-content">
+				<div class="que-es-text">
+					<h2>¿Qué es Gommi y cómo puede ayudarte?</h2>
+					<p>Gommi son gomitas con bacterias buenas (probióticos) y su alimento natural (prebióticos). Juntas ayudan a equilibrar tu flora intestinal, mejorar la digestión y hacer que tu cuerpo funcione mejor desde adentro.</p>
+					<p class="highlight">No son un medicamento. Son un hábito diario de bienestar.</p>
+				</div>
+				<div class="que-es-image">
+					<!-- Imagen pendiente: persona real en situación cotidiana, sensación de alivio y bienestar -->
+					<div class="image-placeholder">
+						<span>Imagen próximamente</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section id="beneficios">
-			<h2>¿Por qué elegir Gommi?</h2>
+			<h2>Lo que puedes sentir con el uso constante de Gommi</h2>
+			<p class="benefits-intro">Cada cuerpo es distinto, pero cuando tu intestino empieza a estar en equilibrio, los cambios se sienten en el día a día. Con el uso constante de Gommi, muchas personas empiezan a notar mejoras reales en cómo se sienten después de comer y a lo largo del día.</p>
 			<div class="benefits-grid">
 				<div class="benefit-card">
 					<div class="benefit-icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-						</svg>
+						<span class="benefit-emoji">🎈</span>
 					</div>
-					<h3>Mejora tu digestión</h3>
-					<p>Reduce la inflamación y distensión abdominal de forma natural</p>
+					<h3>Menos inflamación abdominal</h3>
+					<p>Esa sensación de estar inflamada, con el abdomen duro o pesado, puede empezar a disminuir. Tu cuerpo se siente más liviano y cómodo, incluso después de las comidas.</p>
 				</div>
 				<div class="benefit-card">
 					<div class="benefit-icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-						</svg>
+						<span class="benefit-emoji">🍃</span>
 					</div>
-					<h3>Fortalece tu sistema inmune</h3>
-					<p>Probióticos que ayudan a mantener tus defensas activas</p>
+					<h3>Digestiones más ligeras</h3>
+					<p>Comer deja de sentirse como una carga. Las digestiones se vuelven más suaves, con menos pesadez, gases o malestar después de cada comida.</p>
 				</div>
 				<div class="benefit-card">
 					<div class="benefit-icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<circle cx="12" cy="12" r="10"/>
-							<path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-							<line x1="9" y1="9" x2="9.01" y2="9"/>
-							<line x1="15" y1="9" x2="15.01" y2="9"/>
-						</svg>
+						<span class="benefit-emoji">⏰</span>
 					</div>
-					<h3>Sabor delicioso</h3>
-					<p>Una gomita que realmente querrás tomar todos los días</p>
+					<h3>Mayor regularidad al ir al baño</h3>
+					<p>Ir al baño se vuelve más natural y constante. Sin forzar, sin incomodidad, sin esa sensación de "algo no está funcionando bien".</p>
 				</div>
 				<div class="benefit-card">
 					<div class="benefit-icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-						</svg>
+						<span class="benefit-emoji">🍽️</span>
 					</div>
-					<h3>Fácil de consumir</h3>
-					<p>Sin agua, sin complicaciones. En cualquier momento y lugar</p>
+					<h3>Mejor tolerancia a los alimentos</h3>
+					<p>Al equilibrar la flora intestinal, muchas personas notan que su cuerpo tolera mejor ciertos alimentos que antes les causaban malestar o inflamación.</p>
+				</div>
+				<div class="benefit-card">
+					<div class="benefit-icon">
+						<span class="benefit-emoji">🛡️</span>
+					</div>
+					<h3>Apoyo a tu sistema inmune</h3>
+					<p>Un intestino sano también apoya tus defensas. Al cuidar tu salud intestinal, ayudas a que tu cuerpo esté más fuerte y equilibrado desde adentro.</p>
 				</div>
 			</div>
 		</section>
@@ -106,25 +130,181 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			</div>
 		</section>
 
+		<section id="por-que-elegir">
+			<div class="por-que-content">
+				<div class="por-que-text">
+					<h2>¿Por qué elegir Gommi?</h2>
+					<ul class="diferenciadores">
+						<li>
+							<span class="check-icon">✓</span>
+							<span>Contiene <strong>probióticos + prebióticos</strong> (todo en uno)</span>
+						</li>
+						<li>
+							<span class="check-icon">✓</span>
+							<span><strong>Sin azúcar</strong>, sin jarabe de maíz, sin conservantes artificiales</span>
+						</li>
+						<li>
+							<span class="check-icon">✓</span>
+							<span><strong>Colorantes naturales</strong></span>
+						</li>
+						<li>
+							<span class="check-icon">✓</span>
+							<span><strong>Registro Invima</strong></span>
+						</li>
+						<li>
+							<span class="check-icon">✓</span>
+							<span>Apto para <strong>mayores de 4 años</strong></span>
+						</li>
+					</ul>
+				</div>
+				<div class="por-que-image">
+					<!-- Imagen pendiente: Producto + ingredientes naturales, fondo claro -->
+					<div class="image-placeholder">
+						<span>Imagen próximamente</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="confianza">
+			<div class="confianza-content">
+				<div class="confianza-image">
+					<!-- Imagen pendiente: Detalle del empaque, sellos o iconos de respaldo -->
+					<div class="image-placeholder">
+						<span>Imagen próximamente</span>
+					</div>
+				</div>
+				<div class="confianza-text">
+					<h2>Un cuidado en el que puedes confiar</h2>
+					<p>En Gommi creemos en el bienestar responsable. Por eso trabajamos con ingredientes seguros, respaldo científico y registro Invima, cuidando cada detalle para acompañarte con amor y honestidad.</p>
+					<div class="sellos-confianza">
+						<div class="sello">
+							<span class="sello-icon">🔬</span>
+							<span class="sello-text">Respaldo científico</span>
+						</div>
+						<div class="sello">
+							<span class="sello-icon">✅</span>
+							<span class="sello-text">Registro Invima</span>
+						</div>
+						<div class="sello">
+							<span class="sello-icon">🌿</span>
+							<span class="sello-text">Ingredientes seguros</span>
+						</div>
+					</div>
+					<div class="confianza-buttons">
+						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
+						<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoría personalizada</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="ingredientes">
+			<h2>Ingredientes seguros y ciencia responsable</h2>
+			<p class="ingredientes-intro">Sabemos que lo que consumes importa. Por eso, en Gommi cuidamos cada ingrediente y cada proceso, combinando respaldo científico con una forma cercana y honesta de hablar de bienestar.</p>
+
+			<div class="carrusel-container">
+				<div class="carrusel">
+					<div class="flashcard">
+						<div class="flashcard-icon">🧬</div>
+						<h3>Probióticos con respaldo científico</h3>
+						<p>Gommi contiene bacterias buenas cuidadosamente seleccionadas, estudiadas por su capacidad de apoyar el equilibrio de la flora intestinal y el buen funcionamiento del sistema digestivo.</p>
+						<p class="flashcard-detail">No son ingredientes al azar. Son cepas con evidencia científica, pensadas para acompañarte de forma segura en tu rutina diaria.</p>
+					</div>
+
+					<div class="flashcard">
+						<div class="flashcard-icon">🌱</div>
+						<h3>Prebióticos: el alimento de las bacterias buenas</h3>
+						<p>Los prebióticos ayudan a que los probióticos se mantengan activos y hagan mejor su trabajo. Al incluirlos juntos, Gommi ofrece una fórmula más completa que apoya el equilibrio intestinal desde adentro.</p>
+					</div>
+
+					<div class="flashcard">
+						<div class="flashcard-icon">🧪</div>
+						<h3>Ingredientes simples, honestos y bien elegidos</h3>
+						<p>En Gommi creemos que menos es más. Por eso nuestra fórmula es clara y consciente:</p>
+						<ul class="flashcard-list">
+							<li>Sin azúcar</li>
+							<li>Sin jarabe de maíz</li>
+							<li>Sin conservantes artificiales</li>
+							<li>Con colorantes naturales</li>
+						</ul>
+						<p class="flashcard-detail">Todo lo que usamos tiene una razón. Y lo que no suma, no entra.</p>
+					</div>
+
+					<div class="flashcard">
+						<div class="flashcard-icon">🛡️</div>
+						<h3>Registro Invima y uso responsable</h3>
+						<p>Gommi cuenta con registro Invima, lo que garantiza que cumple con los estándares de calidad y seguridad para su consumo.</p>
+						<p class="flashcard-detail">Está diseñado para uso diario y puede ser consumido por personas desde los 4 años, siempre como parte de un hábito constante de bienestar.</p>
+					</div>
+
+					<div class="flashcard">
+						<div class="flashcard-icon">🌸</div>
+						<h3>Ciencia que acompaña, no que asusta</h3>
+						<p>Creemos en la ciencia que cuida, no en la que intimida. Por eso elegimos explicar de forma clara, cercana y responsable cómo funciona Gommi, sin palabras complicadas ni promesas exageradas.</p>
+					</div>
+				</div>
+				<div class="carrusel-nav">
+					<button class="carrusel-btn prev" aria-label="Anterior">←</button>
+					<div class="carrusel-dots"></div>
+					<button class="carrusel-btn next" aria-label="Siguiente">→</button>
+				</div>
+			</div>
+
+			<p class="nota-legal">Este producto no es un medicamento y no sustituye una alimentación balanceada ni hábitos de vida saludables.</p>
+		</section>
+
 		<section id="testimonios">
-			<h2>Lo que dicen quienes ya probaron Gommi</h2>
+			<h2>Historias reales de personas que empezaron a sentirse mejor</h2>
+			<p class="testimonios-intro">Cada cuerpo es distinto, pero escuchar a otras personas ayuda a entender lo que puede pasar cuando empiezas a cuidar tu intestino de forma constante.</p>
 			<div class="testimonials-grid">
 				<div class="testimonial-card">
-					<p>"Resultados reales. Personas reales. Bienestar digestivo que se siente."</p>
-					<span class="author">- Cliente satisfecha</span>
+					<div class="stars">★★★★★</div>
+					<p>"Llevaba meses con inflamación después de cada comida. Desde que empecé con Gommi, siento el abdomen mucho más liviano. Es parte de mi rutina diaria."</p>
+					<span class="author">— María, 32 años</span>
 				</div>
 				<div class="testimonial-card">
-					<p>"Por fin un suplemento que realmente quiero tomar. ¡Saben increíble!"</p>
-					<span class="author">- Usuario verificado</span>
+					<div class="stars">★★★★★</div>
+					<p>"Nunca había podido ser constante con suplementos porque me daba pereza. Pero Gommi es fácil: sabe rico, es cómodo y lo tomo sin pensarlo."</p>
+					<span class="author">— Laura, 28 años</span>
 				</div>
+				<div class="testimonial-card">
+					<div class="stars">★★★★★</div>
+					<p>"Probé muchos productos antes y ninguno me funcionó. Con Gommi sentí la diferencia en unas semanas. Ahora voy al baño con más regularidad."</p>
+					<span class="author">— Andrea, 41 años</span>
+				</div>
+				<div class="testimonial-card">
+					<div class="stars">★★★★★</div>
+					<p>"Me encanta que no tiene azúcar y que puedo dárselo a mi hija también. Es un hábito que ahora compartimos juntas."</p>
+					<span class="author">— Camila, 35 años</span>
+				</div>
+			</div>
+			<p class="testimonios-disclaimer">Las experiencias pueden variar según cada persona y su constancia en el consumo.</p>
+			<div class="testimonios-buttons">
+				<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
+				<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoría personalizada</a>
 			</div>
 		</section>
 
 		<section id="cta-final">
 			<div class="cta-box">
-				<h2>¿Lista para sentirte mejor?</h2>
-				<p>Un ritual digestivo pensado para todos</p>
-				<a href="https://www.instagram.com/gommi_oficial/" target="_blank" class="button primary large">Quiero mis Gommi</a>
+				<h2>Empieza a sentirte mejor desde adentro</h2>
+				<p>Cuidar tu digestión no tiene que ser complicado ni incómodo. A veces, solo necesitas darle a tu cuerpo el apoyo correcto y ser constante. Gommi está aquí para acompañarte en ese proceso, de forma rica, consciente y amorosa.</p>
+				<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary large">Quiero cuidar mi intestino</a>
+				<p class="cta-microcopy">Sin azúcar · Registro Invima · Apto desde los 4 años</p>
+			</div>
+		</section>
+
+		<section id="contacto">
+			<div class="contacto-content">
+				<div class="contacto-text">
+					<h3>¿Tienes dudas? Estamos aquí para ayudarte</h3>
+					<p>Si quieres saber si Gommi es para ti, cómo tomarlo o tienes alguna pregunta antes de comprar, escríbenos. Nos encanta acompañarte y ayudarte a tomar una decisión informada y tranquila.</p>
+				</div>
+				<div class="contacto-buttons">
+					<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
+					<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoría personalizada</a>
+				</div>
 			</div>
 		</section>
 	</main>
@@ -134,15 +314,37 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			<div class="footer-logo">
 				<img src={logoGommi.src} alt="Gommi" class="footer-logo-img" />
 			</div>
-			<p>Gomitas simbióticas - Bienestar digestivo diario</p>
+			<h2 class="footer-title">Si tu intestino no está bien, tu cuerpo lo siente</h2>
+			<p class="footer-text">Inflamación, pesadez, estreñimiento, diarrea o malestar después de comer no son normales. Muchas personas viven así sin saber que su intestino necesita apoyo diario.</p>
+			<p class="footer-cta">¡Por eso, necesitas Gommi!</p>
 			<div class="social-links">
-				<a href="https://www.instagram.com/gommi_oficial/" target="_blank" aria-label="Instagram">
+				<a href="https://www.instagram.com/gommi_oficial/" target="_blank" aria-label="Instagram" class="social-btn instagram">
 					<svg viewBox="0 0 24 24" fill="currentColor">
 						<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
 					</svg>
 				</a>
+				<a href="https://wa.me/573196349730?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Gommi" target="_blank" aria-label="WhatsApp" class="social-btn whatsapp">
+					<svg viewBox="0 0 24 24" fill="currentColor">
+						<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+					</svg>
+				</a>
+				<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" aria-label="MercadoLibre" class="social-btn mercadolibre">
+					<svg viewBox="0 0 24 24" fill="currentColor">
+						<path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm-4.8 6c0 1.657 2.149 3 4.8 3s4.8-1.343 4.8-3c0-.53-.252-1.027-.69-1.458C15.06 7.632 13.617 7.2 12 7.2s-3.06.432-4.11.742c-.438.431-.69.928-.69 1.458zm4.8 4.8c-3.314 0-6 1.343-6 3v1.2h12v-1.2c0-1.657-2.686-3-6-3z"/>
+					</svg>
+				</a>
 			</div>
-			<p class="copyright">© 2024 Gommi. Todos los derechos reservados.</p>
+			<nav class="footer-nav">
+				<a href="#producto">Producto</a>
+				<a href="#que-es-gommi">¿Qué es Gommi?</a>
+				<a href="#beneficios">Beneficios</a>
+				<a href="#como-funciona">¿Cómo funciona?</a>
+				<a href="#ingredientes">Ingredientes y Ciencia</a>
+				<a href="#testimonios">Testimonios</a>
+				<a href="#contacto">Contacto</a>
+				<a href="/blog" class="footer-blog">Blog</a>
+			</nav>
+			<p class="copyright">© 2025 Gommi. Todos los derechos reservados.</p>
 		</div>
 	</footer>
 </div>
@@ -210,7 +412,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	.nav-links {
 		display: flex;
 		list-style: none;
-		gap: 2rem;
+		gap: 1.25rem;
 		margin: 0;
 		padding: 0;
 	}
@@ -219,11 +421,21 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		text-decoration: none;
 		color: var(--text);
 		font-weight: 600;
+		font-size: 0.9rem;
 		transition: color 0.3s;
 	}
 
 	.nav-links a:hover {
 		color: var(--primary);
+	}
+
+	.nav-links .nav-blog {
+		color: var(--secondary);
+		font-weight: 700;
+	}
+
+	.nav-links .nav-blog:hover {
+		color: #3BA99E;
 	}
 
 	.cta-button {
@@ -248,7 +460,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	/* Hero Section */
-	#hero {
+	#producto {
 		min-height: calc(100vh - 80px);
 		display: flex;
 		align-items: center;
@@ -275,11 +487,19 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.hero-content h1 {
-		font-size: 3.5rem;
+		font-size: 2.75rem;
 		font-weight: 800;
 		color: var(--primary);
-		margin: 0 0 1rem;
-		line-height: 1.1;
+		margin: 0 0 1.5rem;
+		line-height: 1.2;
+	}
+
+	.hero-content .subtitle {
+		font-size: 1.25rem;
+		font-weight: 400;
+		color: var(--text);
+		margin: 0 0 2rem;
+		line-height: 1.6;
 	}
 
 	.tagline {
@@ -405,6 +625,101 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		50% { transform: translateY(-20px); }
 	}
 
+	/* Problema Section */
+	#problema {
+		padding: 5rem 2rem;
+		background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 50%, var(--secondary-light) 100%);
+	}
+
+	.problema-content {
+		max-width: 800px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.problema-content h2 {
+		font-size: 2.5rem;
+		color: var(--primary);
+		margin: 0 0 1.5rem;
+		line-height: 1.2;
+	}
+
+	.problema-content p {
+		font-size: 1.25rem;
+		color: var(--text);
+		line-height: 1.8;
+		margin: 0 0 1.5rem;
+	}
+
+	.problema-cta {
+		font-size: 1.5rem !important;
+		font-weight: 800 !important;
+		color: var(--secondary) !important;
+		margin-top: 1rem !important;
+	}
+
+	/* Qué es Gommi Section */
+	#que-es-gommi {
+		padding: 6rem 2rem;
+		background: var(--white);
+	}
+
+	.que-es-content {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.que-es-text {
+		flex: 1;
+	}
+
+	.que-es-text h2 {
+		font-size: 2.5rem;
+		color: var(--primary);
+		margin: 0 0 1.5rem;
+		line-height: 1.2;
+	}
+
+	.que-es-text p {
+		font-size: 1.125rem;
+		color: var(--text);
+		line-height: 1.8;
+		margin: 0 0 1rem;
+	}
+
+	.que-es-text .highlight {
+		font-weight: 700;
+		color: var(--secondary);
+		font-size: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.que-es-image {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.image-placeholder {
+		width: 100%;
+		max-width: 400px;
+		height: 300px;
+		background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+		border-radius: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.image-placeholder span {
+		color: var(--text-light);
+		font-weight: 600;
+	}
+
 	/* Benefits Section */
 	#beneficios {
 		padding: 6rem 2rem;
@@ -415,7 +730,20 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		text-align: center;
 		font-size: 2.5rem;
 		color: var(--text);
-		margin-bottom: 3rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.benefits-intro {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto 3rem;
+		font-size: 1.125rem;
+		color: var(--text-light);
+		line-height: 1.8;
+	}
+
+	.benefit-emoji {
+		font-size: 2rem;
 	}
 
 	.benefits-grid {
@@ -440,14 +768,15 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.benefit-icon {
-		width: 60px;
-		height: 60px;
-		background: var(--primary);
+		width: 70px;
+		height: 70px;
+		background: var(--white);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		margin: 0 auto 1rem;
+		box-shadow: 0 4px 15px rgba(233, 30, 140, 0.15);
 	}
 
 	.benefit-icon svg {
@@ -513,17 +842,340 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		margin: 0;
 	}
 
+	/* Por qué elegir Section */
+	#por-que-elegir {
+		padding: 6rem 2rem;
+		background: var(--white);
+	}
+
+	.por-que-content {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.por-que-text {
+		flex: 1;
+	}
+
+	.por-que-text h2 {
+		font-size: 2.5rem;
+		color: var(--primary);
+		margin: 0 0 2rem;
+		line-height: 1.2;
+	}
+
+	.diferenciadores {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.diferenciadores li {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--text);
+		line-height: 1.6;
+	}
+
+	.check-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 28px;
+		height: 28px;
+		background: var(--secondary);
+		color: var(--white);
+		border-radius: 50%;
+		font-weight: 700;
+		font-size: 0.875rem;
+		flex-shrink: 0;
+	}
+
+	.diferenciadores strong {
+		color: var(--primary);
+	}
+
+	.por-que-image {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	/* Confianza Section */
+	#confianza {
+		padding: 6rem 2rem;
+		background: linear-gradient(135deg, var(--secondary-light) 0%, var(--white) 100%);
+	}
+
+	.confianza-content {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.confianza-image {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.confianza-text {
+		flex: 1;
+	}
+
+	.confianza-text h2 {
+		font-size: 2.5rem;
+		color: var(--primary);
+		margin: 0 0 1.5rem;
+		line-height: 1.2;
+	}
+
+	.confianza-text p {
+		font-size: 1.125rem;
+		color: var(--text);
+		line-height: 1.8;
+		margin: 0 0 2rem;
+	}
+
+	.sellos-confianza {
+		display: flex;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.sello {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: var(--white);
+		padding: 0.75rem 1.25rem;
+		border-radius: 50px;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+	}
+
+	.sello-icon {
+		font-size: 1.25rem;
+	}
+
+	.sello-text {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--text);
+	}
+
+	.confianza-buttons {
+		display: flex;
+		gap: 1rem;
+		margin-top: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.button.whatsapp {
+		background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+		color: var(--white);
+		border: none;
+	}
+
+	.button.whatsapp:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+	}
+
+	/* Ingredientes Section */
+	#ingredientes {
+		padding: 6rem 2rem;
+		background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+	}
+
+	#ingredientes h2 {
+		text-align: center;
+		font-size: 2.5rem;
+		color: var(--text);
+		margin-bottom: 1.5rem;
+	}
+
+	.ingredientes-intro {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto 3rem;
+		font-size: 1.125rem;
+		color: var(--text-light);
+		line-height: 1.8;
+	}
+
+	.carrusel-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.carrusel {
+		display: flex;
+		gap: 1.5rem;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		padding: 1rem 0.5rem 2rem;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+
+	.carrusel::-webkit-scrollbar {
+		display: none;
+	}
+
+	.flashcard {
+		flex: 0 0 350px;
+		background: var(--white);
+		border-radius: 20px;
+		padding: 2rem;
+		box-shadow: 0 4px 20px rgba(233, 30, 140, 0.1);
+		scroll-snap-align: center;
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	.flashcard:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 30px rgba(233, 30, 140, 0.15);
+	}
+
+	.flashcard-icon {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+	}
+
+	.flashcard h3 {
+		font-size: 1.25rem;
+		color: var(--primary);
+		margin: 0 0 1rem;
+		line-height: 1.3;
+	}
+
+	.flashcard p {
+		font-size: 1rem;
+		color: var(--text);
+		line-height: 1.7;
+		margin: 0 0 0.75rem;
+	}
+
+	.flashcard-detail {
+		font-style: italic;
+		color: var(--text-light) !important;
+		font-size: 0.95rem !important;
+	}
+
+	.flashcard-list {
+		list-style: none;
+		padding: 0;
+		margin: 0.75rem 0;
+	}
+
+	.flashcard-list li {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+		font-size: 0.95rem;
+		color: var(--text);
+	}
+
+	.flashcard-list li::before {
+		content: "✓";
+		color: var(--secondary);
+		font-weight: 700;
+	}
+
+	.carrusel-nav {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.carrusel-btn {
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		border: 2px solid var(--primary);
+		background: var(--white);
+		color: var(--primary);
+		font-size: 1.25rem;
+		cursor: pointer;
+		transition: all 0.3s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.carrusel-btn:hover {
+		background: var(--primary);
+		color: var(--white);
+	}
+
+	.carrusel-dots {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.carrusel-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--primary-light);
+		border: none;
+		cursor: pointer;
+		transition: all 0.3s;
+	}
+
+	.carrusel-dot.active {
+		background: var(--primary);
+		width: 30px;
+		border-radius: 5px;
+	}
+
+	.nota-legal {
+		text-align: center;
+		max-width: 600px;
+		margin: 3rem auto 0;
+		font-size: 0.875rem;
+		color: var(--text-light);
+		font-style: italic;
+		padding: 1rem;
+		background: rgba(255, 255, 255, 0.5);
+		border-radius: 10px;
+	}
+
 	/* Testimonials */
 	#testimonios {
 		padding: 6rem 2rem;
 		background: var(--white);
 	}
 
+	.testimonios-intro {
+		text-align: center;
+		max-width: 700px;
+		margin: 0 auto 3rem;
+		font-size: 1.125rem;
+		color: var(--text-light);
+		line-height: 1.8;
+	}
+
 	.testimonials-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem;
-		max-width: 800px;
+		max-width: 1000px;
 		margin: 0 auto;
 	}
 
@@ -532,19 +1184,50 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		padding: 2rem;
 		border-radius: 20px;
 		border-left: 4px solid var(--primary);
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	.testimonial-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(233, 30, 140, 0.15);
+	}
+
+	.testimonial-card .stars {
+		color: #FFD700;
+		font-size: 1.25rem;
+		margin-bottom: 1rem;
+		letter-spacing: 2px;
 	}
 
 	.testimonial-card p {
 		font-style: italic;
 		color: var(--text);
 		margin: 0 0 1rem;
-		font-size: 1.125rem;
-		line-height: 1.6;
+		font-size: 1.05rem;
+		line-height: 1.7;
 	}
 
 	.testimonial-card .author {
 		color: var(--primary);
 		font-weight: 700;
+		font-size: 0.95rem;
+	}
+
+	.testimonios-disclaimer {
+		text-align: center;
+		max-width: 500px;
+		margin: 2.5rem auto 0;
+		font-size: 0.875rem;
+		color: var(--text-light);
+		font-style: italic;
+	}
+
+	.testimonios-buttons {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 2.5rem;
+		flex-wrap: wrap;
 	}
 
 	/* CTA Final */
@@ -565,10 +1248,14 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		margin: 0 0 1rem;
 	}
 
-	.cta-box p {
+	.cta-box > p:first-of-type {
 		color: var(--primary-light);
-		font-size: 1.25rem;
+		font-size: 1.125rem;
 		margin: 0 0 2rem;
+		line-height: 1.8;
+		max-width: 550px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.cta-box .button.primary {
@@ -581,15 +1268,62 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 	}
 
+	.cta-microcopy {
+		margin-top: 1.5rem !important;
+		font-size: 0.95rem !important;
+		color: var(--white) !important;
+		opacity: 0.9;
+		letter-spacing: 0.5px;
+	}
+
+	/* Contacto */
+	#contacto {
+		padding: 5rem 2rem;
+		background: var(--white);
+	}
+
+	.contacto-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 4rem;
+		max-width: 1100px;
+		margin: 0 auto;
+	}
+
+	.contacto-text {
+		flex: 1;
+	}
+
+	.contacto-text h3 {
+		font-size: 1.75rem;
+		color: var(--primary);
+		margin: 0 0 1rem;
+		line-height: 1.3;
+	}
+
+	.contacto-text p {
+		font-size: 1.1rem;
+		color: var(--text);
+		line-height: 1.8;
+		margin: 0;
+	}
+
+	.contacto-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
 	/* Footer */
 	footer {
 		background: var(--text);
 		color: var(--white);
-		padding: 3rem 2rem;
+		padding: 4rem 2rem 3rem;
 	}
 
 	.footer-content {
-		max-width: 1200px;
+		max-width: 700px;
 		margin: 0 auto;
 		text-align: center;
 	}
@@ -598,33 +1332,45 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.5rem;
-		font-size: 1.25rem;
-		font-weight: 800;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 	}
 
 	.footer-logo-img {
-		height: 40px;
+		height: 50px;
 		width: auto;
 	}
 
-	.footer-content > p {
-		color: var(--text-light);
-		margin: 0 0 1.5rem;
+	.footer-title {
+		color: var(--white);
+		font-size: 1.75rem;
+		margin: 0 0 1.25rem;
+		line-height: 1.3;
+	}
+
+	.footer-text {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 1.05rem;
+		line-height: 1.8;
+		margin: 0 0 1rem;
+	}
+
+	.footer-cta {
+		color: var(--secondary);
+		font-size: 1.25rem;
+		font-weight: 800;
+		margin: 0 0 2rem;
 	}
 
 	.social-links {
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
-		margin-bottom: 1.5rem;
+		gap: 1.25rem;
+		margin-bottom: 2rem;
 	}
 
-	.social-links a {
-		width: 40px;
-		height: 40px;
-		background: var(--primary);
+	.social-btn {
+		width: 50px;
+		height: 50px;
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
@@ -633,19 +1379,56 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		transition: all 0.3s;
 	}
 
-	.social-links a:hover {
-		background: var(--primary-dark);
-		transform: translateY(-3px);
+	.social-btn.instagram {
+		background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+	}
+
+	.social-btn.whatsapp {
+		background: #25D366;
+	}
+
+	.social-btn.mercadolibre {
+		background: #FFE600;
+		color: #333;
+	}
+
+	.social-btn:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 	}
 
 	.social-links svg {
-		width: 20px;
-		height: 20px;
+		width: 24px;
+		height: 24px;
+	}
+
+	.footer-nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.footer-nav a {
+		color: rgba(255, 255, 255, 0.8);
+		text-decoration: none;
+		font-size: 0.95rem;
+		transition: color 0.3s;
+	}
+
+	.footer-nav a:hover {
+		color: var(--secondary);
+	}
+
+	.footer-nav .footer-blog {
+		color: var(--secondary);
+		font-weight: 700;
 	}
 
 	.copyright {
 		font-size: 0.875rem;
-		color: var(--text-light);
+		color: rgba(255, 255, 255, 0.6);
 	}
 
 	/* Responsive */
@@ -654,14 +1437,18 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			display: none;
 		}
 
-		#hero {
+		#producto {
 			flex-direction: column;
 			text-align: center;
 			padding-top: 4rem;
 		}
 
 		.hero-content h1 {
-			font-size: 2.5rem;
+			font-size: 1.75rem;
+		}
+
+		.hero-content .subtitle {
+			font-size: 1rem;
 		}
 
 		.hero-buttons {
@@ -674,6 +1461,32 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			height: 250px;
 		}
 
+		.problema-content h2 {
+			font-size: 1.75rem;
+		}
+
+		.problema-content p {
+			font-size: 1rem;
+		}
+
+		.problema-cta {
+			font-size: 1.25rem !important;
+		}
+
+		.que-es-content {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.que-es-text h2 {
+			font-size: 1.75rem;
+		}
+
+		.image-placeholder {
+			max-width: 300px;
+			height: 200px;
+		}
+
 		.gummy {
 			width: 60px;
 			height: 60px;
@@ -683,13 +1496,136 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			font-size: 2rem;
 		}
 
+		.testimonials-grid {
+			grid-template-columns: 1fr;
+		}
+
 		.steps {
 			flex-direction: column;
 			align-items: center;
 		}
 
+		.por-que-content {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.por-que-text h2 {
+			font-size: 1.75rem;
+		}
+
+		.diferenciadores li {
+			justify-content: center;
+			text-align: left;
+		}
+
+		.confianza-content {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.confianza-text h2 {
+			font-size: 1.75rem;
+		}
+
+		.sellos-confianza {
+			justify-content: center;
+		}
+
+		.confianza-buttons {
+			justify-content: center;
+		}
+
+		#ingredientes h2 {
+			font-size: 2rem;
+		}
+
+		.flashcard {
+			flex: 0 0 300px;
+		}
+
 		.cta-box h2 {
 			font-size: 2rem;
 		}
+
+		.contacto-content {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.contacto-text h3 {
+			font-size: 1.5rem;
+		}
+
+		.contacto-buttons {
+			width: 100%;
+			align-items: center;
+		}
+
+		.footer-title {
+			font-size: 1.5rem;
+		}
+
+		.footer-nav {
+			gap: 1rem;
+		}
+
+		.footer-nav a {
+			font-size: 0.875rem;
+		}
 	}
 </style>
+
+<script>
+	// Carrusel de ingredientes
+	document.addEventListener('DOMContentLoaded', () => {
+		const carrusel = document.querySelector('.carrusel');
+		const prevBtn = document.querySelector('.carrusel-btn.prev');
+		const nextBtn = document.querySelector('.carrusel-btn.next');
+		const dotsContainer = document.querySelector('.carrusel-dots');
+		const cards = document.querySelectorAll('.flashcard');
+
+		if (!carrusel || !cards.length) return;
+
+		// Crear dots
+		cards.forEach((_, index) => {
+			const dot = document.createElement('button');
+			dot.className = `carrusel-dot ${index === 0 ? 'active' : ''}`;
+			dot.setAttribute('aria-label', `Ir a tarjeta ${index + 1}`);
+			dot.addEventListener('click', () => scrollToCard(index));
+			dotsContainer?.appendChild(dot);
+		});
+
+		const dots = document.querySelectorAll('.carrusel-dot');
+
+		function scrollToCard(index: number) {
+			const card = cards[index] as HTMLElement;
+			if (card) {
+				carrusel.scrollTo({
+					left: card.offsetLeft - (carrusel.offsetWidth - card.offsetWidth) / 2,
+					behavior: 'smooth'
+				});
+			}
+		}
+
+		function updateDots() {
+			const scrollLeft = carrusel.scrollLeft;
+			const cardWidth = (cards[0] as HTMLElement).offsetWidth + 24; // gap incluido
+			const activeIndex = Math.round(scrollLeft / cardWidth);
+
+			dots.forEach((dot, index) => {
+				dot.classList.toggle('active', index === activeIndex);
+			});
+		}
+
+		prevBtn?.addEventListener('click', () => {
+			carrusel.scrollBy({ left: -374, behavior: 'smooth' });
+		});
+
+		nextBtn?.addEventListener('click', () => {
+			carrusel.scrollBy({ left: 374, behavior: 'smooth' });
+		});
+
+		carrusel.addEventListener('scroll', updateDots);
+	});
+</script>
