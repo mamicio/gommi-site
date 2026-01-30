@@ -1,19 +1,13 @@
 <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
   <!-- Orejas de conejo -->
-  <ellipse cx="35" cy="25" rx="12" ry="30" fill="#E91E8C"/>
-  <ellipse cx="65" cy="25" rx="12" ry="30" fill="#E91E8C"/>
-  <ellipse cx="35" cy="25" rx="7" ry="20" fill="#FFB6D3"/>
-  <ellipse cx="65" cy="25" rx="7" ry="20" fill="#FFB6D3"/>
-  <!-- Cabeza -->
-  <circle cx="50" cy="70" r="35" fill="#E91E8C"/>
-  <!-- Cara interna -->
-  <circle cx="50" cy="72" r="28" fill="#FFE4EC"/>
-  <!-- Ojos -->
-  <circle cx="40" cy="65" r="4" fill="#2D3748"/>
-  <circle cx="60" cy="65" r="4" fill="#2D3748"/>
-  <!-- Nariz/corazón -->
-  <path d="M50 75 L46 71 Q50 67 54 71 Z" fill="#E91E8C"/>
-  <!-- Mejillas -->
-  <circle cx="32" cy="75" r="5" fill="#FFB6D3" opacity="0.7"/>
-  <circle cx="68" cy="75" r="5" fill="#FFB6D3" opacity="0.7"/>
+  <path d="M35 8 Q30 0 28 8 Q26 30 35 45 Q40 35 38 20 Q37 12 35 8" fill="#C97B8D"/>
+  <path d="M65 8 Q70 0 72 8 Q74 30 65 45 Q60 35 62 20 Q63 12 65 8" fill="#C97B8D"/>
+  <!-- Cuerpo circular -->
+  <circle cx="50" cy="70" r="42" fill="#C97B8D"/>
+  <!-- Círculo interior blanco -->
+  <circle cx="50" cy="68" r="22" fill="#FFFFFF"/>
+  <!-- Corazón nariz -->
+  <path d="M50 78 C45 73 40 68 45 63 C48 60 50 62 50 62 C50 62 52 60 55 63 C60 68 55 73 50 78" fill="#C97B8D" stroke="none"/>
+  <!-- Patitas (cola de zanahoria) -->
+  <path d="M42 108 Q50 115 58 108" fill="none" stroke="#C97B8D" stroke-width="3" stroke-linecap="round"/>
 </svg>

@@ -1,6 +1,8 @@
 ---
 // Componente principal de Gommi
 import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
+import logoGommiBlanco from '../assets/images/gommi_logos_blanco.png';
+import frascoGommi from '../assets/images/Frasco.png';
 ---
 
 <div id="container">
@@ -19,26 +21,36 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 				<li><a href="#contacto">Contacto</a></li>
 				<li><a href="/blog" class="nav-blog">Blog</a></li>
 			</ul>
+			<button class="menu-toggle" aria-label="Abrir menú">
+				<span class="hamburger"></span>
+			</button>
 			<a href="https://www.instagram.com/gommi_oficial/" target="_blank" class="cta-button">Comprar</a>
 		</nav>
+		<div class="mobile-menu">
+			<a href="#producto">Producto</a>
+			<a href="#que-es-gommi">¿Qué es Gommi?</a>
+			<a href="#beneficios">Beneficios</a>
+			<a href="#como-funciona">¿Cómo funciona?</a>
+			<a href="#ingredientes">Ingredientes y Ciencia</a>
+			<a href="#testimonios">Testimonios</a>
+			<a href="#contacto">Contacto</a>
+			<a href="/blog" class="nav-blog">Blog</a>
+		</div>
 	</header>
 
 	<main>
 		<section id="producto">
 			<div class="hero-content">
-				<h1>Gommi: gomitas que cuidan tu intestino de forma rica y consciente</h1>
-				<h2 class="subtitle">Probióticos + prebióticos en gomitas sin azúcar, diseñadas para mejorar tu digestión, reducir la inflamación y acompañarte todos los días.</h2>
+				<h1><span class="brand-name">Gommi:</span> gomitas que cuidan tu intestino de forma rica y consciente</h1>
+				<h2 class="subtitle"><span class="highlight-text">Probióticos + prebióticos</span> en gomitas sin azúcar, diseñadas para mejorar tu digestión, reducir la inflamación y acompañarte todos los días.</h2>
 				<div class="hero-buttons">
 					<a href="#como-funciona" class="button primary">Quiero cuidar mi digestión</a>
 					<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button secondary">Quiero mis gomitas</a>
 				</div>
 			</div>
 			<div class="hero-image">
-				<div class="gummy-container">
-					<div class="gummy gummy-1"></div>
-					<div class="gummy gummy-2"></div>
-					<div class="gummy gummy-3"></div>
-					<div class="floating-text">Deliciosas</div>
+				<div class="product-container">
+					<img src={frascoGommi.src} alt="Frasco de Gommi - Gomitas con probióticos y prebióticos" class="product-img" />
 				</div>
 			</div>
 		</section>
@@ -204,6 +216,9 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			<p class="ingredientes-intro">Sabemos que lo que consumes importa. Por eso, en Gommi cuidamos cada ingrediente y cada proceso, combinando respaldo científico con una forma cercana y honesta de hablar de bienestar.</p>
 
 			<div class="carrusel-container">
+				<button class="carrusel-btn prev" aria-label="Anterior">
+					<span>&#8249;</span>
+				</button>
 				<div class="carrusel">
 					<div class="flashcard">
 						<div class="flashcard-icon">🧬</div>
@@ -244,11 +259,10 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 						<p>Creemos en la ciencia que cuida, no en la que intimida. Por eso elegimos explicar de forma clara, cercana y responsable cómo funciona Gommi, sin palabras complicadas ni promesas exageradas.</p>
 					</div>
 				</div>
-				<div class="carrusel-nav">
-					<button class="carrusel-btn prev" aria-label="Anterior">←</button>
-					<div class="carrusel-dots"></div>
-					<button class="carrusel-btn next" aria-label="Siguiente">→</button>
-				</div>
+				<button class="carrusel-btn next" aria-label="Siguiente">
+					<span>&#8250;</span>
+				</button>
+				<div class="carrusel-dots"></div>
 			</div>
 
 			<p class="nota-legal">Este producto no es un medicamento y no sustituye una alimentación balanceada ni hábitos de vida saludables.</p>
@@ -312,7 +326,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	<footer>
 		<div class="footer-content">
 			<div class="footer-logo">
-				<img src={logoGommi.src} alt="Gommi" class="footer-logo-img" />
+				<img src={logoGommiBlanco.src} alt="Gommi" class="footer-logo-img" />
 			</div>
 			<h2 class="footer-title">Si tu intestino no está bien, tu cuerpo lo siente</h2>
 			<p class="footer-text">Inflamación, pesadez, estreñimiento, diarrea o malestar después de comer no son normales. Muchas personas viven así sin saber que su intestino necesita apoyo diario.</p>
@@ -350,13 +364,16 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 </div>
 
 <style>
-	/* Variables de color */
+	/* Variables de color - Paleta Gommi según manual de marca */
 	:root {
-		--primary: #E91E8C;
-		--primary-light: #FFE4EC;
-		--primary-dark: #C4177A;
-		--secondary: #4ECDC4;
-		--secondary-light: #B8F0EC;
+		--primary: #fcb4c5;
+		--primary-dark: #e8a0b3;
+		--primary-darker: #C97B8D;
+		--secondary: #4a967a;
+		--secondary-light: #8ceff4;
+		--lavender: #cbb6f5;
+		--lavender-dark: #7a5fb8;
+		--coral: #ef9e92;
 		--text: #2D3748;
 		--text-light: #718096;
 		--white: #FFFFFF;
@@ -368,7 +385,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	#container {
-		font-family: 'Nunito', sans-serif;
+		font-family: 'Poppins', sans-serif;
 		color: var(--text);
 		overflow-x: hidden;
 	}
@@ -382,16 +399,17 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		z-index: 100;
 		background: rgba(255, 255, 255, 0.95);
 		backdrop-filter: blur(10px);
-		box-shadow: 0 2px 20px rgba(233, 30, 140, 0.1);
+		box-shadow: 0 2px 20px rgba(201, 123, 141, 0.1);
 	}
 
 	nav {
 		max-width: 1200px;
 		margin: 0 auto;
 		padding: 1rem 2rem;
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
 		align-items: center;
+		gap: 2rem;
 	}
 
 	.logo {
@@ -415,14 +433,24 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		gap: 1.25rem;
 		margin: 0;
 		padding: 0;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		justify-self: stretch;
+	}
+
+	.nav-links li {
+		display: flex;
+		align-items: center;
 	}
 
 	.nav-links a {
 		text-decoration: none;
-		color: var(--text);
+		color: var(--secondary);
 		font-weight: 600;
 		font-size: 0.9rem;
 		transition: color 0.3s;
+		text-align: center;
 	}
 
 	.nav-links a:hover {
@@ -430,28 +458,121 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.nav-links .nav-blog {
-		color: var(--secondary);
+		color: var(--lavender);
 		font-weight: 700;
 	}
 
 	.nav-links .nav-blog:hover {
-		color: #3BA99E;
+		color: #b9a0e8;
 	}
 
 	.cta-button {
-		background: var(--primary);
+		background: var(--secondary);
 		color: var(--white);
 		padding: 0.75rem 1.5rem;
 		border-radius: 50px;
 		text-decoration: none;
 		font-weight: 700;
 		transition: all 0.3s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 	}
 
 	.cta-button:hover {
-		background: var(--primary-dark);
+		background: #3d7d65;
 		transform: translateY(-2px);
-		box-shadow: 0 4px 15px rgba(233, 30, 140, 0.4);
+		box-shadow: 0 4px 15px rgba(74, 150, 122, 0.5);
+	}
+
+	/* Menú hamburguesa */
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+		z-index: 101;
+	}
+
+	.hamburger {
+		display: block;
+		width: 24px;
+		height: 3px;
+		background: var(--secondary);
+		border-radius: 3px;
+		position: relative;
+		transition: all 0.3s;
+	}
+
+	.hamburger::before,
+	.hamburger::after {
+		content: '';
+		position: absolute;
+		width: 24px;
+		height: 3px;
+		background: var(--secondary);
+		border-radius: 3px;
+		transition: all 0.3s;
+	}
+
+	.hamburger::before {
+		top: -8px;
+	}
+
+	.hamburger::after {
+		top: 8px;
+	}
+
+	.menu-toggle.active .hamburger {
+		background: transparent;
+	}
+
+	.menu-toggle.active .hamburger::before {
+		top: 0;
+		transform: rotate(45deg);
+	}
+
+	.menu-toggle.active .hamburger::after {
+		top: 0;
+		transform: rotate(-45deg);
+	}
+
+	/* Menú móvil */
+	.mobile-menu {
+		display: none;
+		flex-direction: column;
+		background: var(--white);
+		padding: 1rem 2rem 2rem;
+		border-top: 1px solid rgba(74, 150, 122, 0.1);
+	}
+
+	.mobile-menu a {
+		padding: 0.875rem 0;
+		text-decoration: none;
+		color: var(--secondary);
+		font-weight: 600;
+		font-size: 1rem;
+		border-bottom: 1px solid rgba(74, 150, 122, 0.1);
+		transition: color 0.3s;
+	}
+
+	.mobile-menu a:last-child {
+		border-bottom: none;
+	}
+
+	.mobile-menu a:hover {
+		color: var(--primary-darker);
+	}
+
+	.mobile-menu a.nav-blog {
+		color: var(--lavender-dark);
+		font-weight: 700;
+	}
+
+	.mobile-menu.active {
+		display: flex;
 	}
 
 	/* Main */
@@ -489,9 +610,13 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	.hero-content h1 {
 		font-size: 2.75rem;
 		font-weight: 800;
-		color: var(--primary);
+		color: var(--lavender-dark);
 		margin: 0 0 1.5rem;
 		line-height: 1.2;
+	}
+
+	.hero-content h1 .brand-name {
+		color: var(--primary);
 	}
 
 	.hero-content .subtitle {
@@ -500,6 +625,11 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		color: var(--text);
 		margin: 0 0 2rem;
 		line-height: 1.6;
+	}
+
+	.highlight-text {
+		color: var(--secondary);
+		font-weight: 700;
 	}
 
 	.tagline {
@@ -535,24 +665,24 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.button.primary {
-		background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+		background: linear-gradient(135deg, var(--secondary) 0%, #3d7d65 100%);
 		color: var(--white);
-		box-shadow: 0 4px 15px rgba(233, 30, 140, 0.3);
+		box-shadow: 0 4px 15px rgba(74, 150, 122, 0.4);
 	}
 
 	.button.primary:hover {
 		transform: translateY(-3px);
-		box-shadow: 0 8px 25px rgba(233, 30, 140, 0.4);
+		box-shadow: 0 8px 25px rgba(74, 150, 122, 0.5);
 	}
 
 	.button.secondary {
 		background: var(--white);
-		color: var(--primary);
+		color: var(--primary-darker);
 		border: 2px solid var(--primary);
 	}
 
 	.button.secondary:hover {
-		background: var(--primary-light);
+		background: var(--primary);
 	}
 
 	.button.large {
@@ -560,7 +690,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		font-size: 1.125rem;
 	}
 
-	/* Hero Image / Gummies */
+	/* Hero Image / Product */
 	.hero-image {
 		flex: 1;
 		display: flex;
@@ -568,56 +698,68 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		align-items: center;
 	}
 
-	.gummy-container {
+	.product-container {
 		position: relative;
-		width: 300px;
-		height: 300px;
+		width: 350px;
+		height: 400px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
-	.gummy {
+	.product-img {
+		max-width: 280px;
+		height: auto;
+		animation: gentle-pulse 3s ease-in-out infinite;
+		filter: drop-shadow(0 20px 40px rgba(201, 123, 141, 0.4));
+	}
+
+	@keyframes gentle-pulse {
+		0%, 100% { transform: scale(1); }
+		50% { transform: scale(1.02); }
+	}
+
+	.gummy-bear {
 		position: absolute;
-		width: 80px;
-		height: 80px;
-		border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+		font-size: 2.5rem;
 		animation: float 3s ease-in-out infinite;
+		filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 	}
 
-	.gummy-1 {
-		background: linear-gradient(135deg, #FF6B9D 0%, #E91E8C 100%);
-		top: 20%;
-		left: 20%;
+	.gummy-bear-1 {
+		top: 5%;
+		left: 5%;
 		animation-delay: 0s;
-		box-shadow: 0 10px 30px rgba(233, 30, 140, 0.3), inset 0 -10px 20px rgba(0,0,0,0.1), inset 0 10px 20px rgba(255,255,255,0.3);
+		transform: rotate(-15deg);
 	}
 
-	.gummy-2 {
-		background: linear-gradient(135deg, #7FDBDA 0%, #4ECDC4 100%);
-		top: 40%;
-		right: 15%;
+	.gummy-bear-2 {
+		top: 15%;
+		right: 0%;
 		animation-delay: 0.5s;
-		box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3), inset 0 -10px 20px rgba(0,0,0,0.1), inset 0 10px 20px rgba(255,255,255,0.3);
+		transform: rotate(20deg);
 	}
 
-	.gummy-3 {
-		background: linear-gradient(135deg, #FFB6D3 0%, #FF6B9D 100%);
-		bottom: 20%;
-		left: 35%;
+	.gummy-bear-3 {
+		bottom: 10%;
+		left: 0%;
 		animation-delay: 1s;
-		box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3), inset 0 -10px 20px rgba(0,0,0,0.1), inset 0 10px 20px rgba(255,255,255,0.3);
+		transform: rotate(-10deg);
 	}
 
 	.floating-text {
 		position: absolute;
 		bottom: 5%;
-		right: 10%;
+		right: 5%;
 		background: var(--white);
-		color: var(--primary);
+		color: var(--secondary);
 		padding: 0.5rem 1rem;
 		border-radius: 20px;
 		font-weight: 700;
 		font-size: 0.875rem;
 		box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 		animation: float 4s ease-in-out infinite;
+		animation-delay: 1.5s;
 	}
 
 	@keyframes float {
@@ -628,7 +770,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* Problema Section */
 	#problema {
 		padding: 5rem 2rem;
-		background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 50%, var(--secondary-light) 100%);
+		background: linear-gradient(135deg, var(--primary) 0%, var(--white) 50%, var(--secondary-light) 100%);
 	}
 
 	.problema-content {
@@ -639,7 +781,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.problema-content h2 {
 		font-size: 2.5rem;
-		color: var(--primary);
+		color: var(--lavender-dark);
 		margin: 0 0 1.5rem;
 		line-height: 1.2;
 	}
@@ -661,7 +803,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* Qué es Gommi Section */
 	#que-es-gommi {
 		padding: 6rem 2rem;
-		background: var(--white);
+		background: linear-gradient(180deg, var(--white) 0%, rgba(203, 182, 245, 0.15) 100%);
 	}
 
 	.que-es-content {
@@ -678,7 +820,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.que-es-text h2 {
 		font-size: 2.5rem;
-		color: var(--primary);
+		color: var(--lavender-dark);
 		margin: 0 0 1.5rem;
 		line-height: 1.2;
 	}
@@ -708,7 +850,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		width: 100%;
 		max-width: 400px;
 		height: 300px;
-		background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+		background: linear-gradient(135deg, var(--primary) 0%, var(--secondary-light) 100%);
 		border-radius: 20px;
 		display: flex;
 		align-items: center;
@@ -723,13 +865,13 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* Benefits Section */
 	#beneficios {
 		padding: 6rem 2rem;
-		background: var(--white);
+		background: linear-gradient(180deg, var(--white) 0%, rgba(252, 180, 197, 0.1) 100%);
 	}
 
 	#beneficios h2, #como-funciona h2, #testimonios h2 {
 		text-align: center;
 		font-size: 2.5rem;
-		color: var(--text);
+		color: var(--lavender-dark);
 		margin-bottom: 1.5rem;
 	}
 
@@ -747,15 +889,21 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.benefits-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 2rem;
-		max-width: 1200px;
+		max-width: 1100px;
 		margin: 0 auto;
 	}
 
 	.benefit-card {
-		background: var(--primary-light);
+		flex: 0 1 300px;
+		max-width: 300px;
+	}
+
+	.benefit-card {
+		background: var(--primary);
 		padding: 2rem;
 		border-radius: 20px;
 		text-align: center;
@@ -764,7 +912,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.benefit-card:hover {
 		transform: translateY(-5px);
-		box-shadow: 0 10px 30px rgba(233, 30, 140, 0.15);
+		box-shadow: 0 10px 30px rgba(201, 123, 141, 0.15);
 	}
 
 	.benefit-icon {
@@ -776,7 +924,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		align-items: center;
 		justify-content: center;
 		margin: 0 auto 1rem;
-		box-shadow: 0 4px 15px rgba(233, 30, 140, 0.15);
+		box-shadow: 0 4px 15px rgba(201, 123, 141, 0.15);
 	}
 
 	.benefit-icon svg {
@@ -786,7 +934,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.benefit-card h3 {
-		color: var(--primary);
+		color: var(--text);
 		margin: 0 0 0.5rem;
 		font-size: 1.25rem;
 	}
@@ -845,7 +993,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* Por qué elegir Section */
 	#por-que-elegir {
 		padding: 6rem 2rem;
-		background: var(--white);
+		background: linear-gradient(180deg, var(--white) 0%, rgba(239, 158, 146, 0.1) 100%);
 	}
 
 	.por-que-content {
@@ -862,7 +1010,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.por-que-text h2 {
 		font-size: 2.5rem;
-		color: var(--primary);
+		color: var(--lavender-dark);
 		margin: 0 0 2rem;
 		line-height: 1.2;
 	}
@@ -898,7 +1046,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.diferenciadores strong {
-		color: var(--primary);
+		color: var(--secondary);
 	}
 
 	.por-que-image {
@@ -935,7 +1083,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.confianza-text h2 {
 		font-size: 2.5rem;
-		color: var(--primary);
+		color: var(--lavender-dark);
 		margin: 0 0 1.5rem;
 		line-height: 1.2;
 	}
@@ -957,10 +1105,10 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		background: var(--white);
-		padding: 0.75rem 1.25rem;
-		border-radius: 50px;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+		background: rgba(74, 150, 122, 0.1);
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		border-left: 3px solid var(--secondary);
 	}
 
 	.sello-icon {
@@ -994,13 +1142,13 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* Ingredientes Section */
 	#ingredientes {
 		padding: 6rem 2rem;
-		background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+		background: linear-gradient(135deg, var(--primary) 0%, var(--white) 100%);
 	}
 
 	#ingredientes h2 {
 		text-align: center;
 		font-size: 2.5rem;
-		color: var(--text);
+		color: var(--lavender-dark);
 		margin-bottom: 1.5rem;
 	}
 
@@ -1017,6 +1165,10 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		max-width: 1200px;
 		margin: 0 auto;
 		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding-bottom: 2rem;
 	}
 
 	.carrusel {
@@ -1028,6 +1180,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		padding: 1rem 0.5rem 2rem;
 		-webkit-overflow-scrolling: touch;
 		scrollbar-width: none;
+		flex: 1;
 	}
 
 	.carrusel::-webkit-scrollbar {
@@ -1039,14 +1192,14 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		background: var(--white);
 		border-radius: 20px;
 		padding: 2rem;
-		box-shadow: 0 4px 20px rgba(233, 30, 140, 0.1);
+		box-shadow: 0 4px 20px rgba(201, 123, 141, 0.1);
 		scroll-snap-align: center;
 		transition: transform 0.3s, box-shadow 0.3s;
 	}
 
 	.flashcard:hover {
 		transform: translateY(-5px);
-		box-shadow: 0 8px 30px rgba(233, 30, 140, 0.15);
+		box-shadow: 0 8px 30px rgba(201, 123, 141, 0.15);
 	}
 
 	.flashcard-icon {
@@ -1056,7 +1209,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.flashcard h3 {
 		font-size: 1.25rem;
-		color: var(--primary);
+		color: var(--secondary);
 		margin: 0 0 1rem;
 		line-height: 1.3;
 	}
@@ -1095,51 +1248,56 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		font-weight: 700;
 	}
 
-	.carrusel-nav {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 1.5rem;
-		margin-top: 1.5rem;
-	}
-
 	.carrusel-btn {
-		width: 44px;
-		height: 44px;
+		width: 50px;
+		height: 50px;
 		border-radius: 50%;
-		border: 2px solid var(--primary);
+		border: 2px solid var(--primary-darker);
 		background: var(--white);
-		color: var(--primary);
-		font-size: 1.25rem;
+		color: var(--primary-darker);
+		font-size: 1.5rem;
 		cursor: pointer;
 		transition: all 0.3s;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-shrink: 0;
+		box-shadow: 0 4px 15px rgba(252, 180, 197, 0.3);
 	}
 
 	.carrusel-btn:hover {
-		background: var(--primary);
+		background: var(--primary-darker);
 		color: var(--white);
+		transform: scale(1.05);
+	}
+
+	.carrusel-btn span {
+		line-height: 1;
+		margin-top: -2px;
 	}
 
 	.carrusel-dots {
 		display: flex;
+		justify-content: center;
 		gap: 0.5rem;
+		position: absolute;
+		bottom: -1rem;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	.carrusel-dot {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
-		background: var(--primary-light);
+		background: var(--primary);
 		border: none;
 		cursor: pointer;
 		transition: all 0.3s;
 	}
 
 	.carrusel-dot.active {
-		background: var(--primary);
+		background: var(--primary-darker);
 		width: 30px;
 		border-radius: 5px;
 	}
@@ -1159,7 +1317,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* Testimonials */
 	#testimonios {
 		padding: 6rem 2rem;
-		background: var(--white);
+		background: linear-gradient(180deg, var(--white) 0%, rgba(203, 182, 245, 0.1) 100%);
 	}
 
 	.testimonios-intro {
@@ -1180,16 +1338,16 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.testimonial-card {
-		background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+		background: linear-gradient(135deg, var(--primary) 0%, var(--white) 100%);
 		padding: 2rem;
 		border-radius: 20px;
-		border-left: 4px solid var(--primary);
+		border-left: 4px solid var(--primary-darker);
 		transition: transform 0.3s, box-shadow 0.3s;
 	}
 
 	.testimonial-card:hover {
 		transform: translateY(-5px);
-		box-shadow: 0 10px 30px rgba(233, 30, 140, 0.15);
+		box-shadow: 0 10px 30px rgba(201, 123, 141, 0.15);
 	}
 
 	.testimonial-card .stars {
@@ -1233,7 +1391,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* CTA Final */
 	#cta-final {
 		padding: 6rem 2rem;
-		background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+		background: linear-gradient(135deg, var(--primary-darker) 0%, #b56a7d 100%);
 	}
 
 	.cta-box {
@@ -1249,7 +1407,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	}
 
 	.cta-box > p:first-of-type {
-		color: var(--primary-light);
+		color: var(--primary);
 		font-size: 1.125rem;
 		margin: 0 0 2rem;
 		line-height: 1.8;
@@ -1260,11 +1418,11 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.cta-box .button.primary {
 		background: var(--white);
-		color: var(--primary);
+		color: var(--secondary);
 	}
 
 	.cta-box .button.primary:hover {
-		background: var(--primary-light);
+		background: var(--secondary-light);
 		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 	}
 
@@ -1279,7 +1437,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 	/* Contacto */
 	#contacto {
 		padding: 5rem 2rem;
-		background: var(--white);
+		background: linear-gradient(180deg, var(--white) 0%, rgba(140, 239, 244, 0.15) 100%);
 	}
 
 	.contacto-content {
@@ -1297,7 +1455,7 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	.contacto-text h3 {
 		font-size: 1.75rem;
-		color: var(--primary);
+		color: var(--text);
 		margin: 0 0 1rem;
 		line-height: 1.3;
 	}
@@ -1313,6 +1471,11 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	.contacto-buttons .button {
+		text-align: center;
+		justify-content: center;
 	}
 
 	/* Footer */
@@ -1433,8 +1596,17 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 
 	/* Responsive */
 	@media screen and (max-width: 768px) {
+		nav {
+			grid-template-columns: auto 1fr auto;
+		}
+
 		.nav-links {
 			display: none;
+		}
+
+		.menu-toggle {
+			display: block;
+			justify-self: end;
 		}
 
 		#producto {
@@ -1456,9 +1628,17 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			flex-wrap: wrap;
 		}
 
-		.gummy-container {
-			width: 250px;
-			height: 250px;
+		.product-container {
+			width: 280px;
+			height: 320px;
+		}
+
+		.product-img {
+			max-width: 220px;
+		}
+
+		.gummy-bear {
+			font-size: 2rem;
 		}
 
 		.problema-content h2 {
@@ -1485,11 +1665,6 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 		.image-placeholder {
 			max-width: 300px;
 			height: 200px;
-		}
-
-		.gummy {
-			width: 60px;
-			height: 60px;
 		}
 
 		#beneficios h2, #como-funciona h2, #testimonios h2 {
@@ -1540,8 +1715,42 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 			font-size: 2rem;
 		}
 
+		.carrusel-container {
+			padding-bottom: 1rem;
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.carrusel-btn {
+			width: 28px;
+			height: 28px;
+			font-size: 0.9rem;
+			flex-shrink: 0;
+			margin: 0 0.25rem;
+		}
+
+		.carrusel-dots {
+			display: none;
+		}
+
+		.carrusel {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
 		.flashcard {
-			flex: 0 0 300px;
+			flex: 0 0 65vw;
+			max-width: 250px;
+			padding: 1.25rem;
+			font-size: 0.9rem;
+		}
+
+		.flashcard h3 {
+			font-size: 1.1rem;
+		}
+
+		.flashcard-icon {
+			font-size: 2.5rem;
 		}
 
 		.cta-box h2 {
@@ -1577,6 +1786,26 @@ import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 </style>
 
 <script>
+	// Menú móvil
+	document.addEventListener('DOMContentLoaded', () => {
+		const menuToggle = document.querySelector('.menu-toggle');
+		const mobileMenu = document.querySelector('.mobile-menu');
+		const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+		menuToggle?.addEventListener('click', () => {
+			menuToggle.classList.toggle('active');
+			mobileMenu?.classList.toggle('active');
+		});
+
+		// Cerrar menú al hacer clic en un enlace
+		mobileLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				menuToggle?.classList.remove('active');
+				mobileMenu?.classList.remove('active');
+			});
+		});
+	});
+
 	// Carrusel de ingredientes
 	document.addEventListener('DOMContentLoaded', () => {
 		const carrusel = document.querySelector('.carrusel');
