@@ -1,31 +1,13 @@
 ---
 // Componente principal de Gommi
+import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 ---
 
 <div id="container">
 	<header>
 		<nav>
 			<div class="logo">
-				<svg viewBox="0 0 100 120" width="50" height="60">
-					<!-- Orejas de conejo -->
-					<ellipse cx="35" cy="25" rx="12" ry="30" fill="#E91E8C"/>
-					<ellipse cx="65" cy="25" rx="12" ry="30" fill="#E91E8C"/>
-					<ellipse cx="35" cy="25" rx="7" ry="20" fill="#FFB6D3"/>
-					<ellipse cx="65" cy="25" rx="7" ry="20" fill="#FFB6D3"/>
-					<!-- Cabeza -->
-					<circle cx="50" cy="70" r="35" fill="#E91E8C"/>
-					<!-- Cara interna -->
-					<circle cx="50" cy="72" r="28" fill="#FFE4EC"/>
-					<!-- Ojos -->
-					<circle cx="40" cy="65" r="4" fill="#2D3748"/>
-					<circle cx="60" cy="65" r="4" fill="#2D3748"/>
-					<!-- Nariz/corazón -->
-					<path d="M50 75 L46 71 Q50 67 54 71 Z" fill="#E91E8C"/>
-					<!-- Mejillas -->
-					<circle cx="32" cy="75" r="5" fill="#FFB6D3" opacity="0.7"/>
-					<circle cx="68" cy="75" r="5" fill="#FFB6D3" opacity="0.7"/>
-				</svg>
-				<span>Gommi</span>
+				<img src={logoGommi.src} alt="Gommi" class="logo-img" />
 			</div>
 			<ul class="nav-links">
 				<li><a href="#beneficios">Beneficios</a></li>
@@ -150,14 +132,7 @@
 	<footer>
 		<div class="footer-content">
 			<div class="footer-logo">
-				<svg viewBox="0 0 100 120" width="40" height="48">
-					<ellipse cx="35" cy="25" rx="12" ry="30" fill="#E91E8C"/>
-					<ellipse cx="65" cy="25" rx="12" ry="30" fill="#E91E8C"/>
-					<circle cx="50" cy="70" r="35" fill="#E91E8C"/>
-					<circle cx="50" cy="72" r="28" fill="#FFE4EC"/>
-					<path d="M50 75 L46 71 Q50 67 54 71 Z" fill="#E91E8C"/>
-				</svg>
-				<span>Gommi</span>
+				<img src={logoGommi.src} alt="Gommi" class="footer-logo-img" />
 			</div>
 			<p>Gomitas simbióticas - Bienestar digestivo diario</p>
 			<div class="social-links">
@@ -225,6 +200,11 @@
 		font-weight: 800;
 		color: var(--primary);
 		text-decoration: none;
+	}
+
+	.logo-img {
+		height: 50px;
+		width: auto;
 	}
 
 	.nav-links {
@@ -622,6 +602,11 @@
 		font-size: 1.25rem;
 		font-weight: 800;
 		margin-bottom: 1rem;
+	}
+
+	.footer-logo-img {
+		height: 40px;
+		width: auto;
 	}
 
 	.footer-content > p {
