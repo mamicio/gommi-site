@@ -3,6 +3,8 @@
 import logoGommi from '../assets/images/gommi_logos_logo_full_color.png';
 import logoGommiBlanco from '../assets/images/gommi_logos_blanco.png';
 import frascoGommi from '../assets/images/Frasco.png';
+import queEsGommiImg from '../assets/images/Qué es Gommi.jpeg';
+import porQueElegirImg from '../assets/images/¿Por qué elegir Gommi.jpeg';
 ---
 
 <div id="container">
@@ -71,10 +73,7 @@ import frascoGommi from '../assets/images/Frasco.png';
 					<p class="highlight">No son un medicamento. Son un hábito diario de bienestar.</p>
 				</div>
 				<div class="que-es-image">
-					<!-- Imagen pendiente: persona real en situación cotidiana, sensación de alivio y bienestar -->
-					<div class="image-placeholder">
-						<span>Imagen próximamente</span>
-					</div>
+					<img src={queEsGommiImg.src} alt="Qué es Gommi - Gomitas simbióticas para tu bienestar" class="section-img" />
 				</div>
 			</div>
 		</section>
@@ -170,10 +169,7 @@ import frascoGommi from '../assets/images/Frasco.png';
 					</ul>
 				</div>
 				<div class="por-que-image">
-					<!-- Imagen pendiente: Producto + ingredientes naturales, fondo claro -->
-					<div class="image-placeholder">
-						<span>Imagen próximamente</span>
-					</div>
+					<img src={porQueElegirImg.src} alt="Por qué elegir Gommi - Ingredientes naturales" class="section-img" />
 				</div>
 			</div>
 		</section>
@@ -453,7 +449,8 @@ import frascoGommi from '../assets/images/Frasco.png';
 		text-align: center;
 	}
 
-	.nav-links a:hover {
+	.nav-links a:hover,
+	.nav-links a.active {
 		color: var(--primary);
 	}
 
@@ -562,8 +559,9 @@ import frascoGommi from '../assets/images/Frasco.png';
 		border-bottom: none;
 	}
 
-	.mobile-menu a:hover {
-		color: var(--primary-darker);
+	.mobile-menu a:hover,
+	.mobile-menu a.active {
+		color: var(--primary);
 	}
 
 	.mobile-menu a.nav-blog {
@@ -860,6 +858,15 @@ import frascoGommi from '../assets/images/Frasco.png';
 	.image-placeholder span {
 		color: var(--text-light);
 		font-weight: 600;
+	}
+
+	.section-img {
+		width: 100%;
+		max-width: 400px;
+		height: auto;
+		border-radius: 20px;
+		box-shadow: 0 10px 40px rgba(201, 123, 141, 0.2);
+		object-fit: cover;
 	}
 
 	/* Benefits Section */
@@ -1667,6 +1674,10 @@ import frascoGommi from '../assets/images/Frasco.png';
 			height: 200px;
 		}
 
+		.section-img {
+			max-width: 300px;
+		}
+
 		#beneficios h2, #como-funciona h2, #testimonios h2 {
 			font-size: 2rem;
 		}
@@ -1802,6 +1813,58 @@ import frascoGommi from '../assets/images/Frasco.png';
 			link.addEventListener('click', () => {
 				menuToggle?.classList.remove('active');
 				mobileMenu?.classList.remove('active');
+			});
+		});
+	});
+
+	// Navegación activa con Intersection Observer
+	document.addEventListener('DOMContentLoaded', () => {
+		const sections = document.querySelectorAll('section[id]');
+		const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+		const mobileNavLinks = document.querySelectorAll('.mobile-menu a[href^="#"]');
+		const footerNavLinks = document.querySelectorAll('.footer-nav a[href^="#"]');
+
+		function setActiveLink(sectionId: string) {
+			// Limpiar todos los activos
+			navLinks.forEach(link => link.classList.remove('active'));
+			mobileNavLinks.forEach(link => link.classList.remove('active'));
+			footerNavLinks.forEach(link => link.classList.remove('active'));
+
+			// Activar el enlace correspondiente
+			const selector = `a[href="#${sectionId}"]`;
+			document.querySelectorAll(`.nav-links ${selector}, .mobile-menu ${selector}, .footer-nav ${selector}`).forEach(link => {
+				link.classList.add('active');
+			});
+		}
+
+		// Intersection Observer para detectar sección visible
+		const observerOptions = {
+			root: null,
+			rootMargin: '-20% 0px -60% 0px',
+			threshold: 0
+		};
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					setActiveLink(entry.target.id);
+				}
+			});
+		}, observerOptions);
+
+		sections.forEach(section => {
+			observer.observe(section);
+		});
+
+		// También activar al hacer clic
+		const allNavLinks = [...navLinks, ...mobileNavLinks, ...footerNavLinks];
+		allNavLinks.forEach(link => {
+			link.addEventListener('click', (e) => {
+				const href = (link as HTMLAnchorElement).getAttribute('href');
+				if (href && href.startsWith('#')) {
+					const sectionId = href.substring(1);
+					setActiveLink(sectionId);
+				}
 			});
 		});
 	});
