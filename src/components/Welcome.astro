@@ -20,6 +20,7 @@ import porQueElegirImg from '../assets/images/¿Por qué elegir Gommi.jpeg';
 				<li><a href="#como-funciona">¿Cómo funciona?</a></li>
 				<li><a href="#ingredientes">Ingredientes y Ciencia</a></li>
 				<li><a href="#testimonios">Testimonios</a></li>
+				<li><a href="#precio">Precio</a></li>
 				<li><a href="#contacto">Contacto</a></li>
 				<li><a href="/blog" class="nav-blog">Blog</a></li>
 			</ul>
@@ -35,6 +36,7 @@ import porQueElegirImg from '../assets/images/¿Por qué elegir Gommi.jpeg';
 			<a href="#como-funciona">¿Cómo funciona?</a>
 			<a href="#ingredientes">Ingredientes y Ciencia</a>
 			<a href="#testimonios">Testimonios</a>
+			<a href="#precio">Precio</a>
 			<a href="#contacto">Contacto</a>
 			<a href="/blog" class="nav-blog">Blog</a>
 		</div>
@@ -381,6 +383,51 @@ import porQueElegirImg from '../assets/images/¿Por qué elegir Gommi.jpeg';
 			</div>
 		</section>
 
+		<section id="precio">
+			<h2>Elige cómo quieres comprar Gommi</h2>
+			<p class="precio-intro">Queremos que elijas la opción que mejor se adapte a ti. Por eso, puedes comprar Gommi de dos formas distintas, según cómo prefieras hacer tu compra.</p>
+
+			<div class="precio-grid">
+				<!-- Opción 1: WhatsApp (Recomendada) -->
+				<div class="precio-card recomendada">
+					<span class="badge-recomendado">Recomendada</span>
+					<div class="precio-icon">💬</div>
+					<h3>Compra directa por WhatsApp</h3>
+					<div class="precio-amount">
+						<span class="precio-valor">$75.000</span>
+						<span class="precio-moneda">COP + envío</span>
+					</div>
+					<p class="precio-descripcion">Compra Gommi directamente con nuestro equipo por WhatsApp. Te acompañamos en el proceso, resolvemos tus dudas y te ayudamos a elegir con tranquilidad.</p>
+					<ul class="precio-beneficios">
+						<li>Precio especial comprando directo con Gommi</li>
+						<li>Acompañamiento personalizado</li>
+						<li>Resolvemos dudas antes de comprar</li>
+						<li>Atención humana y cercana</li>
+					</ul>
+					<a href="https://wa.me/573196349730?text=Hola%2C%20quiero%20comprar%20Gommi" target="_blank" class="button whatsapp precio-cta">Comprar por WhatsApp</a>
+				</div>
+
+				<!-- Opción 2: Mercado Libre -->
+				<div class="precio-card">
+					<div class="precio-icon">🛒</div>
+					<h3>Compra inmediata por Mercado Libre</h3>
+					<div class="precio-amount">
+						<span class="precio-valor">$95.000</span>
+						<span class="precio-moneda">COP (envío incluido según cobertura)</span>
+					</div>
+					<p class="precio-descripcion">Si prefieres una compra rápida, automática y dentro de Mercado Libre, también puedes adquirir Gommi allí, con el respaldo de su plataforma, pagos integrados y envíos gestionados por ellos.</p>
+					<ul class="precio-beneficios">
+						<li>Compra inmediata</li>
+						<li>Pagos integrados en Mercado Libre</li>
+						<li>Envío gestionado por la plataforma</li>
+						<li>Ideal si ya compras por Mercado Libre</li>
+					</ul>
+					<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button secondary precio-cta">Comprar en Mercado Libre</a>
+					<p class="precio-microcopy">Serás redirigido a Mercado Libre</p>
+				</div>
+			</div>
+		</section>
+
 		<section id="cta-final">
 			<div class="cta-box">
 				<h2>Empieza a sentirte mejor desde adentro</h2>
@@ -434,6 +481,7 @@ import porQueElegirImg from '../assets/images/¿Por qué elegir Gommi.jpeg';
 				<a href="#como-funciona">¿Cómo funciona?</a>
 				<a href="#ingredientes">Ingredientes y Ciencia</a>
 				<a href="#testimonios">Testimonios</a>
+				<a href="#precio">Precio</a>
 				<a href="#contacto">Contacto</a>
 				<a href="/blog" class="footer-blog">Blog</a>
 			</nav>
@@ -1623,6 +1671,140 @@ import porQueElegirImg from '../assets/images/¿Por qué elegir Gommi.jpeg';
 		flex-wrap: wrap;
 	}
 
+	/* Precio Section */
+	#precio {
+		padding: 6rem 2rem;
+		background: linear-gradient(135deg, var(--white) 0%, #f8f4ff 100%);
+		text-align: center;
+	}
+
+	#precio h2 {
+		font-size: 2.5rem;
+		color: var(--lavender-dark);
+		margin: 0 0 1rem;
+	}
+
+	.precio-intro {
+		font-size: 1.125rem;
+		color: var(--text);
+		max-width: 700px;
+		margin: 0 auto 3rem;
+		line-height: 1.8;
+	}
+
+	.precio-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.precio-card {
+		background: var(--white);
+		border-radius: 20px;
+		padding: 2.5rem 2rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	.precio-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+	}
+
+	.precio-card.recomendada {
+		border: 3px solid var(--secondary);
+		background: linear-gradient(135deg, rgba(74, 150, 122, 0.05) 0%, var(--white) 100%);
+	}
+
+	.badge-recomendado {
+		position: absolute;
+		top: -12px;
+		left: 50%;
+		transform: translateX(-50%);
+		background: var(--secondary);
+		color: var(--white);
+		padding: 0.4rem 1rem;
+		border-radius: 20px;
+		font-size: 0.85rem;
+		font-weight: 700;
+	}
+
+	.precio-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.precio-card h3 {
+		font-size: 1.35rem;
+		color: var(--lavender-dark);
+		margin: 0 0 1rem;
+	}
+
+	.precio-amount {
+		margin-bottom: 1rem;
+	}
+
+	.precio-valor {
+		font-size: 2.25rem;
+		font-weight: 800;
+		color: var(--secondary);
+	}
+
+	.precio-moneda {
+		font-size: 0.95rem;
+		color: var(--text-light);
+		display: block;
+	}
+
+	.precio-descripcion {
+		font-size: 0.95rem;
+		color: var(--text);
+		line-height: 1.6;
+		margin: 0 0 1.25rem;
+	}
+
+	.precio-beneficios {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem;
+		flex-grow: 1;
+	}
+
+	.precio-beneficios li {
+		position: relative;
+		padding-left: 1.5rem;
+		margin-bottom: 0.5rem;
+		font-size: 0.9rem;
+		color: var(--text);
+	}
+
+	.precio-beneficios li::before {
+		content: '✓';
+		position: absolute;
+		left: 0;
+		color: var(--secondary);
+		font-weight: bold;
+	}
+
+	.precio-cta {
+		width: 100%;
+		text-align: center;
+		margin-top: auto;
+	}
+
+	.precio-microcopy {
+		font-size: 0.8rem;
+		color: var(--text-light);
+		margin: 0.75rem 0 0;
+		text-align: center;
+	}
+
 	/* CTA Final */
 	#cta-final {
 		padding: 6rem 2rem;
@@ -2043,6 +2225,32 @@ import porQueElegirImg from '../assets/images/¿Por qué elegir Gommi.jpeg';
 		}
 
 		.cta-box h2 {
+			font-size: 2rem;
+		}
+
+		/* Precio responsive */
+		#precio h2 {
+			font-size: 1.75rem;
+		}
+
+		.precio-intro {
+			font-size: 1rem;
+		}
+
+		.precio-grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+
+		.precio-card {
+			padding: 2rem 1.5rem;
+		}
+
+		.precio-card.recomendada {
+			order: -1;
+		}
+
+		.precio-valor {
 			font-size: 2rem;
 		}
 
