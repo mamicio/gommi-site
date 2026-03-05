@@ -1,16 +1,12 @@
 {
-  "name": "major-motion",
+  "name": "gommi-site",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
     "start": "node server/index.mjs",
-    "astro": "astro"
+    "dev": "node server/index.mjs"
   },
   "dependencies": {
-    "astro": "^5.16.9",
     "express": "^5.2.1"
   }
 }

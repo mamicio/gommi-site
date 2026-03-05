@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content="Cotizador de envio Gommi - Cotiza tu envio con Interrapidisimo en tiempo real." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+		<title>Cotizador de Envio - Gommi</title>
+
+		<!-- Meta Pixel Code -->
+		<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window, document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '1440892831046288');
+		fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=1440892831046288&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- End Meta Pixel Code -->
+
+		<style>
+			:root {
+				--primary: #fcb4c5;
+				--primary-darker: #C97B8D;
+				--secondary: #4a967a;
+				--secondary-light: #8ceff4;
+				--lavender-dark: #7a5fb8;
+				--text: #2D3748;
+				--text-light: #718096;
+				--white: #FFFFFF;
+			}
+
+			html, body {
+				margin: 0;
+				font-family: 'Poppins', sans-serif;
+				background: linear-gradient(135deg, var(--primary) 0%, var(--white) 50%, var(--secondary-light) 100%);
+				min-height: 100vh;
+			}
+
+			.cotizador-page {
+				max-width: 600px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+
+			.volver {
+				display: inline-block;
+				color: #4a967a;
+				text-decoration: none;
+				font-weight: 600;
+				margin-bottom: 1rem;
+			}
+
+			.volver:hover { text-decoration: underline; }
+
+			h1 {
+				color: #7a5fb8;
+				font-size: 2rem;
+				margin: 0 0 0.5rem;
+			}
+
+			.subtitle {
+				color: #718096;
+				margin: 0 0 2rem;
+			}
+
+			.cotizador-card {
+				background: white;
+				border-radius: 16px;
+				padding: 2rem;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+			}
+
+			.form-group { margin-bottom: 1.25rem; }
+
+			label {
+				display: block;
+				font-weight: 600;
+				color: #2D3748;
+				margin-bottom: 0.5rem;
+			}
+
+			.autocomplete-wrapper { position: relative; }
+
+			#ciudad-input {
+				width: 100%;
+				padding: 0.75rem;
+				border: 2px solid #e2e8f0;
+				border-radius: 8px;
+				font-size: 1rem;
+				font-family: 'Poppins', sans-serif;
+				background: white;
+				transition: border-color 0.3s;
+				box-sizing: border-box;
+			}
+
+			#ciudad-input:focus { outline: none; border-color: #4a967a; }
+
+			.autocomplete-list {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				right: 0;
+				background: white;
+				border: 2px solid #4a967a;
+				border-top: none;
+				border-radius: 0 0 8px 8px;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				max-height: 250px;
+				overflow-y: auto;
+				z-index: 10;
+				box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+			}
+
+			.autocomplete-list li {
+				padding: 0.6rem 0.75rem;
+				cursor: pointer;
+				font-size: 0.9rem;
+				border-bottom: 1px solid #f0f0f0;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.autocomplete-list li:last-child { border-bottom: none; }
+			.autocomplete-list li:hover, .autocomplete-list li.active { background: #f0fdf4; }
+
+			.hidden { display: none; }
+
+			.info-envio {
+				background: #f0fdf4;
+				border-radius: 8px;
+				padding: 1rem;
+				margin-bottom: 1.25rem;
+				border-left: 3px solid #4a967a;
+			}
+
+			.info-envio p {
+				margin: 0.25rem 0;
+				font-size: 0.9rem;
+				color: #2D3748;
+			}
+
+			button {
+				width: 100%;
+				padding: 0.875rem;
+				background: linear-gradient(135deg, #4a967a 0%, #3d7d65 100%);
+				color: white;
+				border: none;
+				border-radius: 8px;
+				font-size: 1rem;
+				font-weight: 700;
+				font-family: 'Poppins', sans-serif;
+				cursor: pointer;
+				transition: all 0.3s;
+			}
+
+			button:hover:not(:disabled) {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 15px rgba(74, 150, 122, 0.4);
+			}
+
+			button:disabled { background: #cbd5e0; cursor: not-allowed; }
+
+			.loading { text-align: center; padding: 2rem 0; }
+
+			.spinner {
+				width: 40px;
+				height: 40px;
+				border: 4px solid #e2e8f0;
+				border-top: 4px solid #4a967a;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+				margin: 0 auto 1rem;
+			}
+
+			@keyframes spin { to { transform: rotate(360deg); } }
+
+			.loading p { color: #4a967a; font-weight: 600; margin: 0; }
+
+			.loading-note {
+				color: #718096 !important;
+				font-weight: 400 !important;
+				font-size: 0.85rem;
+				margin-top: 0.5rem !important;
+			}
+
+			.resultado {
+				margin-top: 1.5rem;
+				background: #f0fdf4;
+				border-radius: 12px;
+				padding: 1.5rem;
+				border: 2px solid #4a967a;
+			}
+
+			.resultado h3 { color: #4a967a; margin: 0 0 1rem; font-size: 1.25rem; }
+
+			.resultado .valor {
+				font-size: 2rem;
+				font-weight: 800;
+				color: #4a967a;
+				margin: 0.5rem 0;
+			}
+
+			.resultado .fecha { color: #2D3748; margin: 0.5rem 0; }
+
+			.resultado .total {
+				margin-top: 1rem;
+				padding-top: 1rem;
+				border-top: 2px dashed #4a967a;
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: #7a5fb8;
+			}
+
+			.resultado .duracion { font-size: 0.8rem; color: #718096; margin-top: 1rem; }
+
+			.error {
+				margin-top: 1.5rem;
+				background: #fef2f2;
+				border-radius: 12px;
+				padding: 1.5rem;
+				border: 2px solid #ef4444;
+				color: #dc2626;
+			}
+
+			.debug {
+				margin-top: 1.5rem;
+				background: #1a202c;
+				border-radius: 12px;
+				padding: 1.5rem;
+				color: #a0aec0;
+			}
+
+			.debug h3 { color: #e2e8f0; margin: 0 0 0.5rem; font-size: 1rem; }
+
+			.debug pre {
+				font-size: 0.75rem;
+				white-space: pre-wrap;
+				word-break: break-all;
+				max-height: 300px;
+				overflow-y: auto;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="cotizador-page">
+			<a href="/" class="volver">&larr; Volver al inicio</a>
+			<h1>Cotizador de envio</h1>
+			<p class="subtitle">Cotiza el envio con Interrapidisimo en tiempo real</p>
+
+			<div class="cotizador-card">
+				<div class="form-group">
+					<label for="ciudad-input">Ciudad destino</label>
+					<div class="autocomplete-wrapper">
+						<input
+							type="text"
+							id="ciudad-input"
+							placeholder="Escribe una ciudad... ej: Candelaria"
+							autocomplete="off"
+						/>
+						<ul id="ciudad-list" class="autocomplete-list hidden"></ul>
+					</div>
+				</div>
+
+				<div class="info-envio">
+					<p><strong>Origen:</strong> Medellin, Antioquia</p>
+					<p><strong>Peso:</strong> 1 kg</p>
+					<p><strong>Valor declarado:</strong> $45.000 COP</p>
+				</div>
+
+				<button id="btn-cotizar" disabled>Cotizar envio</button>
+
+				<div id="loading" class="loading hidden">
+					<div class="spinner"></div>
+					<p>Consultando Interrapidisimo...</p>
+					<p class="loading-note">Consultando tarifas...</p>
+				</div>
+
+				<div id="resultado" class="resultado hidden"></div>
+				<div id="error" class="error hidden"></div>
+
+				<div id="debug" class="debug hidden">
+					<h3>Debug info</h3>
+					<pre id="debug-content"></pre>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var PRECIO_PRODUCTO = 75000;
+
+			var input = document.getElementById('ciudad-input');
+			var list = document.getElementById('ciudad-list');
+			var btnCotizar = document.getElementById('btn-cotizar');
+			var loadingDiv = document.getElementById('loading');
+			var resultadoDiv = document.getElementById('resultado');
+			var errorDiv = document.getElementById('error');
+			var debugDiv = document.getElementById('debug');
+			var debugContent = document.getElementById('debug-content');
+
+			var allCities = [];
+			var selectedCity = null;
+			var activeIndex = -1;
+
+			async function cargarCiudades() {
+				try {
+					var res = await fetch('/api/ciudades');
+					var data = await res.json();
+
+					allCities = [];
+					for (var i = 0; i < data.departamentos.length; i++) {
+						var dep = data.departamentos[i];
+						var cities = data.data[dep] || [];
+						for (var j = 0; j < cities.length; j++) {
+							allCities.push({ nombre: cities[j].nombre, codigo: cities[j].codigo, departamento: dep });
+						}
+					}
+				} catch (err) {
+					errorDiv.classList.remove('hidden');
+					errorDiv.innerHTML = '<strong>Error:</strong> No se pudo conectar al servidor backend.';
+				}
+			}
+
+			function normalize(str) {
+				return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+			}
+
+			function filterCities(query) {
+				if (query.length < 2) return [];
+				var q = normalize(query);
+				var words = q.split(/\s+/);
+				return allCities.filter(function(c) {
+					var text = normalize(c.nombre + ' ' + c.departamento);
+					return words.every(function(w) { return text.includes(w); });
+				}).slice(0, 50);
+			}
+
+			function showList(matches) {
+				list.innerHTML = '';
+				activeIndex = -1;
+
+				if (matches.length === 0) {
+					list.classList.add('hidden');
+					return;
+				}
+
+				for (var i = 0; i < matches.length; i++) {
+					var city = matches[i];
+					var li = document.createElement('li');
+					li.innerHTML = '<span style="font-weight:600;color:#2D3748">' + city.nombre + '</span><span style="font-size:0.8rem;color:#718096;margin-left:0.5rem;white-space:nowrap">' + city.departamento + '</span>';
+					li.dataset.index = i;
+					li.addEventListener('mousedown', (function(c) {
+						return function(e) {
+							e.preventDefault();
+							selectCity(c);
+						};
+					})(city));
+					list.appendChild(li);
+				}
+				list.classList.remove('hidden');
+			}
+
+			function selectCity(city) {
+				selectedCity = city;
+				input.value = city.nombre + ' - ' + city.departamento;
+				list.classList.add('hidden');
+				btnCotizar.disabled = false;
+			}
+
+			input.addEventListener('input', function() {
+				selectedCity = null;
+				btnCotizar.disabled = true;
+				var matches = filterCities(input.value);
+				showList(matches);
+			});
+
+			input.addEventListener('focus', function() {
+				if (input.value.length >= 2 && !selectedCity) {
+					var matches = filterCities(input.value);
+					showList(matches);
+				}
+			});
+
+			input.addEventListener('blur', function() {
+				setTimeout(function() { list.classList.add('hidden'); }, 150);
+			});
+
+			input.addEventListener('keydown', function(e) {
+				var items = list.querySelectorAll('li');
+				if (!items.length) return;
+
+				if (e.key === 'ArrowDown') {
+					e.preventDefault();
+					activeIndex = Math.min(activeIndex + 1, items.length - 1);
+					items.forEach(function(li, i) { li.classList.toggle('active', i === activeIndex); });
+					if (items[activeIndex]) items[activeIndex].scrollIntoView({ block: 'nearest' });
+				} else if (e.key === 'ArrowUp') {
+					e.preventDefault();
+					activeIndex = Math.max(activeIndex - 1, 0);
+					items.forEach(function(li, i) { li.classList.toggle('active', i === activeIndex); });
+					if (items[activeIndex]) items[activeIndex].scrollIntoView({ block: 'nearest' });
+				} else if (e.key === 'Enter') {
+					e.preventDefault();
+					if (activeIndex >= 0) {
+						var matches = filterCities(input.value);
+						if (matches[activeIndex]) selectCity(matches[activeIndex]);
+					}
+				} else if (e.key === 'Escape') {
+					list.classList.add('hidden');
+				}
+			});
+
+			btnCotizar.addEventListener('click', async function() {
+				if (!selectedCity) return;
+
+				var ciudadDestino = selectedCity.codigo;
+				var nombreCiudad = selectedCity.nombre;
+
+				btnCotizar.disabled = true;
+				loadingDiv.classList.remove('hidden');
+				resultadoDiv.classList.add('hidden');
+				errorDiv.classList.add('hidden');
+				debugDiv.classList.add('hidden');
+
+				try {
+					var res = await fetch('/api/cotizar', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ ciudadDestino: ciudadDestino })
+					});
+
+					var data = await res.json();
+					loadingDiv.classList.add('hidden');
+
+					if (data.ok && data.mensajeria) {
+						var m = data.mensajeria;
+						var totalConProducto = PRECIO_PRODUCTO + m.valorTotal;
+						resultadoDiv.classList.remove('hidden');
+						resultadoDiv.innerHTML =
+							'<h3>Envio a ' + nombreCiudad + '</h3>' +
+							'<p><strong>Servicio:</strong> ' + m.servicio + '</p>' +
+							'<p class="valor">$' + m.valorTotal.toLocaleString('es-CO') + '</p>' +
+							'<p><small>Flete: $' + m.valorFlete.toLocaleString('es-CO') + ' + Seguro: $' + m.valorSeguro.toLocaleString('es-CO') + '</small></p>' +
+							'<p class="fecha">Entrega estimada: ' + m.tiempoEntrega + ' dia(s) habiles</p>' +
+							'<p class="total">Total con producto: $' + totalConProducto.toLocaleString('es-CO') + '</p>' +
+							'<p class="duracion">Consulta en ' + data.duracionMs + 'ms</p>';
+
+						if (data.todosServicios && data.todosServicios.length > 1) {
+							debugDiv.classList.remove('hidden');
+							debugContent.textContent = data.todosServicios.map(function(s) {
+								return s.servicio + ': $' + s.valorTotal.toLocaleString('es-CO') + ' (' + s.tiempoEntrega + ' dias)';
+							}).join('\n');
+						}
+					} else if (data.ok && data.todosServicios && data.todosServicios.length > 0) {
+						resultadoDiv.classList.remove('hidden');
+						resultadoDiv.innerHTML =
+							'<h3>Servicios disponibles para ' + nombreCiudad + '</h3>' +
+							data.todosServicios.map(function(s) {
+								return '<p><strong>' + s.servicio + ':</strong> $' + s.valorTotal.toLocaleString('es-CO') + ' - ' + s.tiempoEntrega + ' dia(s)</p>';
+							}).join('') +
+							'<p class="duracion">Consulta en ' + data.duracionMs + 'ms</p>';
+					} else {
+						errorDiv.classList.remove('hidden');
+						errorDiv.innerHTML = '<strong>Sin resultados:</strong> ' + (data.error || 'No hay servicios disponibles para esta ruta.');
+						debugDiv.classList.remove('hidden');
+						debugContent.textContent = JSON.stringify(data, null, 2);
+					}
+				} catch (err) {
+					loadingDiv.classList.add('hidden');
+					errorDiv.classList.remove('hidden');
+					errorDiv.innerHTML = '<strong>Error:</strong> ' + err.message + '<br>Verifica que el servidor backend este corriendo.';
+				} finally {
+					btnCotizar.disabled = false;
+				}
+			});
+
+			cargarCiudades();
+		</script>
+	</body>
+</html>

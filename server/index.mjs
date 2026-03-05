@@ -6,8 +6,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json());
 
-// Servir sitio Astro compilado
-app.use(express.static(join(__dirname, '..', 'dist')));
+// Servir sitio estatico desde public/
+app.use(express.static(join(__dirname, '..', 'public')));
 
 const API_BASE = 'https://www3.interrapidisimo.com';
 const ORIGEN = 'MEDELLIN\\ANT\\COL';
@@ -207,9 +207,9 @@ app.post('/api/cotizar', async (req, res) => {
   }
 });
 
-// Fallback: cualquier ruta no-API sirve el sitio Astro
+// Fallback: cualquier ruta no-API sirve el index.html
 app.get('/{*path}', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'dist', 'index.html'));
+  res.sendFile(join(__dirname, '..', 'public', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3001;
@@ -217,6 +217,6 @@ import http from 'http';
 const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`Gommi server en http://localhost:${PORT}`);
-  console.log('  Sitio estático: /dist');
+  console.log('  Sitio estatico: /public');
   console.log('  API: /api/ciudades, /api/cotizar');
 });

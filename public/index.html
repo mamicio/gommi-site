@@ -1,0 +1,1959 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content="Gommi - Gomitas simbioticas con Probioticos + Prebioticos. Bienestar digestivo diario, delicioso y facil. 2 gomitas al dia." />
+		<meta name="keywords" content="gomitas, probioticos, prebioticos, bienestar digestivo, salud intestinal, suplemento natural" />
+		<meta property="og:title" content="Gommi - Gomitas Simbioticas" />
+		<meta property="og:description" content="Bienestar digestivo diario, delicioso y facil. Probioticos + Prebioticos en gomitas." />
+		<meta property="og:type" content="website" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+		<title>Gommi - Gomitas Simbioticas | Probioticos + Prebioticos</title>
+
+		<!-- Meta Pixel Code -->
+		<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window, document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '1440892831046288');
+		fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=1440892831046288&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- End Meta Pixel Code -->
+
+		<style>
+			:root {
+				--primary: #fcb4c5;
+				--primary-dark: #e8a0b3;
+				--primary-darker: #C97B8D;
+				--secondary: #4a967a;
+				--secondary-light: #8ceff4;
+				--lavender: #cbb6f5;
+				--lavender-dark: #7a5fb8;
+				--coral: #ef9e92;
+				--text: #2D3748;
+				--text-light: #718096;
+				--white: #FFFFFF;
+			}
+
+			html, body {
+				margin: 0;
+				width: 100%;
+				min-height: 100%;
+				font-family: 'Poppins', sans-serif;
+				background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 50%, var(--secondary-light) 100%);
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			#container {
+				font-family: 'Poppins', sans-serif;
+				color: var(--text);
+				overflow-x: hidden;
+			}
+
+			/* Header y navegacion */
+			header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+				background: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(10px);
+				box-shadow: 0 2px 20px rgba(201, 123, 141, 0.1);
+			}
+
+			nav {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 1rem 2rem;
+				display: grid;
+				grid-template-columns: auto 1fr auto;
+				align-items: center;
+				gap: 2rem;
+			}
+
+			.logo {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 1.5rem;
+				font-weight: 800;
+				color: var(--primary);
+				text-decoration: none;
+			}
+
+			.logo-img {
+				height: 50px;
+				width: auto;
+			}
+
+			.nav-links {
+				display: flex;
+				list-style: none;
+				gap: 1.25rem;
+				margin: 0;
+				padding: 0;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				justify-self: stretch;
+			}
+
+			.nav-links li {
+				display: flex;
+				align-items: center;
+			}
+
+			.nav-links a {
+				text-decoration: none;
+				color: var(--secondary);
+				font-weight: 600;
+				font-size: 0.9rem;
+				transition: color 0.3s;
+				text-align: center;
+			}
+
+			.nav-links a:hover,
+			.nav-links a.active {
+				color: var(--primary);
+			}
+
+			.nav-links .nav-blog {
+				color: var(--lavender);
+				font-weight: 700;
+			}
+
+			.nav-links .nav-blog:hover {
+				color: #b9a0e8;
+			}
+
+			.cta-button {
+				background: var(--secondary);
+				color: var(--white);
+				padding: 0.75rem 1.5rem;
+				border-radius: 50px;
+				text-decoration: none;
+				font-weight: 700;
+				transition: all 0.3s;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+
+			.cta-button:hover {
+				background: #3d7d65;
+				transform: translateY(-2px);
+				box-shadow: 0 4px 15px rgba(74, 150, 122, 0.5);
+			}
+
+			/* Menu hamburguesa */
+			.menu-toggle {
+				display: none;
+				background: none;
+				border: none;
+				cursor: pointer;
+				padding: 0.5rem;
+				z-index: 101;
+			}
+
+			.hamburger {
+				display: block;
+				width: 24px;
+				height: 3px;
+				background: var(--secondary);
+				border-radius: 3px;
+				position: relative;
+				transition: all 0.3s;
+			}
+
+			.hamburger::before,
+			.hamburger::after {
+				content: '';
+				position: absolute;
+				width: 24px;
+				height: 3px;
+				background: var(--secondary);
+				border-radius: 3px;
+				transition: all 0.3s;
+			}
+
+			.hamburger::before { top: -8px; }
+			.hamburger::after { top: 8px; }
+
+			.menu-toggle.active .hamburger { background: transparent; }
+			.menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
+			.menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
+
+			/* Menu movil */
+			.mobile-menu {
+				display: none;
+				flex-direction: column;
+				background: var(--white);
+				padding: 1rem 2rem 2rem;
+				border-top: 1px solid rgba(74, 150, 122, 0.1);
+			}
+
+			.mobile-menu a {
+				padding: 0.875rem 0;
+				text-decoration: none;
+				color: var(--secondary);
+				font-weight: 600;
+				font-size: 1rem;
+				border-bottom: 1px solid rgba(74, 150, 122, 0.1);
+				transition: color 0.3s;
+			}
+
+			.mobile-menu a:last-child { border-bottom: none; }
+			.mobile-menu a:hover, .mobile-menu a.active { color: var(--primary); }
+			.mobile-menu a.nav-blog { color: var(--lavender-dark); font-weight: 700; }
+			.mobile-menu.active { display: flex; }
+
+			/* Main */
+			main { padding-top: 80px; }
+
+			/* Hero Section */
+			#producto {
+				min-height: calc(100vh - 80px);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 2rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				gap: 4rem;
+			}
+
+			.hero-content { flex: 1; }
+
+			.hero-content h1 {
+				font-size: 2.75rem;
+				font-weight: 800;
+				color: var(--lavender-dark);
+				margin: 0 0 1.5rem;
+				line-height: 1.2;
+			}
+
+			.hero-content h1 .brand-name { color: var(--primary); }
+
+			.hero-content .subtitle {
+				font-size: 1.25rem;
+				font-weight: 400;
+				color: var(--text);
+				margin: 0 0 2rem;
+				line-height: 1.6;
+			}
+
+			.highlight-text { color: var(--secondary); font-weight: 700; }
+
+			.hero-buttons { display: flex; gap: 1rem; }
+
+			.button {
+				display: inline-block;
+				padding: 1rem 2rem;
+				border-radius: 50px;
+				text-decoration: none;
+				font-weight: 700;
+				font-size: 1rem;
+				transition: all 0.3s;
+			}
+
+			.button.primary {
+				background: linear-gradient(135deg, var(--secondary) 0%, #3d7d65 100%);
+				color: var(--white);
+				box-shadow: 0 4px 15px rgba(74, 150, 122, 0.4);
+			}
+
+			.button.primary:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 25px rgba(74, 150, 122, 0.5);
+			}
+
+			.button.secondary {
+				background: var(--white);
+				color: var(--primary-darker);
+				border: 2px solid var(--primary);
+			}
+
+			.button.secondary:hover { background: var(--primary); }
+
+			.button.large { padding: 1.25rem 2.5rem; font-size: 1.125rem; }
+
+			.button.whatsapp {
+				background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+				color: var(--white);
+				border: none;
+			}
+
+			.button.whatsapp:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+			}
+
+			/* Hero Image / Product */
+			.hero-image {
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.product-container {
+				position: relative;
+				width: 350px;
+				height: 400px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.product-video {
+				width: 100%;
+				height: 100%;
+				border: none;
+				border-radius: 20px;
+				box-shadow: 0 20px 40px rgba(201, 123, 141, 0.4);
+			}
+
+			.video-sound-toggle {
+				position: absolute;
+				bottom: 20px;
+				right: 20px;
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.9);
+				border: 2px solid var(--primary);
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.3s ease;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+				z-index: 10;
+			}
+
+			.video-sound-toggle:hover {
+				background: var(--primary);
+				transform: scale(1.1);
+			}
+
+			.video-sound-toggle .sound-icon {
+				width: 24px;
+				height: 24px;
+				color: var(--primary);
+			}
+
+			.video-sound-toggle:hover .sound-icon { color: var(--white); }
+
+			/* Problema Section */
+			#problema {
+				padding: 5rem 2rem;
+				background: linear-gradient(135deg, var(--primary) 0%, var(--white) 50%, var(--secondary-light) 100%);
+			}
+
+			.problema-content {
+				max-width: 800px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+			.problema-content h2 {
+				font-size: 2.5rem;
+				color: var(--lavender-dark);
+				margin: 0 0 1.5rem;
+				line-height: 1.2;
+			}
+
+			.problema-content p {
+				font-size: 1.25rem;
+				color: var(--text);
+				line-height: 1.8;
+				margin: 0 0 1.5rem;
+			}
+
+			.problema-cta {
+				font-size: 1.5rem !important;
+				font-weight: 800 !important;
+				color: var(--secondary) !important;
+				margin-top: 1rem !important;
+			}
+
+			/* Que es Gommi Section */
+			#que-es-gommi {
+				padding: 6rem 2rem;
+				background: linear-gradient(180deg, var(--white) 0%, rgba(203, 182, 245, 0.15) 100%);
+			}
+
+			.que-es-content {
+				display: flex;
+				align-items: center;
+				gap: 4rem;
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.que-es-text { flex: 1; }
+
+			.que-es-text h2 {
+				font-size: 2.5rem;
+				color: var(--lavender-dark);
+				margin: 0 0 1.5rem;
+				line-height: 1.2;
+			}
+
+			.que-es-text p {
+				font-size: 1.125rem;
+				color: var(--text);
+				line-height: 1.8;
+				margin: 0 0 1rem;
+			}
+
+			.que-es-text .highlight {
+				font-weight: 700;
+				color: var(--secondary);
+				font-size: 1.25rem;
+				margin-top: 1.5rem;
+			}
+
+			.que-es-image {
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.section-img {
+				width: 100%;
+				max-width: 400px;
+				height: auto;
+				border-radius: 20px;
+				box-shadow: 0 10px 40px rgba(201, 123, 141, 0.2);
+				object-fit: cover;
+			}
+
+			/* Benefits Section */
+			#beneficios {
+				padding: 6rem 2rem;
+				background: linear-gradient(180deg, var(--white) 0%, rgba(252, 180, 197, 0.1) 100%);
+			}
+
+			#beneficios h2, #como-funciona h2, #testimonios h2 {
+				text-align: center;
+				font-size: 2.5rem;
+				color: var(--lavender-dark);
+				margin-bottom: 1.5rem;
+			}
+
+			.benefits-intro {
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto 3rem;
+				font-size: 1.125rem;
+				color: var(--text-light);
+				line-height: 1.8;
+			}
+
+			.benefit-emoji { font-size: 2rem; }
+
+			.benefits-grid {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 2rem;
+				max-width: 1100px;
+				margin: 0 auto;
+			}
+
+			.benefit-card {
+				flex: 0 1 300px;
+				max-width: 300px;
+				background: var(--primary);
+				padding: 2rem;
+				border-radius: 20px;
+				text-align: center;
+				transition: transform 0.3s, box-shadow 0.3s;
+			}
+
+			.benefit-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 30px rgba(201, 123, 141, 0.15);
+			}
+
+			.benefit-icon {
+				width: 70px;
+				height: 70px;
+				background: var(--white);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto 1rem;
+				box-shadow: 0 4px 15px rgba(201, 123, 141, 0.15);
+			}
+
+			.benefit-card h3 {
+				color: var(--text);
+				margin: 0 0 0.5rem;
+				font-size: 1.25rem;
+			}
+
+			.benefit-card p {
+				color: var(--text-light);
+				margin: 0;
+				line-height: 1.6;
+			}
+
+			/* How it works */
+			#como-funciona {
+				padding: 6rem 2rem;
+				background: linear-gradient(135deg, var(--secondary-light) 0%, var(--white) 100%);
+			}
+
+			.steps {
+				display: flex;
+				justify-content: center;
+				gap: 3rem;
+				max-width: 900px;
+				margin: 0 auto;
+				flex-wrap: wrap;
+			}
+
+			.step { text-align: center; flex: 1; min-width: 200px; }
+
+			.step-number {
+				width: 60px;
+				height: 60px;
+				background: var(--secondary);
+				color: var(--white);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				font-weight: 800;
+				margin: 0 auto 1rem;
+			}
+
+			.step h3 { color: var(--text); margin: 0 0 0.5rem; }
+			.step p { color: var(--text-light); margin: 0; }
+
+			/* Por que elegir Section */
+			#por-que-elegir {
+				padding: 6rem 2rem;
+				background: linear-gradient(180deg, var(--white) 0%, rgba(239, 158, 146, 0.1) 100%);
+			}
+
+			.por-que-content {
+				display: flex;
+				align-items: center;
+				gap: 4rem;
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.por-que-text { flex: 1; }
+
+			.por-que-text h2 {
+				font-size: 2.5rem;
+				color: var(--lavender-dark);
+				margin: 0 0 2rem;
+				line-height: 1.2;
+			}
+
+			.diferenciadores { list-style: none; padding: 0; margin: 0; }
+
+			.diferenciadores li {
+				display: flex;
+				align-items: flex-start;
+				gap: 1rem;
+				margin-bottom: 1.25rem;
+				font-size: 1.125rem;
+				color: var(--text);
+				line-height: 1.6;
+			}
+
+			.check-icon {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 28px;
+				height: 28px;
+				background: var(--secondary);
+				color: var(--white);
+				border-radius: 50%;
+				font-weight: 700;
+				font-size: 0.875rem;
+				flex-shrink: 0;
+			}
+
+			.diferenciadores strong { color: var(--secondary); }
+
+			.por-que-image {
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			/* Confianza Section */
+			#confianza {
+				padding: 6rem 2rem;
+				background: linear-gradient(135deg, var(--secondary-light) 0%, var(--white) 100%);
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.confianza-header { text-align: center; margin-bottom: 3rem; }
+
+			.confianza-header h2 {
+				font-size: 2.5rem;
+				color: var(--lavender-dark);
+				margin: 0 0 1rem;
+				line-height: 1.2;
+			}
+
+			.confianza-header p {
+				font-size: 1.125rem;
+				color: var(--text);
+				line-height: 1.8;
+				max-width: 700px;
+				margin: 0 auto 2rem;
+			}
+
+			/* Badge INVIMA */
+			.invima-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 1rem;
+				background: linear-gradient(135deg, var(--secondary) 0%, #3d7d65 100%);
+				color: var(--white);
+				padding: 1rem 2rem;
+				border-radius: 12px;
+				box-shadow: 0 4px 15px rgba(74, 150, 122, 0.4);
+			}
+
+			.invima-icon {
+				font-size: 1.5rem;
+				font-weight: bold;
+				background: var(--white);
+				color: var(--secondary);
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.invima-info { display: flex; flex-direction: column; }
+			.invima-label { font-size: 0.85rem; opacity: 0.9; }
+			.invima-number { font-size: 1.25rem; font-weight: 700; }
+
+			/* Grid Nutricional */
+			.nutricional-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2rem;
+				margin-bottom: 2rem;
+			}
+
+			/* Tabla Nutricional */
+			.tabla-nutricional {
+				background: var(--white);
+				border-radius: 16px;
+				padding: 2rem;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			.tabla-nutricional h3 {
+				font-size: 1.5rem;
+				color: var(--lavender-dark);
+				margin: 0 0 0.5rem;
+				text-align: center;
+			}
+
+			.porcion-info {
+				font-size: 0.9rem;
+				color: var(--text-light);
+				text-align: center;
+				margin: 0 0 1.5rem;
+			}
+
+			.tabla-valores {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 0.95rem;
+			}
+
+			.tabla-valores thead th {
+				background: var(--secondary);
+				color: var(--white);
+				padding: 0.75rem 0.5rem;
+				text-align: center;
+				font-weight: 600;
+			}
+
+			.tabla-valores thead th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+			.tabla-valores thead th:last-child { border-radius: 0 8px 0 0; }
+
+			.tabla-valores tbody td {
+				padding: 0.6rem 0.5rem;
+				border-bottom: 1px solid rgba(74, 150, 122, 0.1);
+			}
+
+			.tabla-valores tbody td:first-child { color: var(--text); }
+			.tabla-valores tbody td:not(:first-child) { text-align: center; color: var(--text-light); }
+
+			.tabla-valores tbody tr.destacado { background: rgba(74, 150, 122, 0.08); }
+			.tabla-valores tbody tr.destacado td { font-weight: 600; color: var(--secondary); }
+
+			.tabla-nota {
+				font-size: 0.8rem;
+				color: var(--text-light);
+				margin: 1rem 0 0;
+				text-align: center;
+				font-style: italic;
+			}
+
+			/* Info Lateral */
+			.info-lateral { display: flex; flex-direction: column; gap: 1.5rem; }
+
+			.ingredientes-box,
+			.fabricante-box {
+				background: var(--white);
+				border-radius: 12px;
+				padding: 1.5rem;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+			}
+
+			.ingredientes-box h3,
+			.fabricante-box h3 {
+				font-size: 1.1rem;
+				color: var(--lavender-dark);
+				margin: 0 0 0.75rem;
+				padding-bottom: 0.5rem;
+				border-bottom: 2px solid var(--secondary);
+			}
+
+			.ingredientes-box p {
+				font-size: 0.9rem;
+				color: var(--text);
+				line-height: 1.6;
+				margin: 0 0 0.75rem;
+			}
+
+			.recubrimiento { font-size: 0.85rem !important; color: var(--text-light) !important; }
+
+			.fabricante-box .empresa { font-size: 1rem; font-weight: 700; color: var(--secondary); margin: 0 0 0.5rem; }
+			.fabricante-box .direccion { font-size: 0.9rem; color: var(--text); line-height: 1.6; margin: 0 0 0.5rem; }
+			.fabricante-box .pais { font-size: 0.85rem; font-weight: 700; color: var(--lavender-dark); margin: 0; text-transform: uppercase; }
+
+			.confianza-buttons {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+
+			/* Ingredientes Section */
+			#ingredientes {
+				padding: 6rem 2rem;
+				background: linear-gradient(135deg, var(--primary) 0%, var(--white) 100%);
+			}
+
+			#ingredientes h2 {
+				text-align: center;
+				font-size: 2.5rem;
+				color: var(--lavender-dark);
+				margin-bottom: 1.5rem;
+			}
+
+			.ingredientes-intro {
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto 3rem;
+				font-size: 1.125rem;
+				color: var(--text-light);
+				line-height: 1.8;
+			}
+
+			.carrusel-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				position: relative;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				padding-bottom: 2rem;
+			}
+
+			.carrusel {
+				display: flex;
+				gap: 1.5rem;
+				overflow-x: auto;
+				scroll-snap-type: x mandatory;
+				scroll-behavior: smooth;
+				padding: 1rem 0.5rem 2rem;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+				flex: 1;
+			}
+
+			.carrusel::-webkit-scrollbar { display: none; }
+
+			.flashcard {
+				flex: 0 0 350px;
+				background: var(--white);
+				border-radius: 20px;
+				padding: 2rem;
+				box-shadow: 0 4px 20px rgba(201, 123, 141, 0.1);
+				scroll-snap-align: center;
+				transition: transform 0.3s, box-shadow 0.3s;
+			}
+
+			.flashcard:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 30px rgba(201, 123, 141, 0.15);
+			}
+
+			.flashcard-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+			.flashcard h3 {
+				font-size: 1.25rem;
+				color: var(--secondary);
+				margin: 0 0 1rem;
+				line-height: 1.3;
+			}
+
+			.flashcard p {
+				font-size: 1rem;
+				color: var(--text);
+				line-height: 1.7;
+				margin: 0 0 0.75rem;
+			}
+
+			.flashcard-detail { font-style: italic; color: var(--text-light) !important; font-size: 0.95rem !important; }
+
+			.flashcard-list { list-style: none; padding: 0; margin: 0.75rem 0; }
+
+			.flashcard-list li {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-bottom: 0.5rem;
+				font-size: 0.95rem;
+				color: var(--text);
+			}
+
+			.flashcard-list li::before { content: "\2713"; color: var(--secondary); font-weight: 700; }
+
+			.carrusel-btn {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				border: 2px solid var(--primary-darker);
+				background: var(--white);
+				color: var(--primary-darker);
+				font-size: 1.5rem;
+				cursor: pointer;
+				transition: all 0.3s;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				box-shadow: 0 4px 15px rgba(252, 180, 197, 0.3);
+			}
+
+			.carrusel-btn:hover {
+				background: var(--primary-darker);
+				color: var(--white);
+				transform: scale(1.05);
+			}
+
+			.carrusel-btn span { line-height: 1; margin-top: -2px; }
+
+			.carrusel-dots {
+				display: flex;
+				justify-content: center;
+				gap: 0.5rem;
+				position: absolute;
+				bottom: -1rem;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+			.carrusel-dot {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: var(--primary);
+				border: none;
+				cursor: pointer;
+				transition: all 0.3s;
+			}
+
+			.carrusel-dot.active {
+				background: var(--primary-darker);
+				width: 30px;
+				border-radius: 5px;
+			}
+
+			.nota-legal {
+				text-align: center;
+				max-width: 600px;
+				margin: 3rem auto 0;
+				font-size: 0.875rem;
+				color: var(--text-light);
+				font-style: italic;
+				padding: 1rem;
+				background: rgba(255, 255, 255, 0.5);
+				border-radius: 10px;
+			}
+
+			/* Testimonials */
+			#testimonios {
+				padding: 6rem 2rem;
+				background: linear-gradient(180deg, var(--white) 0%, rgba(203, 182, 245, 0.1) 100%);
+			}
+
+			.testimonios-intro {
+				text-align: center;
+				max-width: 700px;
+				margin: 0 auto 3rem;
+				font-size: 1.125rem;
+				color: var(--text-light);
+				line-height: 1.8;
+			}
+
+			.testimonials-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 2rem;
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			.testimonial-card {
+				background: linear-gradient(135deg, var(--primary) 0%, var(--white) 100%);
+				padding: 2rem;
+				border-radius: 20px;
+				border-left: 4px solid var(--primary-darker);
+				transition: transform 0.3s, box-shadow 0.3s;
+			}
+
+			.testimonial-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 30px rgba(201, 123, 141, 0.15);
+			}
+
+			.testimonial-card .stars {
+				color: #FFD700;
+				font-size: 1.25rem;
+				margin-bottom: 1rem;
+				letter-spacing: 2px;
+			}
+
+			.testimonial-card p {
+				font-style: italic;
+				color: var(--text);
+				margin: 0 0 1rem;
+				font-size: 1.05rem;
+				line-height: 1.7;
+			}
+
+			.testimonial-card .author { color: var(--primary); font-weight: 700; font-size: 0.95rem; }
+
+			.testimonios-disclaimer {
+				text-align: center;
+				max-width: 500px;
+				margin: 2.5rem auto 0;
+				font-size: 0.875rem;
+				color: var(--text-light);
+				font-style: italic;
+			}
+
+			.testimonios-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1rem;
+				margin-top: 2.5rem;
+				flex-wrap: wrap;
+			}
+
+			/* Precio Section */
+			#precio {
+				padding: 6rem 2rem;
+				background: linear-gradient(135deg, var(--white) 0%, #f8f4ff 100%);
+				text-align: center;
+			}
+
+			#precio h2 {
+				font-size: 2.5rem;
+				color: var(--lavender-dark);
+				margin: 0 0 1rem;
+			}
+
+			.precio-intro {
+				font-size: 1.125rem;
+				color: var(--text);
+				max-width: 700px;
+				margin: 0 auto 3rem;
+				line-height: 1.8;
+			}
+
+			.precio-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 2rem;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+
+			.precio-card {
+				background: var(--white);
+				border-radius: 20px;
+				padding: 2.5rem 2rem;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				text-align: left;
+				transition: transform 0.3s, box-shadow 0.3s;
+			}
+
+			.precio-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+			}
+
+			.precio-card.recomendada {
+				border: 3px solid var(--secondary);
+				background: linear-gradient(135deg, rgba(74, 150, 122, 0.05) 0%, var(--white) 100%);
+			}
+
+			.badge-recomendado {
+				position: absolute;
+				top: -12px;
+				left: 50%;
+				transform: translateX(-50%);
+				background: var(--secondary);
+				color: var(--white);
+				padding: 0.4rem 1rem;
+				border-radius: 20px;
+				font-size: 0.85rem;
+				font-weight: 700;
+			}
+
+			.precio-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+			.precio-card h3 { font-size: 1.35rem; color: var(--lavender-dark); margin: 0 0 1rem; }
+			.precio-amount { margin-bottom: 1rem; }
+			.precio-valor { font-size: 2.25rem; font-weight: 800; color: var(--secondary); }
+			.precio-moneda { font-size: 0.95rem; color: var(--text-light); display: block; }
+
+			.precio-descripcion {
+				font-size: 0.95rem;
+				color: var(--text);
+				line-height: 1.6;
+				margin: 0 0 1.25rem;
+			}
+
+			.precio-beneficios {
+				list-style: none;
+				padding: 0;
+				margin: 0 0 1.5rem;
+				flex-grow: 1;
+			}
+
+			.precio-beneficios li {
+				position: relative;
+				padding-left: 1.5rem;
+				margin-bottom: 0.5rem;
+				font-size: 0.9rem;
+				color: var(--text);
+			}
+
+			.precio-beneficios li::before {
+				content: '\2713';
+				position: absolute;
+				left: 0;
+				color: var(--secondary);
+				font-weight: bold;
+			}
+
+			.precio-cta { width: 100%; text-align: center; margin-top: auto; }
+			.precio-microcopy { font-size: 0.8rem; color: var(--text-light); margin: 0.75rem 0 0; text-align: center; }
+
+			/* CTA Final */
+			#cta-final {
+				padding: 6rem 2rem;
+				background: linear-gradient(135deg, var(--primary-darker) 0%, #b56a7d 100%);
+			}
+
+			.cta-box { text-align: center; max-width: 600px; margin: 0 auto; }
+
+			.cta-box h2 { color: var(--white); font-size: 2.5rem; margin: 0 0 1rem; }
+
+			.cta-box > p:first-of-type {
+				color: var(--primary);
+				font-size: 1.125rem;
+				margin: 0 0 2rem;
+				line-height: 1.8;
+				max-width: 550px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.cta-box .button.primary { background: var(--white); color: var(--secondary); }
+
+			.cta-box .button.primary:hover {
+				background: var(--secondary-light);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+			}
+
+			.cta-microcopy {
+				margin-top: 1.5rem !important;
+				font-size: 0.95rem !important;
+				color: var(--white) !important;
+				opacity: 0.9;
+				letter-spacing: 0.5px;
+			}
+
+			/* Contacto */
+			#contacto {
+				padding: 5rem 2rem;
+				background: linear-gradient(180deg, var(--white) 0%, rgba(140, 239, 244, 0.15) 100%);
+			}
+
+			.contacto-content {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 4rem;
+				max-width: 1100px;
+				margin: 0 auto;
+			}
+
+			.contacto-text { flex: 1; }
+
+			.contacto-text h3 {
+				font-size: 1.75rem;
+				color: var(--text);
+				margin: 0 0 1rem;
+				line-height: 1.3;
+			}
+
+			.contacto-text p {
+				font-size: 1.1rem;
+				color: var(--text);
+				line-height: 1.8;
+				margin: 0;
+			}
+
+			.contacto-buttons { display: flex; flex-direction: column; gap: 1rem; }
+			.contacto-buttons .button { text-align: center; justify-content: center; }
+
+			/* Footer */
+			footer {
+				background: var(--text);
+				color: var(--white);
+				padding: 4rem 2rem 3rem;
+			}
+
+			.footer-content { max-width: 700px; margin: 0 auto; text-align: center; }
+
+			.footer-logo {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 2rem;
+			}
+
+			.footer-logo-img { height: 50px; width: auto; }
+
+			.footer-title {
+				color: var(--white);
+				font-size: 1.75rem;
+				margin: 0 0 1.25rem;
+				line-height: 1.3;
+			}
+
+			.footer-text {
+				color: rgba(255, 255, 255, 0.8);
+				font-size: 1.05rem;
+				line-height: 1.8;
+				margin: 0 0 1rem;
+			}
+
+			.footer-cta {
+				color: var(--secondary);
+				font-size: 1.25rem;
+				font-weight: 800;
+				margin: 0 0 2rem;
+			}
+
+			.social-links {
+				display: flex;
+				justify-content: center;
+				gap: 1.25rem;
+				margin-bottom: 2rem;
+			}
+
+			.social-btn {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--white);
+				transition: all 0.3s;
+			}
+
+			.social-btn.instagram {
+				background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+			}
+
+			.social-btn.whatsapp { background: #25D366; }
+
+			.social-btn.mercadolibre { background: transparent; padding: 0; overflow: hidden; }
+			.social-btn.mercadolibre .ml-icon { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+			.social-btn:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+			}
+
+			.social-links svg { width: 24px; height: 24px; }
+
+			.footer-nav {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 1.5rem;
+				margin-bottom: 2rem;
+			}
+
+			.footer-nav a {
+				color: rgba(255, 255, 255, 0.8);
+				text-decoration: none;
+				font-size: 0.95rem;
+				transition: color 0.3s;
+			}
+
+			.footer-nav a:hover { color: var(--secondary); }
+			.footer-nav .footer-blog { color: var(--secondary); font-weight: 700; }
+
+			.copyright { font-size: 0.875rem; color: rgba(255, 255, 255, 0.6); }
+
+			/* Responsive */
+			@media screen and (max-width: 768px) {
+				nav { grid-template-columns: auto 1fr auto; }
+				.nav-links { display: none; }
+				.menu-toggle { display: block; justify-self: end; }
+
+				#producto {
+					flex-direction: column;
+					text-align: center;
+					padding-top: 4rem;
+				}
+
+				.hero-content h1 { font-size: 1.75rem; }
+				.hero-content .subtitle { font-size: 1rem; }
+				.hero-buttons { justify-content: center; flex-wrap: wrap; }
+
+				.product-container { width: 280px; height: 320px; }
+				.product-video { border-radius: 12px; }
+
+				.video-sound-toggle { width: 40px; height: 40px; bottom: 15px; right: 15px; }
+				.video-sound-toggle .sound-icon { width: 20px; height: 20px; }
+
+				.problema-content h2 { font-size: 1.75rem; }
+				.problema-content p { font-size: 1rem; }
+				.problema-cta { font-size: 1.25rem !important; }
+
+				.que-es-content { flex-direction: column; text-align: center; }
+				.que-es-text h2 { font-size: 1.75rem; }
+				.section-img { max-width: 300px; }
+
+				#beneficios h2, #como-funciona h2, #testimonios h2 { font-size: 2rem; }
+				.testimonials-grid { grid-template-columns: 1fr; }
+				.steps { flex-direction: column; align-items: center; }
+
+				.por-que-content { flex-direction: column; text-align: center; }
+				.por-que-text h2 { font-size: 1.75rem; }
+				.diferenciadores li { justify-content: center; text-align: left; }
+
+				.confianza-header h2 { font-size: 1.75rem; }
+				.confianza-header p { font-size: 1rem; }
+
+				.invima-badge { padding: 0.875rem 1.25rem; gap: 0.75rem; }
+				.invima-icon { width: 32px; height: 32px; font-size: 1.25rem; }
+				.invima-number { font-size: 1rem; }
+
+				.nutricional-grid { grid-template-columns: 1fr; }
+				.tabla-nutricional { padding: 1.5rem 1rem; }
+				.tabla-nutricional h3 { font-size: 1.25rem; }
+				.tabla-valores { font-size: 0.85rem; }
+				.tabla-valores thead th, .tabla-valores tbody td { padding: 0.5rem 0.25rem; }
+
+				.ingredientes-box, .fabricante-box { padding: 1.25rem; }
+
+				.confianza-buttons { flex-direction: column; align-items: center; }
+				.confianza-buttons .button { width: 100%; max-width: 300px; }
+
+				#ingredientes h2 { font-size: 2rem; }
+				.carrusel-container { padding-bottom: 1rem; padding-left: 0; padding-right: 0; }
+				.carrusel-btn { width: 28px; height: 28px; font-size: 0.9rem; flex-shrink: 0; margin: 0 0.25rem; }
+				.carrusel-dots { display: none; }
+				.carrusel { padding-left: 0; padding-right: 0; }
+				.flashcard { flex: 0 0 65vw; max-width: 250px; padding: 1.25rem; font-size: 0.9rem; }
+				.flashcard h3 { font-size: 1.1rem; }
+				.flashcard-icon { font-size: 2.5rem; }
+
+				.cta-box h2 { font-size: 2rem; }
+
+				#precio h2 { font-size: 1.75rem; }
+				.precio-intro { font-size: 1rem; }
+				.precio-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+				.precio-card { padding: 2rem 1.5rem; }
+				.precio-card.recomendada { order: -1; }
+				.precio-valor { font-size: 2rem; }
+
+				.contacto-content { flex-direction: column; text-align: center; }
+				.contacto-text h3 { font-size: 1.5rem; }
+				.contacto-buttons { width: 100%; align-items: center; }
+
+				.footer-title { font-size: 1.5rem; }
+				.footer-nav { gap: 1rem; }
+				.footer-nav a { font-size: 0.875rem; }
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<nav>
+					<a href="#producto" class="logo">
+						<img src="/images/gommi_logos_logo_full_color.png" alt="Gommi" class="logo-img" />
+					</a>
+					<ul class="nav-links">
+						<li><a href="#que-es-gommi">Que es Gommi?</a></li>
+						<li><a href="#beneficios">Beneficios</a></li>
+						<li><a href="#como-funciona">Como funciona?</a></li>
+						<li><a href="#ingredientes">Ingredientes y Ciencia</a></li>
+						<li><a href="#testimonios">Testimonios</a></li>
+						<li><a href="#precio">Precio</a></li>
+						<li><a href="#contacto">Contacto</a></li>
+						<li><a href="/blog.html" class="nav-blog">Blog</a></li>
+					</ul>
+					<button class="menu-toggle" aria-label="Abrir menu">
+						<span class="hamburger"></span>
+					</button>
+					<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="cta-button">Comprar</a>
+				</nav>
+				<div class="mobile-menu">
+					<a href="#que-es-gommi">Que es Gommi?</a>
+					<a href="#beneficios">Beneficios</a>
+					<a href="#como-funciona">Como funciona?</a>
+					<a href="#ingredientes">Ingredientes y Ciencia</a>
+					<a href="#testimonios">Testimonios</a>
+					<a href="#precio">Precio</a>
+					<a href="#contacto">Contacto</a>
+					<a href="/blog.html" class="nav-blog">Blog</a>
+				</div>
+			</header>
+
+			<main>
+				<section id="producto">
+					<div class="hero-content">
+						<h1><span class="brand-name">Gommi:</span> gomitas que cuidan tu intestino de forma rica y consciente</h1>
+						<h2 class="subtitle"><span class="highlight-text">Probioticos + prebioticos</span> en gomitas sin azucar, disenadas para mejorar tu digestion, reducir la inflamacion y acompanarte todos los dias.</h2>
+						<div class="hero-buttons">
+							<a href="#como-funciona" class="button primary">Quiero cuidar mi digestion</a>
+							<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button secondary">Quiero mis gomitas</a>
+						</div>
+					</div>
+					<div class="hero-image">
+						<div class="product-container">
+							<video src="/videos/reel-gommi.mp4" class="product-video" autoplay loop muted playsinline id="hero-video"></video>
+							<button class="video-sound-toggle" id="sound-toggle" aria-label="Activar/desactivar sonido">
+								<svg class="sound-icon sound-off" viewBox="0 0 24 24" fill="currentColor">
+									<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+								</svg>
+								<svg class="sound-icon sound-on" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+									<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="problema">
+					<div class="problema-content">
+						<h2>Si tu intestino no esta bien, tu cuerpo lo siente</h2>
+						<p>Inflamacion, pesadez, estrenimiento, diarrea o malestar despues de comer no son normales. Muchas personas viven asi sin saber que su intestino necesita apoyo diario.</p>
+						<p class="problema-cta">Por eso, necesitas Gommi!</p>
+					</div>
+				</section>
+
+				<section id="que-es-gommi">
+					<div class="que-es-content">
+						<div class="que-es-text">
+							<h2>Que es Gommi y como puede ayudarte?</h2>
+							<p>Gommi son gomitas con bacterias buenas (probioticos) y su alimento natural (prebioticos). Juntas ayudan a equilibrar tu flora intestinal, mejorar la digestion y hacer que tu cuerpo funcione mejor desde adentro.</p>
+							<p class="highlight">No son un medicamento. Son un habito diario de bienestar.</p>
+						</div>
+						<div class="que-es-image">
+							<img src="/images/Qu%C3%A9%20es%20Gommi.jpeg" alt="Que es Gommi - Gomitas simbioticas para tu bienestar" class="section-img" />
+						</div>
+					</div>
+				</section>
+
+				<section id="beneficios">
+					<h2>Lo que puedes sentir con el uso constante de Gommi</h2>
+					<p class="benefits-intro">Cada cuerpo es distinto, pero cuando tu intestino empieza a estar en equilibrio, los cambios se sienten en el dia a dia. Con el uso constante de Gommi, muchas personas empiezan a notar mejoras reales en como se sienten despues de comer y a lo largo del dia.</p>
+					<div class="benefits-grid">
+						<div class="benefit-card">
+							<div class="benefit-icon">
+								<span class="benefit-emoji">&#x1F388;</span>
+							</div>
+							<h3>Menos inflamacion abdominal</h3>
+							<p>Esa sensacion de estar inflamada, con el abdomen duro o pesado, puede empezar a disminuir. Tu cuerpo se siente mas liviano y comodo, incluso despues de las comidas.</p>
+						</div>
+						<div class="benefit-card">
+							<div class="benefit-icon">
+								<span class="benefit-emoji">&#x1F343;</span>
+							</div>
+							<h3>Digestiones mas ligeras</h3>
+							<p>Comer deja de sentirse como una carga. Las digestiones se vuelven mas suaves, con menos pesadez, gases o malestar despues de cada comida.</p>
+						</div>
+						<div class="benefit-card">
+							<div class="benefit-icon">
+								<span class="benefit-emoji">&#x23F0;</span>
+							</div>
+							<h3>Mayor regularidad al ir al bano</h3>
+							<p>Ir al bano se vuelve mas natural y constante. Sin forzar, sin incomodidad, sin esa sensacion de "algo no esta funcionando bien".</p>
+						</div>
+						<div class="benefit-card">
+							<div class="benefit-icon">
+								<span class="benefit-emoji">&#x1F37D;&#xFE0F;</span>
+							</div>
+							<h3>Mejor tolerancia a los alimentos</h3>
+							<p>Al equilibrar la flora intestinal, muchas personas notan que su cuerpo tolera mejor ciertos alimentos que antes les causaban malestar o inflamacion.</p>
+						</div>
+						<div class="benefit-card">
+							<div class="benefit-icon">
+								<span class="benefit-emoji">&#x1F6E1;&#xFE0F;</span>
+							</div>
+							<h3>Apoyo a tu sistema inmune</h3>
+							<p>Un intestino sano tambien apoya tus defensas. Al cuidar tu salud intestinal, ayudas a que tu cuerpo este mas fuerte y equilibrado desde adentro.</p>
+						</div>
+					</div>
+				</section>
+
+				<section id="como-funciona">
+					<h2>Como funciona?</h2>
+					<div class="steps">
+						<div class="step">
+							<div class="step-number">1</div>
+							<h3>Toma 2 gomitas</h3>
+							<p>Cada dia, a la hora que prefieras</p>
+						</div>
+						<div class="step">
+							<div class="step-number">2</div>
+							<h3>Los probioticos actuan</h3>
+							<p>Equilibran tu flora intestinal</p>
+						</div>
+						<div class="step">
+							<div class="step-number">3</div>
+							<h3>Siente la diferencia</h3>
+							<p>Menos inflamacion, mas bienestar</p>
+						</div>
+					</div>
+				</section>
+
+				<section id="por-que-elegir">
+					<div class="por-que-content">
+						<div class="por-que-text">
+							<h2>Por que elegir Gommi?</h2>
+							<ul class="diferenciadores">
+								<li>
+									<span class="check-icon">&#10003;</span>
+									<span>Contiene <strong>probioticos + prebioticos</strong> (todo en uno)</span>
+								</li>
+								<li>
+									<span class="check-icon">&#10003;</span>
+									<span><strong>Sin azucar</strong>, sin jarabe de maiz, sin conservantes artificiales</span>
+								</li>
+								<li>
+									<span class="check-icon">&#10003;</span>
+									<span><strong>Colorantes naturales</strong></span>
+								</li>
+								<li>
+									<span class="check-icon">&#10003;</span>
+									<span><strong>Registro Invima</strong></span>
+								</li>
+								<li>
+									<span class="check-icon">&#10003;</span>
+									<span>Apto para <strong>mayores de 4 anos</strong></span>
+								</li>
+							</ul>
+							<a href="#precio" class="button primary">Conocer precios</a>
+						</div>
+						<div class="por-que-image">
+							<img src="/images/%C2%BFPor%20qu%C3%A9%20elegir%20Gommi.jpeg" alt="Por que elegir Gommi - Ingredientes naturales" class="section-img" />
+						</div>
+					</div>
+				</section>
+
+				<section id="confianza">
+					<div class="confianza-header">
+						<h2>Un cuidado en el que puedes confiar</h2>
+						<p>En Gommi creemos en el bienestar responsable. Por eso trabajamos con ingredientes seguros, respaldo cientifico y registro Invima, cuidando cada detalle para acompanarte con amor y honestidad.</p>
+
+						<div class="invima-badge">
+							<span class="invima-icon">&#10003;</span>
+							<div class="invima-info">
+								<span class="invima-label">Registro INVIMA</span>
+								<span class="invima-number">RSA-0020068-2022</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="nutricional-grid">
+						<div class="tabla-nutricional">
+							<h3>Informacion Nutricional</h3>
+							<p class="porcion-info">Tamano de porcion: 2 Unidades (6g) &middot; Porciones por envase: 30 aprox.</p>
+
+							<table class="tabla-valores">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Por 100g</th>
+										<th>Por porcion</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="destacado">
+										<td>Calorias (Kcal)</td>
+										<td>150</td>
+										<td>9</td>
+									</tr>
+									<tr>
+										<td>Grasa total</td>
+										<td>0g</td>
+										<td>0g</td>
+									</tr>
+									<tr>
+										<td>Grasa saturada</td>
+										<td>0g</td>
+										<td>0g</td>
+									</tr>
+									<tr>
+										<td>Grasa trans</td>
+										<td>0mg</td>
+										<td>0mg</td>
+									</tr>
+									<tr>
+										<td>Carbohidratos totales</td>
+										<td>56g</td>
+										<td>3,34g</td>
+									</tr>
+									<tr>
+										<td>Fibra dietaria</td>
+										<td>10g</td>
+										<td>0,6g</td>
+									</tr>
+									<tr>
+										<td>Polialcoholes</td>
+										<td>52g</td>
+										<td>3,2g</td>
+									</tr>
+									<tr>
+										<td>Azucares totales</td>
+										<td>0g</td>
+										<td>0g</td>
+									</tr>
+									<tr class="destacado">
+										<td>Azucares anadidos</td>
+										<td><strong>0g</strong></td>
+										<td><strong>0g</strong></td>
+									</tr>
+									<tr>
+										<td>Proteina</td>
+										<td>9g</td>
+										<td>0,5g</td>
+									</tr>
+									<tr>
+										<td>Sodio</td>
+										<td>0mg</td>
+										<td>0mg</td>
+									</tr>
+								</tbody>
+							</table>
+							<p class="tabla-nota">No es fuente significativa de Vitamina A, Vitamina D, Hierro, Calcio y Zinc</p>
+						</div>
+
+						<div class="info-lateral">
+							<div class="ingredientes-box">
+								<h3>Ingredientes</h3>
+								<p>Maltitol E-965, Sorbitol E-420, Gelatina Bloom 280 (Gelificante), Almidon modificado de papa (Espesante), Acido citrico E330 (Acidulante), Goma Guar E-412 (Espesante), Sabor identico a la natural sandia, Inulina, Stevia (Edulcorante), Color natural verde, Probioticos (Mix), <strong>Bacillus coagulans MTCC 5856</strong>.</p>
+								<p class="recubrimiento"><strong>Agente de recubrimiento:</strong> Cera de carnauba, Aceite mineral.</p>
+							</div>
+
+							<div class="fabricante-box">
+								<h3>Fabricado por</h3>
+								<p class="empresa">NUTRIGOMAS S.A.S.</p>
+								<p class="direccion">
+									Calle 55 #34 - 52<br>
+									Medellin (Antioquia)<br>
+									Telefono: (604) 4296209
+								</p>
+								<p class="pais">INDUSTRIA COLOMBIANA</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="confianza-buttons">
+						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
+						<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoria personalizada</a>
+					</div>
+				</section>
+
+				<section id="ingredientes">
+					<h2>Ingredientes seguros y ciencia responsable</h2>
+					<p class="ingredientes-intro">Sabemos que lo que consumes importa. Por eso, en Gommi cuidamos cada ingrediente y cada proceso, combinando respaldo cientifico con una forma cercana y honesta de hablar de bienestar.</p>
+
+					<div class="carrusel-container">
+						<button class="carrusel-btn prev" aria-label="Anterior">
+							<span>&#8249;</span>
+						</button>
+						<div class="carrusel">
+							<div class="flashcard">
+								<div class="flashcard-icon">&#x1F9EC;</div>
+								<h3>Probioticos con respaldo cientifico</h3>
+								<p>Gommi contiene bacterias buenas cuidadosamente seleccionadas, estudiadas por su capacidad de apoyar el equilibrio de la flora intestinal y el buen funcionamiento del sistema digestivo.</p>
+								<p class="flashcard-detail">No son ingredientes al azar. Son cepas con evidencia cientifica, pensadas para acompanarte de forma segura en tu rutina diaria.</p>
+							</div>
+
+							<div class="flashcard">
+								<div class="flashcard-icon">&#x1F331;</div>
+								<h3>Prebioticos: el alimento de las bacterias buenas</h3>
+								<p>Los prebioticos ayudan a que los probioticos se mantengan activos y hagan mejor su trabajo. Al incluirlos juntos, Gommi ofrece una formula mas completa que apoya el equilibrio intestinal desde adentro.</p>
+							</div>
+
+							<div class="flashcard">
+								<div class="flashcard-icon">&#x1F9EA;</div>
+								<h3>Ingredientes simples, honestos y bien elegidos</h3>
+								<p>En Gommi creemos que menos es mas. Por eso nuestra formula es clara y consciente:</p>
+								<ul class="flashcard-list">
+									<li>Sin azucar</li>
+									<li>Sin jarabe de maiz</li>
+									<li>Sin conservantes artificiales</li>
+									<li>Con colorantes naturales</li>
+								</ul>
+								<p class="flashcard-detail">Todo lo que usamos tiene una razon. Y lo que no suma, no entra.</p>
+							</div>
+
+							<div class="flashcard">
+								<div class="flashcard-icon">&#x1F6E1;&#xFE0F;</div>
+								<h3>Registro Invima y uso responsable</h3>
+								<p>Gommi cuenta con registro Invima, lo que garantiza que cumple con los estandares de calidad y seguridad para su consumo.</p>
+								<p class="flashcard-detail">Esta disenado para uso diario y puede ser consumido por personas desde los 4 anos, siempre como parte de un habito constante de bienestar.</p>
+							</div>
+
+							<div class="flashcard">
+								<div class="flashcard-icon">&#x1F338;</div>
+								<h3>Ciencia que acompana, no que asusta</h3>
+								<p>Creemos en la ciencia que cuida, no en la que intimida. Por eso elegimos explicar de forma clara, cercana y responsable como funciona Gommi, sin palabras complicadas ni promesas exageradas.</p>
+							</div>
+						</div>
+						<button class="carrusel-btn next" aria-label="Siguiente">
+							<span>&#8250;</span>
+						</button>
+						<div class="carrusel-dots"></div>
+					</div>
+
+					<p class="nota-legal">Este producto no es un medicamento y no sustituye una alimentacion balanceada ni habitos de vida saludables.</p>
+				</section>
+
+				<section id="testimonios">
+					<h2>Historias reales de personas que empezaron a sentirse mejor</h2>
+					<p class="testimonios-intro">Cada cuerpo es distinto, pero escuchar a otras personas ayuda a entender lo que puede pasar cuando empiezas a cuidar tu intestino de forma constante.</p>
+					<div class="testimonials-grid">
+						<div class="testimonial-card">
+							<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+							<p>"Llevaba meses con inflamacion despues de cada comida. Desde que empece con Gommi, siento el abdomen mucho mas liviano. Es parte de mi rutina diaria."</p>
+							<span class="author">&mdash; Maria, 32 anos</span>
+						</div>
+						<div class="testimonial-card">
+							<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+							<p>"Nunca habia podido ser constante con suplementos porque me daba pereza. Pero Gommi es facil: sabe rico, es comodo y lo tomo sin pensarlo."</p>
+							<span class="author">&mdash; Laura, 28 anos</span>
+						</div>
+						<div class="testimonial-card">
+							<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+							<p>"Probe muchos productos antes y ninguno me funciono. Con Gommi senti la diferencia en unas semanas. Ahora voy al bano con mas regularidad."</p>
+							<span class="author">&mdash; Andrea, 41 anos</span>
+						</div>
+						<div class="testimonial-card">
+							<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+							<p>"Me encanta que no tiene azucar y que puedo darselo a mi hija tambien. Es un habito que ahora compartimos juntas."</p>
+							<span class="author">&mdash; Camila, 35 anos</span>
+						</div>
+					</div>
+					<p class="testimonios-disclaimer">Las experiencias pueden variar segun cada persona y su constancia en el consumo.</p>
+					<div class="testimonios-buttons">
+						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
+						<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoria personalizada</a>
+					</div>
+				</section>
+
+				<section id="precio">
+					<h2>Elige como quieres comprar Gommi</h2>
+					<p class="precio-intro">Queremos que elijas la opcion que mejor se adapte a ti. Por eso, puedes comprar Gommi de dos formas distintas, segun como prefieras hacer tu compra.</p>
+
+					<div class="precio-grid">
+						<div class="precio-card recomendada">
+							<span class="badge-recomendado">Recomendada</span>
+							<div class="precio-icon">&#x1F4AC;</div>
+							<h3>Compra directa por WhatsApp</h3>
+							<div class="precio-amount">
+								<span class="precio-valor">$75.000</span>
+								<span class="precio-moneda">COP + envio</span>
+							</div>
+							<p class="precio-descripcion">Compra Gommi directamente con nuestro equipo por WhatsApp. Te acompanamos en el proceso, resolvemos tus dudas y te ayudamos a elegir con tranquilidad.</p>
+							<ul class="precio-beneficios">
+								<li>Precio especial comprando directo con Gommi</li>
+								<li>Acompanamiento personalizado</li>
+								<li>Resolvemos dudas antes de comprar</li>
+								<li>Atencion humana y cercana</li>
+							</ul>
+							<a href="https://wa.me/573196349730?text=Hola%2C%20quiero%20comprar%20Gommi" target="_blank" class="button whatsapp precio-cta">Comprar por WhatsApp</a>
+						</div>
+
+						<div class="precio-card">
+							<div class="precio-icon">&#x1F6D2;</div>
+							<h3>Compra inmediata por Mercado Libre</h3>
+							<div class="precio-amount">
+								<span class="precio-valor">$95.000</span>
+								<span class="precio-moneda">COP (envio incluido segun cobertura)</span>
+							</div>
+							<p class="precio-descripcion">Si prefieres una compra rapida, automatica y dentro de Mercado Libre, tambien puedes adquirir Gommi alli, con el respaldo de su plataforma, pagos integrados y envios gestionados por ellos.</p>
+							<ul class="precio-beneficios">
+								<li>Compra inmediata</li>
+								<li>Pagos integrados en Mercado Libre</li>
+								<li>Envio gestionado por la plataforma</li>
+								<li>Ideal si ya compras por Mercado Libre</li>
+							</ul>
+							<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button secondary precio-cta">Comprar en Mercado Libre</a>
+							<p class="precio-microcopy">Seras redirigido a Mercado Libre</p>
+						</div>
+					</div>
+				</section>
+
+				<section id="cta-final">
+					<div class="cta-box">
+						<h2>Empieza a sentirte mejor desde adentro</h2>
+						<p>Cuidar tu digestion no tiene que ser complicado ni incomodo. A veces, solo necesitas darle a tu cuerpo el apoyo correcto y ser constante. Gommi esta aqui para acompanarte en ese proceso, de forma rica, consciente y amorosa.</p>
+						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary large">Quiero cuidar mi intestino</a>
+						<p class="cta-microcopy">Sin azucar &middot; Registro Invima &middot; Apto desde los 4 anos</p>
+					</div>
+				</section>
+
+				<section id="contacto">
+					<div class="contacto-content">
+						<div class="contacto-text">
+							<h3>Tienes dudas? Estamos aqui para ayudarte</h3>
+							<p>Si quieres saber si Gommi es para ti, como tomarlo o tienes alguna pregunta antes de comprar, escribenos. Nos encanta acompanarte y ayudarte a tomar una decision informada y tranquila.</p>
+						</div>
+						<div class="contacto-buttons">
+							<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
+							<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoria personalizada</a>
+						</div>
+					</div>
+				</section>
+			</main>
+
+			<footer>
+				<div class="footer-content">
+					<div class="footer-logo">
+						<img src="/images/gommi_logos_blanco.png" alt="Gommi" class="footer-logo-img" />
+					</div>
+					<h2 class="footer-title">Si tu intestino no esta bien, tu cuerpo lo siente</h2>
+					<p class="footer-text">Inflamacion, pesadez, estrenimiento, diarrea o malestar despues de comer no son normales. Muchas personas viven asi sin saber que su intestino necesita apoyo diario.</p>
+					<p class="footer-cta">Por eso, necesitas Gommi!</p>
+					<div class="social-links">
+						<a href="https://www.instagram.com/gommi_oficial/" target="_blank" aria-label="Instagram" class="social-btn instagram">
+							<svg viewBox="0 0 24 24" fill="currentColor">
+								<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+							</svg>
+						</a>
+						<a href="https://wa.me/573196349730?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Gommi" target="_blank" aria-label="WhatsApp" class="social-btn whatsapp">
+							<svg viewBox="0 0 24 24" fill="currentColor">
+								<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+							</svg>
+						</a>
+						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" aria-label="MercadoLibre" class="social-btn mercadolibre">
+							<img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.92/mercadolibre/favicon.svg" alt="MercadoLibre" class="ml-icon" />
+						</a>
+					</div>
+					<nav class="footer-nav">
+						<a href="#que-es-gommi">Que es Gommi?</a>
+						<a href="#beneficios">Beneficios</a>
+						<a href="#como-funciona">Como funciona?</a>
+						<a href="#ingredientes">Ingredientes y Ciencia</a>
+						<a href="#testimonios">Testimonios</a>
+						<a href="#precio">Precio</a>
+						<a href="#contacto">Contacto</a>
+						<a href="/blog.html" class="footer-blog">Blog</a>
+					</nav>
+					<p class="copyright">&copy; 2025 Gommi. Todos los derechos reservados.</p>
+				</div>
+			</footer>
+		</div>
+
+		<script>
+			// Menu movil
+			document.addEventListener('DOMContentLoaded', function() {
+				var menuToggle = document.querySelector('.menu-toggle');
+				var mobileMenu = document.querySelector('.mobile-menu');
+				var mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+				if (menuToggle) {
+					menuToggle.addEventListener('click', function() {
+						menuToggle.classList.toggle('active');
+						if (mobileMenu) mobileMenu.classList.toggle('active');
+					});
+				}
+
+				mobileLinks.forEach(function(link) {
+					link.addEventListener('click', function() {
+						if (menuToggle) menuToggle.classList.remove('active');
+						if (mobileMenu) mobileMenu.classList.remove('active');
+					});
+				});
+			});
+
+			// Navegacion activa con Intersection Observer
+			document.addEventListener('DOMContentLoaded', function() {
+				var sections = document.querySelectorAll('section[id]');
+				var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+				var mobileNavLinks = document.querySelectorAll('.mobile-menu a[href^="#"]');
+				var footerNavLinks = document.querySelectorAll('.footer-nav a[href^="#"]');
+
+				function setActiveLink(sectionId) {
+					navLinks.forEach(function(link) { link.classList.remove('active'); });
+					mobileNavLinks.forEach(function(link) { link.classList.remove('active'); });
+					footerNavLinks.forEach(function(link) { link.classList.remove('active'); });
+
+					var selector = 'a[href="#' + sectionId + '"]';
+					document.querySelectorAll('.nav-links ' + selector + ', .mobile-menu ' + selector + ', .footer-nav ' + selector).forEach(function(link) {
+						link.classList.add('active');
+					});
+				}
+
+				var observer = new IntersectionObserver(function(entries) {
+					entries.forEach(function(entry) {
+						if (entry.isIntersecting) {
+							setActiveLink(entry.target.id);
+						}
+					});
+				}, { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+				sections.forEach(function(section) {
+					observer.observe(section);
+				});
+			});
+
+			// Carrusel de ingredientes
+			document.addEventListener('DOMContentLoaded', function() {
+				var carrusel = document.querySelector('.carrusel');
+				var prevBtn = document.querySelector('.carrusel-btn.prev');
+				var nextBtn = document.querySelector('.carrusel-btn.next');
+				var dotsContainer = document.querySelector('.carrusel-dots');
+				var cards = document.querySelectorAll('.flashcard');
+
+				if (!carrusel || !cards.length) return;
+
+				cards.forEach(function(_, index) {
+					var dot = document.createElement('button');
+					dot.className = 'carrusel-dot' + (index === 0 ? ' active' : '');
+					dot.setAttribute('aria-label', 'Ir a tarjeta ' + (index + 1));
+					dot.addEventListener('click', function() { scrollToCard(index); });
+					if (dotsContainer) dotsContainer.appendChild(dot);
+				});
+
+				var dots = document.querySelectorAll('.carrusel-dot');
+
+				function scrollToCard(index) {
+					var card = cards[index];
+					if (card) {
+						carrusel.scrollTo({
+							left: card.offsetLeft - (carrusel.offsetWidth - card.offsetWidth) / 2,
+							behavior: 'smooth'
+						});
+					}
+				}
+
+				function updateDots() {
+					var scrollLeft = carrusel.scrollLeft;
+					var cardWidth = cards[0].offsetWidth + 24;
+					var activeIndex = Math.round(scrollLeft / cardWidth);
+
+					dots.forEach(function(dot, index) {
+						dot.classList.toggle('active', index === activeIndex);
+					});
+				}
+
+				if (prevBtn) prevBtn.addEventListener('click', function() {
+					carrusel.scrollBy({ left: -374, behavior: 'smooth' });
+				});
+
+				if (nextBtn) nextBtn.addEventListener('click', function() {
+					carrusel.scrollBy({ left: 374, behavior: 'smooth' });
+				});
+
+				carrusel.addEventListener('scroll', updateDots);
+			});
+
+			// Control de sonido del video
+			document.addEventListener('DOMContentLoaded', function() {
+				var video = document.getElementById('hero-video');
+				var soundToggle = document.getElementById('sound-toggle');
+				if (!video || !soundToggle) return;
+
+				var soundOffIcon = soundToggle.querySelector('.sound-off');
+				var soundOnIcon = soundToggle.querySelector('.sound-on');
+
+				soundToggle.addEventListener('click', function() {
+					if (video.muted) {
+						video.muted = false;
+						soundOffIcon.style.display = 'none';
+						soundOnIcon.style.display = 'block';
+					} else {
+						video.muted = true;
+						soundOffIcon.style.display = 'block';
+						soundOnIcon.style.display = 'none';
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
