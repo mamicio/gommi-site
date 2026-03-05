@@ -1035,7 +1035,14 @@
 				flex-direction: column;
 				text-align: left;
 				transition: transform 0.3s, box-shadow 0.3s;
+				overflow: hidden;
 			}
+			.precio-card .frasco-bg {
+				position: absolute; right: -20px; bottom: -10px; opacity: 0.08;
+				pointer-events: none; z-index: 0;
+			}
+			.precio-card .frasco-bg img { height: 220px; width: auto; }
+			.precio-card > *:not(.frasco-bg) { position: relative; z-index: 1; }
 
 			.precio-card:hover {
 				transform: translateY(-5px);
@@ -1046,6 +1053,68 @@
 				border: 3px solid var(--secondary);
 				background: linear-gradient(135deg, rgba(74, 150, 122, 0.05) 0%, var(--white) 100%);
 			}
+
+			/* Promo popup overlay */
+			.promo-popup-overlay {
+				position: fixed; inset: 0; z-index: 200;
+				background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+				display: flex; align-items: center; justify-content: center;
+				padding: 1.5rem;
+				opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+			}
+			.promo-popup-overlay.visible { opacity: 1; pointer-events: auto; }
+			.promo-popup {
+				background: #fff; border-radius: 20px; padding: 2.5rem 2rem 2rem;
+				max-width: 420px; width: 100%; text-align: center;
+				box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+				position: relative;
+				transform: scale(0.9); transition: transform 0.3s ease;
+			}
+			.promo-popup-overlay.visible .promo-popup { transform: scale(1); }
+			.promo-popup-close {
+				position: absolute; top: 0.75rem; right: 0.75rem;
+				background: none; border: none; font-size: 1.5rem; color: #718096;
+				cursor: pointer; width: auto; padding: 0.25rem;
+			}
+			.promo-popup-close:hover { color: #2D3748; }
+			.promo-popup-badge {
+				display: inline-block;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white; font-weight: 700; font-size: 0.8rem;
+				padding: 0.35rem 1rem; border-radius: 50px;
+				text-transform: uppercase; letter-spacing: 0.05em;
+				margin-bottom: 1rem;
+			}
+			.promo-popup h2 { font-size: 1.5rem; color: var(--text); margin: 0 0 0.5rem; }
+			.promo-popup .promo-popup-price {
+				font-size: 2.5rem; font-weight: 800; color: var(--secondary);
+				margin: 0.5rem 0 0.25rem;
+			}
+			.promo-popup .promo-popup-old {
+				text-decoration: line-through; color: var(--text-light); font-size: 1rem;
+				margin: 0 0 0.75rem;
+			}
+			.promo-popup .promo-popup-savings {
+				background: #fef3cd; color: #856404; font-weight: 600;
+				font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 8px;
+				display: inline-block; margin-bottom: 1.25rem;
+			}
+			.promo-popup-btn {
+				display: inline-block; width: 100%; padding: 1rem;
+				background: linear-gradient(135deg, #4a967a 0%, #3d7d65 100%);
+				color: white; border: none; border-radius: 50px;
+				font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem;
+				cursor: pointer; transition: all 0.3s;
+			}
+			.promo-popup-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(74,150,122,0.4); }
+
+			/* Frasco bg in checkout options */
+			.product-option .frasco-img {
+				display: flex; align-items: center; justify-content: center;
+				margin-bottom: 0.25rem;
+			}
+			.product-option .frasco-img img { height: 160px; width: auto; }
+			.product-option .frasco-img img + img { margin-left: -15px; }
 
 			.badge-recomendado {
 				position: absolute;
@@ -1343,9 +1412,171 @@
 				.footer-nav { gap: 1rem; }
 				.footer-nav a { font-size: 0.875rem; }
 			}
+		/* ========== CHECKOUT MODAL ========== */
+			.checkout-overlay {
+				position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+				background: rgba(0,0,0,0.6); z-index: 1000;
+				display: flex; align-items: center; justify-content: center;
+				padding: 1rem; opacity: 0; visibility: hidden; transition: all 0.3s;
+			}
+			.checkout-overlay.active { opacity: 1; visibility: visible; }
+			.checkout-modal {
+				background: var(--white); border-radius: 20px; width: 100%; max-width: 640px;
+				max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative;
+				transform: translateY(20px); transition: transform 0.3s;
+				scrollbar-width: none;
+			}
+			.checkout-modal::-webkit-scrollbar { display: none; }
+			.checkout-overlay.active .checkout-modal { transform: translateY(0); }
+			.checkout-close {
+				position: absolute; top: 1rem; right: 1rem; background: none; border: none;
+				font-size: 1.75rem; cursor: pointer; color: var(--text-light); width: auto; padding: 0.5rem;
+			}
+			.checkout-close:hover { color: var(--text); }
+			.checkout-close:disabled { background: none; }
+			.checkout-steps {
+				display: flex; justify-content: center; gap: 1.5rem;
+				margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px solid #f0f0f0;
+			}
+			.checkout-step { display: flex; align-items: center; gap: 0.5rem; opacity: 0.35; transition: opacity 0.3s; }
+			.checkout-step.active, .checkout-step.done { opacity: 1; }
+			.step-num {
+				width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0;
+				color: var(--text); display: flex; align-items: center; justify-content: center;
+				font-weight: 700; font-size: 0.875rem;
+			}
+			.checkout-step.active .step-num, .checkout-step.done .step-num { background: var(--secondary); color: var(--white); }
+			.step-label { font-weight: 600; font-size: 0.85rem; color: var(--text); }
+			.checkout-panel { display: none; }
+			.checkout-panel.active { display: block; }
+			/* Product options */
+			.product-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+			.product-option {
+				border: 2px solid #e2e8f0; border-radius: 16px; padding: 1rem;
+				text-align: center; cursor: pointer; transition: all 0.3s; position: relative;
+			}
+			.product-option:hover { border-color: var(--secondary); }
+			.product-option.selected {
+				border-color: var(--secondary); background: rgba(74,150,122,0.05);
+				box-shadow: 0 0 0 3px rgba(74,150,122,0.2);
+			}
+			.product-option h3 { margin: 0 0 0.25rem; color: var(--text); font-size: 1.1rem; }
+			.option-price { font-size: 1.75rem; font-weight: 800; color: var(--secondary); margin: 0.25rem 0 0.15rem; }
+			.option-old-price { text-decoration: line-through; color: var(--text-light); font-size: 0.95rem; margin: 0; }
+			.option-detail { font-size: 0.85rem; color: var(--text-light); margin: 0.25rem 0 0; }
+			.savings-badge {
+				position: absolute; top: -10px; right: -10px; background: #ef4444; color: white;
+				padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+			}
+			/* Promo banner */
+			.ch-promo-banner {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white; padding: 0.75rem 1.25rem; border-radius: 12px;
+				margin-bottom: 1rem; text-align: center;
+			}
+			.ch-promo-banner p { margin: 0; color: white; }
+			.ch-promo-banner strong { font-size: 1.1rem; }
+			/* Form */
+			.ch-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.875rem; }
+			.ch-form-field label {
+				display: block; font-weight: 600; font-size: 0.8rem;
+				color: var(--text); margin-bottom: 0.25rem;
+			}
+			.ch-form-field input, .ch-form-field select {
+				width: 100%; padding: 0.6rem 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px;
+				font-size: 0.9rem; font-family: 'Poppins', sans-serif;
+				transition: border-color 0.3s; box-sizing: border-box; background: white;
+			}
+			.ch-form-field input:focus, .ch-form-field select:focus { outline: none; border-color: var(--secondary); }
+			.ch-form-field.full { grid-column: 1 / -1; }
+			/* Shipping result */
+			.ch-shipping-result {
+				background: #f0fdf4; border-radius: 12px; padding: 1rem 1.25rem;
+				margin-top: 0.75rem; border-left: 3px solid var(--secondary);
+			}
+			.ch-shipping-cost { font-size: 1.15rem; font-weight: 700; color: var(--secondary); }
+			.ch-shipping-loading { color: var(--text-light); font-size: 0.9rem; }
+			.ch-shipping-error { color: #e53e3e; font-size: 0.9rem; }
+			/* Summary */
+			.ch-summary-section { margin-bottom: 1.25rem; }
+			.ch-summary-section h4 {
+				font-size: 0.8rem; color: var(--text-light); text-transform: uppercase;
+				letter-spacing: 0.5px; margin: 0 0 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f0f0f0;
+			}
+			.ch-summary-line { display: flex; justify-content: space-between; padding: 0.375rem 0; font-size: 0.9rem; }
+			.ch-summary-line .ch-val { font-weight: 600; }
+			.ch-summary-total {
+				display: flex; justify-content: space-between; padding: 1rem 0; margin-top: 0.5rem;
+				border-top: 2px solid var(--secondary); font-size: 1.35rem; font-weight: 800;
+			}
+			.ch-summary-total .ch-val { color: var(--secondary); }
+			.ch-customer-info {
+				background: #f7fafc; border-radius: 8px; padding: 0.875rem;
+				font-size: 0.8rem; color: var(--text); line-height: 1.6;
+			}
+			/* Nav buttons */
+			.checkout-nav { display: flex; gap: 1rem; margin-top: 1.5rem; }
+			.btn-back {
+				padding: 0.75rem 1.5rem; background: #f7fafc; color: var(--text);
+				border: 2px solid #e2e8f0; border-radius: 50px; font-weight: 600;
+				cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.9rem; width: auto;
+			}
+			.btn-back:hover { background: #edf2f7; }
+			.btn-back:disabled { background: #f7fafc; }
+			.btn-next, .btn-pay {
+				flex: 1; padding: 0.875rem 1.5rem;
+				background: linear-gradient(135deg, var(--secondary) 0%, #3d7d65 100%);
+				color: white; border: none; border-radius: 50px; font-weight: 700;
+				cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s;
+			}
+			.btn-next:hover:not(:disabled), .btn-pay:hover:not(:disabled) {
+				transform: translateY(-2px); box-shadow: 0 4px 15px rgba(74,150,122,0.4);
+			}
+			.btn-next:disabled, .btn-pay:disabled { background: #cbd5e0; cursor: not-allowed; }
+			.btn-pay { font-size: 1.1rem; padding: 1rem; }
+			/* Promo hero in precio section */
+			.promo-hero {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white; padding: 2rem; border-radius: 20px; text-align: center;
+				margin-bottom: 3rem; position: relative; overflow: hidden;
+			}
+			.promo-hero-badge {
+				display: inline-block; background: rgba(255,255,255,0.2);
+				padding: 0.375rem 1rem; border-radius: 20px; font-weight: 700;
+				font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 1px;
+			}
+			.promo-hero-old { font-size: 1.1rem; margin: 0 0 0.5rem; opacity: 0.9; }
+			.tachado { text-decoration: line-through; opacity: 0.7; }
+			.promo-hero-new { font-size: 1.75rem; font-weight: 800; margin: 0 0 0.5rem; }
+			.promo-hero-savings { font-size: 1.1rem; margin: 0; color: #ffd700; font-weight: 700; }
+			.precio-antes { display: block; text-decoration: line-through; font-size: 0.9rem; color: var(--text-light); margin-top: 0.25rem; }
+			.precio-ml-note { text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-light); }
+			.precio-ml-note a { color: var(--secondary); text-decoration: underline; }
+			/* Responsive checkout */
+			@media screen and (max-width: 768px) {
+				.checkout-modal { max-height: 95vh; padding: 1.5rem; border-radius: 16px; }
+				.checkout-steps { gap: 0.5rem; }
+				.step-label { display: none; }
+				.product-options { grid-template-columns: 1fr; }
+				.ch-form-row { grid-template-columns: 1fr; }
+			}
 		</style>
+		<script src="https://checkout.epayco.co/checkout.js"></script>
 	</head>
 	<body>
+		<!-- Promo popup (shown once on page load when promo is active) -->
+		<div id="promo-popup-overlay" class="promo-popup-overlay" onclick="if(event.target===this)cerrarPromoPopup()">
+			<div class="promo-popup">
+				<button class="promo-popup-close" onclick="cerrarPromoPopup()">&times;</button>
+				<div class="promo-popup-badge" id="promo-popup-badge"></div>
+				<h2 id="promo-popup-title"></h2>
+				<div class="promo-popup-price" id="promo-popup-price"></div>
+				<div class="promo-popup-old" id="promo-popup-old"></div>
+				<div class="promo-popup-savings" id="promo-popup-savings"></div>
+				<button class="promo-popup-btn" id="promo-popup-btn">Comprar ahora</button>
+			</div>
+		</div>
+
 		<div id="container">
 			<header>
 				<nav>
@@ -1365,7 +1596,7 @@
 					<button class="menu-toggle" aria-label="Abrir menu">
 						<span class="hamburger"></span>
 					</button>
-					<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="cta-button">Comprar</a>
+					<a href="#precio" class="cta-button" onclick="abrirCheckout(); return false;">Comprar</a>
 				</nav>
 				<div class="mobile-menu">
 					<a href="#que-es-gommi">Que es Gommi?</a>
@@ -1386,7 +1617,7 @@
 						<h2 class="subtitle"><span class="highlight-text">Probioticos + prebioticos</span> en gomitas sin azucar, disenadas para mejorar tu digestion, reducir la inflamacion y acompanarte todos los dias.</h2>
 						<div class="hero-buttons">
 							<a href="#como-funciona" class="button primary">Quiero cuidar mi digestion</a>
-							<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button secondary">Quiero mis gomitas</a>
+							<a href="#precio" class="button secondary" onclick="abrirCheckout(); return false;">Quiero mis gomitas</a>
 						</div>
 					</div>
 					<div class="hero-image">
@@ -1631,8 +1862,8 @@
 					</div>
 
 					<div class="confianza-buttons">
-						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
-						<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoria personalizada</a>
+						<a href="#precio" class="button primary" onclick="abrirCheckout(); return false;">Comprar ahora</a>
+						<a href="https://wa.me/573196349730?text=Hola%2C%20tengo%20una%20duda%20sobre%20Gommi" target="_blank" class="button whatsapp">Tienes dudas? Escribenos</a>
 					</div>
 				</section>
 
@@ -1720,59 +1951,27 @@
 					</div>
 					<p class="testimonios-disclaimer">Las experiencias pueden variar segun cada persona y su constancia en el consumo.</p>
 					<div class="testimonios-buttons">
-						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
-						<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoria personalizada</a>
+						<a href="#precio" class="button primary" onclick="abrirCheckout(); return false;">Comprar ahora</a>
+						<a href="https://wa.me/573196349730?text=Hola%2C%20tengo%20una%20duda%20sobre%20Gommi" target="_blank" class="button whatsapp">Tienes dudas? Escribenos</a>
 					</div>
 				</section>
 
 				<section id="precio">
 					<h2>Elige como quieres comprar Gommi</h2>
-					<p class="precio-intro">Queremos que elijas la opcion que mejor se adapte a ti. Por eso, puedes comprar Gommi de dos formas distintas, segun como prefieras hacer tu compra.</p>
+					<p class="precio-intro">Compra directamente desde nuestra pagina de forma segura con ePayco. Elige tu opcion y completa tu compra en pocos pasos.</p>
 
-					<div class="precio-grid">
-						<div class="precio-card recomendada">
-							<span class="badge-recomendado">Recomendada</span>
-							<div class="precio-icon">&#x1F4AC;</div>
-							<h3>Compra directa por WhatsApp</h3>
-							<div class="precio-amount">
-								<span class="precio-valor">$75.000</span>
-								<span class="precio-moneda">COP + envio</span>
-							</div>
-							<p class="precio-descripcion">Compra Gommi directamente con nuestro equipo por WhatsApp. Te acompanamos en el proceso, resolvemos tus dudas y te ayudamos a elegir con tranquilidad.</p>
-							<ul class="precio-beneficios">
-								<li>Precio especial comprando directo con Gommi</li>
-								<li>Acompanamiento personalizado</li>
-								<li>Resolvemos dudas antes de comprar</li>
-								<li>Atencion humana y cercana</li>
-							</ul>
-							<a href="https://wa.me/573196349730?text=Hola%2C%20quiero%20comprar%20Gommi" target="_blank" class="button whatsapp precio-cta">Comprar por WhatsApp</a>
-						</div>
+					<div id="promo-hero" class="promo-hero" style="display:none"></div>
 
-						<div class="precio-card">
-							<div class="precio-icon">&#x1F6D2;</div>
-							<h3>Compra inmediata por Mercado Libre</h3>
-							<div class="precio-amount">
-								<span class="precio-valor">$95.000</span>
-								<span class="precio-moneda">COP (envio incluido segun cobertura)</span>
-							</div>
-							<p class="precio-descripcion">Si prefieres una compra rapida, automatica y dentro de Mercado Libre, tambien puedes adquirir Gommi alli, con el respaldo de su plataforma, pagos integrados y envios gestionados por ellos.</p>
-							<ul class="precio-beneficios">
-								<li>Compra inmediata</li>
-								<li>Pagos integrados en Mercado Libre</li>
-								<li>Envio gestionado por la plataforma</li>
-								<li>Ideal si ya compras por Mercado Libre</li>
-							</ul>
-							<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button secondary precio-cta">Comprar en Mercado Libre</a>
-							<p class="precio-microcopy">Seras redirigido a Mercado Libre</p>
-						</div>
-					</div>
+					<div class="precio-grid" id="precio-grid"></div>
+
+					<p class="precio-ml-note">Tambien disponible en <a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank">Mercado Libre</a></p>
 				</section>
 
 				<section id="cta-final">
 					<div class="cta-box">
 						<h2>Empieza a sentirte mejor desde adentro</h2>
 						<p>Cuidar tu digestion no tiene que ser complicado ni incomodo. A veces, solo necesitas darle a tu cuerpo el apoyo correcto y ser constante. Gommi esta aqui para acompanarte en ese proceso, de forma rica, consciente y amorosa.</p>
-						<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary large">Quiero cuidar mi intestino</a>
+						<a href="#precio" class="button primary large" onclick="abrirCheckout(); return false;">Quiero cuidar mi intestino</a>
 						<p class="cta-microcopy">Sin azucar &middot; Registro Invima &middot; Apto desde los 4 anos</p>
 					</div>
 				</section>
@@ -1784,8 +1983,8 @@
 							<p>Si quieres saber si Gommi es para ti, como tomarlo o tienes alguna pregunta antes de comprar, escribenos. Nos encanta acompanarte y ayudarte a tomar una decision informada y tranquila.</p>
 						</div>
 						<div class="contacto-buttons">
-							<a href="https://www.mercadolibre.com.co/gommi-gomitas-masticables-con-probioticos-y-prebioticos/up/MCOU3717173882" target="_blank" class="button primary">Quiero mis gomitas</a>
-							<a href="https://wa.me/573196349730?text=Quiero%20mi%20asesor%C3%ADa%20Gommi%20personalizada" target="_blank" class="button whatsapp">Quiero mi asesoria personalizada</a>
+							<a href="#precio" class="button primary" onclick="abrirCheckout(); return false;">Comprar ahora</a>
+							<a href="https://wa.me/573196349730?text=Hola%2C%20tengo%20una%20duda%20sobre%20Gommi" target="_blank" class="button whatsapp">Tienes dudas? Escribenos</a>
 						</div>
 					</div>
 				</section>
@@ -1829,7 +2028,539 @@
 			</footer>
 		</div>
 
+		<!-- Checkout Modal -->
+		<div class="checkout-overlay" id="checkout-overlay">
+			<div class="checkout-modal">
+				<button class="checkout-close" onclick="cerrarCheckout()">&times;</button>
+				<div class="checkout-steps">
+					<div class="checkout-step active" data-step="1">
+						<span class="step-num">1</span><span class="step-label">Tu pedido</span>
+					</div>
+					<div class="checkout-step" data-step="2">
+						<span class="step-num">2</span><span class="step-label">Datos y envio</span>
+					</div>
+					<div class="checkout-step" data-step="3">
+						<span class="step-num">3</span><span class="step-label">Pago</span>
+					</div>
+				</div>
+
+				<!-- Paso 1: Seleccion de producto -->
+				<div class="checkout-panel active" id="ch-panel-1">
+					<div class="ch-promo-banner" id="ch-promo-banner" style="display:none"></div>
+					<div class="product-options" id="ch-product-options"></div>
+					<div class="checkout-nav">
+						<button class="btn-next" id="ch-btn-step1" disabled onclick="goToStep(2)">Continuar</button>
+					</div>
+				</div>
+
+				<!-- Paso 2: Datos personales y envio -->
+				<div class="checkout-panel" id="ch-panel-2">
+					<div class="ch-form-row">
+						<div class="ch-form-field"><label>Nombres *</label><input type="text" id="ch-nombres" required></div>
+						<div class="ch-form-field"><label>Apellidos *</label><input type="text" id="ch-apellidos" required></div>
+					</div>
+					<div class="ch-form-row">
+						<div class="ch-form-field"><label>Cedula *</label><input type="text" id="ch-cedula" inputmode="numeric" required></div>
+						<div class="ch-form-field"><label>Telefono *</label><input type="tel" id="ch-telefono" required></div>
+					</div>
+					<div class="ch-form-row">
+						<div class="ch-form-field full"><label>Correo electronico *</label><input type="email" id="ch-email" required></div>
+					</div>
+					<div class="ch-form-row">
+						<div class="ch-form-field">
+							<label>Departamento *</label>
+							<select id="ch-departamento"><option value="">Cargando...</option></select>
+						</div>
+						<div class="ch-form-field">
+							<label>Ciudad *</label>
+							<select id="ch-ciudad" disabled><option value="">Selecciona departamento</option></select>
+						</div>
+					</div>
+					<div class="ch-form-row">
+						<div class="ch-form-field full"><label>Direccion *</label><input type="text" id="ch-direccion" placeholder="Ej: Calle 50 #30-20" required></div>
+					</div>
+					<div class="ch-form-row">
+						<div class="ch-form-field"><label>Complemento</label><input type="text" id="ch-complemento" placeholder="Apto, torre, etc."></div>
+						<div class="ch-form-field"><label>Barrio *</label><input type="text" id="ch-barrio" required></div>
+					</div>
+					<div id="ch-shipping-result" style="display:none"></div>
+					<div class="checkout-nav">
+						<button class="btn-back" onclick="goToStep(1)">Atras</button>
+						<button class="btn-next" id="ch-btn-step2" disabled onclick="goToStep(3)">Continuar</button>
+					</div>
+				</div>
+
+				<!-- Paso 3: Resumen y pago -->
+				<div class="checkout-panel" id="ch-panel-3">
+					<div id="ch-summary"></div>
+					<div class="checkout-nav">
+						<button class="btn-back" onclick="goToStep(2)">Atras</button>
+						<button class="btn-pay" id="ch-btn-pay" onclick="procesarPago()">Pagar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script>
+			// ============================================
+			// CONFIGURACION DE PRODUCTOS Y PROMOCIONES
+			// Edita esta seccion para cambiar precios o crear promociones
+			// ============================================
+			var GOMMI_CONFIG = {
+				producto: {
+					nombre: 'Gommi - Gomitas Simbioticas',
+					precioUnitario: 75000,
+					descripcion: '1 Frasco de Gommi (60 gomitas)',
+					pesoKg: 1
+				},
+				promociones: [
+					{
+						fechaInicio: '2026-03-01',
+						fechaFin: '2026-03-31',
+						cantidad: 2,
+						precio: 100000,
+						badge: 'PROMO MARZO',
+						descripcion: '2 Frascos de Gommi (120 gomitas)'
+					}
+				],
+				epayco: {
+					publicKey: '5891db6d1d8105d345d8bccd08a90fec',
+					test: true // Cambiar a false para produccion
+				}
+			};
+
+			// ============================================
+			// LOGICA DEL CHECKOUT (no editar salvo necesario)
+			// ============================================
+			var chState = {
+				step: 1,
+				selectedQty: 0,
+				selectedPrice: 0,
+				selectedLabel: '',
+				shippingCost: 0,
+				shippingOk: false,
+				ciudadCodigo: '',
+				ciudadesData: null
+			};
+
+			function getActivePromo() {
+				var now = new Date();
+				var today = now.toISOString().slice(0, 10);
+				for (var i = 0; i < GOMMI_CONFIG.promociones.length; i++) {
+					var p = GOMMI_CONFIG.promociones[i];
+					if (today >= p.fechaInicio && today <= p.fechaFin) return p;
+				}
+				return null;
+			}
+
+			function formatCOP(n) {
+				return '$' + n.toLocaleString('es-CO');
+			}
+
+			// Render pricing section
+			function renderPrecioSection() {
+				var promo = getActivePromo();
+				var grid = document.getElementById('precio-grid');
+				var heroDiv = document.getElementById('promo-hero');
+				var price = GOMMI_CONFIG.producto.precioUnitario;
+
+				if (promo) {
+					heroDiv.style.display = 'block';
+					heroDiv.innerHTML =
+						'<div class="promo-hero-badge">' + promo.badge + '</div>' +
+						'<p class="promo-hero-old">Antes: 1 frasco x <span class="tachado">' + formatCOP(price) + '</span></p>' +
+						'<p class="promo-hero-new">Ahora: ' + promo.cantidad + ' frascos x ' + formatCOP(promo.precio) + '</p>' +
+						'<p class="promo-hero-savings">Ahorras ' + formatCOP(price * promo.cantidad - promo.precio) + '</p>';
+				}
+
+				var frascoImg = '<img src="/images/Frasco.png" alt="">';
+				var frasco1 = '<div class="frasco-bg">' + frascoImg + '</div>';
+				var frasco2 = '<div class="frasco-bg" style="right:-10px">' + frascoImg + '<img src="/images/Frasco.png" alt="" style="margin-left:-40px">' + '</div>';
+
+				var cards = '';
+				// Regular option
+				cards += '<div class="precio-card">' + frasco1 +
+					'<div class="precio-icon">&#x1F4E6;</div>' +
+					'<h3>1 Frasco de Gommi</h3>' +
+					'<div class="precio-amount"><span class="precio-valor">' + formatCOP(price) + '</span>' +
+					'<span class="precio-moneda">COP + envio</span></div>' +
+					'<p class="precio-descripcion">60 gomitas - 1 mes de bienestar</p>' +
+					'<ul class="precio-beneficios"><li>60 gomitas (30 porciones)</li><li>1 mes de uso diario</li><li>Envio a toda Colombia</li></ul>' +
+					'<a href="#" class="button primary precio-cta" onclick="abrirCheckout(1); return false;">Comprar ahora</a></div>';
+
+				// Promo option
+				if (promo) {
+					var savings = price * promo.cantidad - promo.precio;
+					cards += '<div class="precio-card recomendada">' + frasco2 +
+						'<span class="badge-recomendado">AHORRA ' + formatCOP(savings) + '</span>' +
+						'<div class="precio-icon">&#x1F389;</div>' +
+						'<h3>' + promo.cantidad + ' Frascos de Gommi</h3>' +
+						'<div class="precio-amount"><span class="precio-valor">' + formatCOP(promo.precio) + '</span>' +
+						'<span class="precio-moneda">COP + envio</span>' +
+						'<span class="precio-antes">Antes: ' + formatCOP(price * promo.cantidad) + '</span></div>' +
+						'<p class="precio-descripcion">120 gomitas - 2 meses de bienestar</p>' +
+						'<ul class="precio-beneficios"><li>120 gomitas (60 porciones)</li><li>2 meses de uso diario</li>' +
+						'<li>Ahorras ' + formatCOP(savings) + '</li><li>Envio a toda Colombia</li></ul>' +
+						'<a href="#" class="button primary precio-cta" onclick="abrirCheckout(' + promo.cantidad + '); return false;">Comprar ahora</a></div>';
+				}
+
+				grid.innerHTML = cards;
+			}
+
+			// Render product options inside checkout
+			function renderCheckoutOptions() {
+				var promo = getActivePromo();
+				var price = GOMMI_CONFIG.producto.precioUnitario;
+				var container = document.getElementById('ch-product-options');
+				var banner = document.getElementById('ch-promo-banner');
+
+				if (promo) {
+					banner.style.display = 'block';
+					banner.innerHTML = '<p><strong>' + promo.badge + ':</strong> ' + promo.cantidad + ' frascos por ' + formatCOP(promo.precio) + ' (ahorras ' + formatCOP(price * promo.cantidad - promo.precio) + ')</p>';
+				}
+
+				var fImg = '<img src="/images/Frasco.png" alt="">';
+				var html = '<div class="product-option" data-qty="1" onclick="selectProduct(1)">' +
+					'<h3>1 Frasco</h3>' +
+					'<div class="frasco-img">' + fImg + '</div>' +
+					'<p class="option-price">' + formatCOP(price) + '</p>' +
+					'<p class="option-detail">60 gomitas (1 mes)</p></div>';
+
+				if (promo) {
+					html += '<div class="product-option" data-qty="' + promo.cantidad + '" onclick="selectProduct(' + promo.cantidad + ')">' +
+						'<span class="savings-badge">-' + formatCOP(price * promo.cantidad - promo.precio) + '</span>' +
+						'<h3>' + promo.cantidad + ' Frascos</h3>' +
+						'<div class="frasco-img">' + fImg + fImg + '</div>' +
+						'<p class="option-price">' + formatCOP(promo.precio) + '</p>' +
+						'<p class="option-old-price">' + formatCOP(price * promo.cantidad) + '</p>' +
+						'<p class="option-detail">120 gomitas (2 meses)</p></div>';
+				}
+
+				container.innerHTML = html;
+			}
+
+			function selectProduct(qty) {
+				var promo = getActivePromo();
+				var price = GOMMI_CONFIG.producto.precioUnitario;
+
+				chState.selectedQty = qty;
+				if (qty === 1) {
+					chState.selectedPrice = price;
+					chState.selectedLabel = '1 Frasco de Gommi';
+				} else if (promo && qty === promo.cantidad) {
+					chState.selectedPrice = promo.precio;
+					chState.selectedLabel = promo.cantidad + ' Frascos de Gommi';
+				}
+
+				// Update UI
+				document.querySelectorAll('.product-option').forEach(function(el) {
+					el.classList.toggle('selected', parseInt(el.dataset.qty) === qty);
+				});
+				document.getElementById('ch-btn-step1').disabled = false;
+			}
+
+			function abrirCheckout(qty) {
+				renderCheckoutOptions();
+				chState.step = 1;
+				chState.shippingOk = false;
+				chState.shippingCost = 0;
+				document.getElementById('ch-shipping-result').style.display = 'none';
+				document.getElementById('ch-btn-step2').disabled = true;
+				updateStepUI();
+
+				// Show panels
+				document.querySelectorAll('.checkout-panel').forEach(function(p) { p.classList.remove('active'); });
+				document.getElementById('ch-panel-1').classList.add('active');
+
+				document.getElementById('checkout-overlay').classList.add('active');
+				document.body.style.overflow = 'hidden';
+
+				// Pre-select if qty provided
+				if (qty) selectProduct(qty);
+
+				// Load cities if not loaded
+				if (!chState.ciudadesData) loadCiudadesCheckout();
+			}
+
+			function cerrarCheckout() {
+				document.getElementById('checkout-overlay').classList.remove('active');
+				document.body.style.overflow = '';
+			}
+
+			function cerrarPromoPopup() {
+				document.getElementById('promo-popup-overlay').classList.remove('visible');
+			}
+
+			// Close on overlay click
+			document.addEventListener('click', function(e) {
+				if (e.target.id === 'checkout-overlay') cerrarCheckout();
+			});
+
+			function goToStep(n) {
+				if (n === 2 && !chState.selectedQty) return;
+				if (n === 3 && !validateStep2()) return;
+				if (n === 3) buildSummary();
+
+				chState.step = n;
+				document.querySelectorAll('.checkout-panel').forEach(function(p) { p.classList.remove('active'); });
+				document.getElementById('ch-panel-' + n).classList.add('active');
+				updateStepUI();
+
+				// Scroll modal to top
+				document.querySelector('.checkout-modal').scrollTop = 0;
+			}
+
+			function updateStepUI() {
+				document.querySelectorAll('.checkout-step').forEach(function(el) {
+					var s = parseInt(el.dataset.step);
+					el.classList.remove('active', 'done');
+					if (s === chState.step) el.classList.add('active');
+					else if (s < chState.step) el.classList.add('done');
+				});
+			}
+
+			// Cities loading
+			async function loadCiudadesCheckout() {
+				try {
+					var res = await fetch('/api/ciudades');
+					chState.ciudadesData = await res.json();
+
+					var depSelect = document.getElementById('ch-departamento');
+					depSelect.innerHTML = '<option value="">Selecciona departamento</option>';
+					chState.ciudadesData.departamentos.forEach(function(dep) {
+						depSelect.innerHTML += '<option value="' + dep + '">' + dep + '</option>';
+					});
+				} catch (e) {
+					document.getElementById('ch-departamento').innerHTML = '<option value="">Error al cargar</option>';
+				}
+			}
+
+			// Departamento change
+			document.addEventListener('change', function(e) {
+				if (e.target.id === 'ch-departamento') {
+					var dep = e.target.value;
+					var ciudadSelect = document.getElementById('ch-ciudad');
+					document.getElementById('ch-shipping-result').style.display = 'none';
+					chState.shippingOk = false;
+					chState.ciudadCodigo = '';
+					document.getElementById('ch-btn-step2').disabled = true;
+
+					if (!dep || !chState.ciudadesData) {
+						ciudadSelect.disabled = true;
+						ciudadSelect.innerHTML = '<option value="">Selecciona departamento</option>';
+						return;
+					}
+
+					var cities = chState.ciudadesData.data[dep] || [];
+					ciudadSelect.disabled = false;
+					ciudadSelect.innerHTML = '<option value="">Selecciona ciudad</option>';
+					cities.forEach(function(c) {
+						ciudadSelect.innerHTML += '<option value="' + c.codigo + '">' + c.nombre + '</option>';
+					});
+				}
+
+				if (e.target.id === 'ch-ciudad') {
+					var codigo = e.target.value;
+					if (!codigo) {
+						document.getElementById('ch-shipping-result').style.display = 'none';
+						chState.shippingOk = false;
+						document.getElementById('ch-btn-step2').disabled = true;
+						return;
+					}
+					chState.ciudadCodigo = codigo;
+					cotizarEnvioCheckout(codigo);
+				}
+			});
+
+			async function cotizarEnvioCheckout(ciudadCodigo) {
+				var resultDiv = document.getElementById('ch-shipping-result');
+				resultDiv.style.display = 'block';
+				resultDiv.className = 'ch-shipping-result';
+				resultDiv.innerHTML = '<p class="ch-shipping-loading">Cotizando envio...</p>';
+				chState.shippingOk = false;
+				document.getElementById('ch-btn-step2').disabled = true;
+
+				try {
+					var res = await fetch('/api/cotizar', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ ciudadDestino: ciudadCodigo, peso: GOMMI_CONFIG.producto.pesoKg })
+					});
+					var data = await res.json();
+
+					if (data.ok && data.mensajeria) {
+						chState.shippingCost = data.mensajeria.valorTotal;
+						chState.shippingOk = true;
+						resultDiv.innerHTML = '<p class="ch-shipping-cost">Envio: ' + formatCOP(data.mensajeria.valorTotal) + '</p>' +
+							'<p style="font-size:0.8rem;color:#718096;margin:0.25rem 0 0">Entrega: ' + data.mensajeria.tiempoEntrega + ' dia(s) habiles</p>';
+						checkStep2Ready();
+					} else if (data.ok && data.todosServicios && data.todosServicios.length > 0) {
+						var s = data.todosServicios[0];
+						chState.shippingCost = s.valorTotal;
+						chState.shippingOk = true;
+						resultDiv.innerHTML = '<p class="ch-shipping-cost">Envio: ' + formatCOP(s.valorTotal) + '</p>' +
+							'<p style="font-size:0.8rem;color:#718096;margin:0.25rem 0 0">' + s.servicio + ' - ' + s.tiempoEntrega + ' dia(s)</p>';
+						checkStep2Ready();
+					} else {
+						resultDiv.innerHTML = '<p class="ch-shipping-error">No hay servicio de envio disponible para esta ciudad. Intenta otra ciudad cercana.</p>';
+					}
+				} catch (e) {
+					resultDiv.innerHTML = '<p class="ch-shipping-error">Error al cotizar envio. Intenta de nuevo.</p>';
+				}
+			}
+
+			function checkStep2Ready() {
+				if (chState.shippingOk && validateStep2Fields()) {
+					document.getElementById('ch-btn-step2').disabled = false;
+				}
+			}
+
+			// Listen for input changes to enable/disable step 2 button
+			document.addEventListener('input', function(e) {
+				if (e.target.closest && e.target.closest('.checkout-modal')) {
+					checkStep2Ready();
+				}
+			});
+
+			function validateStep2Fields() {
+				var fields = ['ch-nombres', 'ch-apellidos', 'ch-cedula', 'ch-telefono', 'ch-email', 'ch-direccion', 'ch-barrio'];
+				for (var i = 0; i < fields.length; i++) {
+					var el = document.getElementById(fields[i]);
+					if (!el || !el.value.trim()) return false;
+				}
+				if (!document.getElementById('ch-departamento').value) return false;
+				if (!document.getElementById('ch-ciudad').value) return false;
+				return true;
+			}
+
+			function validateStep2() {
+				if (!validateStep2Fields()) {
+					alert('Por favor completa todos los campos obligatorios.');
+					return false;
+				}
+				if (!chState.shippingOk) {
+					alert('Por favor selecciona una ciudad para cotizar el envio.');
+					return false;
+				}
+				var email = document.getElementById('ch-email').value;
+				if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+					alert('Por favor ingresa un correo electronico valido.');
+					return false;
+				}
+				return true;
+			}
+
+			function buildSummary() {
+				var total = chState.selectedPrice + chState.shippingCost;
+				var nombres = document.getElementById('ch-nombres').value;
+				var apellidos = document.getElementById('ch-apellidos').value;
+				var cedula = document.getElementById('ch-cedula').value;
+				var telefono = document.getElementById('ch-telefono').value;
+				var email = document.getElementById('ch-email').value;
+				var dep = document.getElementById('ch-departamento').value;
+				var ciudad = document.getElementById('ch-ciudad').selectedOptions[0].text;
+				var direccion = document.getElementById('ch-direccion').value;
+				var complemento = document.getElementById('ch-complemento').value;
+				var barrio = document.getElementById('ch-barrio').value;
+
+				var dirFull = direccion + (complemento ? ', ' + complemento : '') + ', ' + barrio;
+
+				document.getElementById('ch-summary').innerHTML =
+					'<div class="ch-summary-section"><h4>Tu pedido</h4>' +
+					'<div class="ch-summary-line"><span>' + chState.selectedLabel + '</span><span class="ch-val">' + formatCOP(chState.selectedPrice) + '</span></div>' +
+					'<div class="ch-summary-line"><span>Envio</span><span class="ch-val">' + formatCOP(chState.shippingCost) + '</span></div>' +
+					'<div class="ch-summary-total"><span>Total</span><span class="ch-val">' + formatCOP(total) + '</span></div></div>' +
+					'<div class="ch-summary-section"><h4>Datos de envio</h4>' +
+					'<div class="ch-customer-info">' +
+					'<strong>' + nombres + ' ' + apellidos + '</strong><br>' +
+					'CC: ' + cedula + '<br>' +
+					telefono + ' &middot; ' + email + '<br>' +
+					dirFull + '<br>' +
+					ciudad + ', ' + dep +
+					'</div></div>';
+
+				document.getElementById('ch-btn-pay').textContent = 'Pagar ' + formatCOP(total);
+			}
+
+			function procesarPago() {
+				var total = chState.selectedPrice + chState.shippingCost;
+				var nombres = document.getElementById('ch-nombres').value;
+				var apellidos = document.getElementById('ch-apellidos').value;
+				var cedula = document.getElementById('ch-cedula').value;
+				var telefono = document.getElementById('ch-telefono').value;
+				var email = document.getElementById('ch-email').value;
+				var direccion = document.getElementById('ch-direccion').value;
+				var complemento = document.getElementById('ch-complemento').value;
+				var barrio = document.getElementById('ch-barrio').value;
+				var dep = document.getElementById('ch-departamento').value;
+				var ciudad = document.getElementById('ch-ciudad').selectedOptions[0].text;
+
+				// Save order data for thank you page
+				var invoiceId = 'GOMMI-' + Date.now();
+				try {
+					localStorage.setItem('gommi_order', JSON.stringify({
+						invoice: invoiceId,
+						producto: chState.selectedLabel,
+						cantidad: chState.selectedQty,
+						precioProducto: chState.selectedPrice,
+						envio: chState.shippingCost,
+						total: total,
+						nombre: nombres + ' ' + apellidos,
+						direccion: direccion + (complemento ? ', ' + complemento : '') + ', ' + barrio + ', ' + ciudad + ', ' + dep,
+						email: email,
+						telefono: telefono
+					}));
+				} catch(e) {}
+
+				var handler = ePayco.checkout.configure({
+					key: GOMMI_CONFIG.epayco.publicKey,
+					test: GOMMI_CONFIG.epayco.test
+				});
+
+				handler.open({
+					external: 'false',
+					name: GOMMI_CONFIG.producto.nombre,
+					description: chState.selectedLabel,
+					invoice: invoiceId,
+					currency: 'cop',
+					amount: total.toString(),
+					tax_base: '0',
+					tax: '0',
+					country: 'co',
+					lang: 'es',
+					response: window.location.origin + '/respuesta.html',
+					name_billing: nombres + ' ' + apellidos,
+					address_billing: direccion + (complemento ? ', ' + complemento : '') + ', ' + barrio + ', ' + ciudad + ', ' + dep,
+					type_doc_billing: 'cc',
+					mobilephone_billing: telefono,
+					number_doc_billing: cedula,
+					email_billing: email
+				});
+			}
+
+			// Init precio section and promo banner on load
+			document.addEventListener('DOMContentLoaded', function() {
+				renderPrecioSection();
+
+				// Promo popup
+				var promo = getActivePromo();
+				if (promo) {
+					var price = GOMMI_CONFIG.producto.precioUnitario;
+					document.getElementById('promo-popup-badge').textContent = promo.badge;
+					document.getElementById('promo-popup-title').textContent = promo.cantidad + ' Frascos de Gommi';
+					document.getElementById('promo-popup-price').textContent = formatCOP(promo.precio);
+					document.getElementById('promo-popup-old').textContent = formatCOP(price * promo.cantidad);
+					document.getElementById('promo-popup-savings').textContent = 'Ahorras ' + formatCOP(price * promo.cantidad - promo.precio);
+					document.getElementById('promo-popup-btn').onclick = function() {
+						cerrarPromoPopup();
+						abrirCheckout(promo.cantidad);
+					};
+					setTimeout(function() {
+						document.getElementById('promo-popup-overlay').classList.add('visible');
+					}, 1500);
+				}
+			});
+
 			// Menu movil
 			document.addEventListener('DOMContentLoaded', function() {
 				var menuToggle = document.querySelector('.menu-toggle');

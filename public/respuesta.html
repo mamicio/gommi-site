@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+	<title>Resultado del pago - Gommi</title>
+
+	<!-- Meta Pixel Code -->
+	<script>
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window, document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1440892831046288');
+	fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	src="https://www.facebook.com/tr?id=1440892831046288&ev=PageView&noscript=1"
+	/></noscript>
+	<!-- End Meta Pixel Code -->
+
+	<style>
+		* { box-sizing: border-box; margin: 0; }
+		body {
+			font-family: 'Poppins', sans-serif;
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(135deg, #fcb4c5 0%, #fff 50%, #8ceff4 100%);
+			padding: 2rem;
+		}
+		.card {
+			background: #fff;
+			border-radius: 20px;
+			padding: 2.5rem 2rem;
+			max-width: 520px;
+			width: 100%;
+			text-align: center;
+			box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+		}
+		.icon { font-size: 4rem; margin-bottom: 1rem; }
+		h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+		.msg { color: #718096; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+
+		.order-summary {
+			background: #f7fafc; border-radius: 12px; padding: 1.25rem;
+			text-align: left; margin-bottom: 1.5rem;
+		}
+		.order-summary h3 {
+			font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;
+			color: #718096; margin-bottom: 0.75rem;
+		}
+		.order-row {
+			display: flex; justify-content: space-between; padding: 0.4rem 0;
+			font-size: 0.9rem; color: #2D3748;
+		}
+		.order-row.total {
+			border-top: 2px solid #e2e8f0; margin-top: 0.5rem; padding-top: 0.75rem;
+			font-weight: 700; font-size: 1rem;
+		}
+
+		.address-box {
+			background: #f7fafc; border-radius: 12px; padding: 1.25rem;
+			text-align: left; margin-bottom: 1.5rem;
+		}
+		.address-box h3 {
+			font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;
+			color: #718096; margin-bottom: 0.5rem;
+		}
+		.address-box p { font-size: 0.9rem; color: #2D3748; line-height: 1.5; }
+
+		.ref {
+			background: #f7fafc; border-radius: 8px; padding: 0.75rem 1rem;
+			font-size: 0.85rem; color: #718096; margin-bottom: 1.5rem;
+		}
+		.ref strong { color: #2D3748; }
+
+		.buttons { display: flex; flex-direction: column; gap: 0.75rem; align-items: center; }
+		.btn {
+			display: inline-block; padding: 0.875rem 2rem; border-radius: 50px;
+			text-decoration: none; font-weight: 700; font-size: 1rem;
+			transition: all 0.3s; width: 100%; max-width: 320px; text-align: center;
+		}
+		.btn-primary {
+			background: linear-gradient(135deg, #4a967a 0%, #3d7d65 100%);
+			color: #fff;
+		}
+		.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(74,150,122,0.4); }
+		.btn-whatsapp {
+			background: #25D366; color: #fff;
+		}
+		.btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(37,211,102,0.4); }
+
+		.success h1 { color: #4a967a; }
+		.pending h1 { color: #d69e2e; }
+		.failed h1 { color: #e53e3e; }
+
+		#order-details { display: none; }
+	</style>
+</head>
+<body>
+	<div class="card" id="result-card">
+		<div class="icon" id="result-icon"></div>
+		<h1 id="result-title">Procesando...</h1>
+		<p class="msg" id="result-msg"></p>
+
+		<div id="order-details">
+			<div class="order-summary" id="order-summary"></div>
+			<div class="address-box" id="address-box"></div>
+		</div>
+
+		<div class="ref" id="result-ref"></div>
+
+		<div class="buttons">
+			<a href="/" class="btn btn-primary">Volver a Gommi</a>
+			<a id="btn-whatsapp" href="#" class="btn btn-whatsapp" target="_blank" style="display:none;">Tengo dudas sobre mi pedido</a>
+		</div>
+	</div>
+
+	<script>
+		var params = new URLSearchParams(window.location.search);
+		var state = (params.get('x_transaction_state') || '').toLowerCase();
+		var ref = params.get('x_ref_payco') || params.get('ref_payco') || '-';
+		var epaycoAmount = params.get('x_amount') || '';
+
+		var card = document.getElementById('result-card');
+		var icon = document.getElementById('result-icon');
+		var title = document.getElementById('result-title');
+		var msg = document.getElementById('result-msg');
+		var refDiv = document.getElementById('result-ref');
+
+		// Determine payment status
+		var isSuccess = (state === 'aceptada' || state === '1');
+		var isPending = (state === 'pendiente' || state === '3');
+
+		if (isSuccess) {
+			card.className = 'card success';
+			icon.textContent = '\u2705';
+			title.textContent = 'Gracias por tu compra!';
+			msg.textContent = 'Tu pedido de Gommi fue procesado correctamente. Pronto recibiras un correo con los detalles y la informacion de envio.';
+		} else if (isPending) {
+			card.className = 'card pending';
+			icon.textContent = '\u23F3';
+			title.textContent = 'Pago pendiente';
+			msg.textContent = 'Tu pago esta siendo procesado. Te notificaremos por correo cuando se confirme. Si usaste PSE o efectivo, puede tardar unas horas.';
+		} else {
+			card.className = 'card failed';
+			icon.textContent = '\u274C';
+			title.textContent = 'Pago no completado';
+			msg.textContent = 'Hubo un problema con tu pago. Puedes intentarlo de nuevo o contactarnos por WhatsApp si necesitas ayuda.';
+		}
+
+		// Reference info
+		refDiv.innerHTML = '<strong>Referencia:</strong> ' + ref + (epaycoAmount ? ' &middot; <strong>Monto:</strong> $' + Number(epaycoAmount).toLocaleString('es-CO') : '');
+
+		// Show order details from localStorage
+		var order = null;
+		try { order = JSON.parse(localStorage.getItem('gommi_order')); } catch(e) {}
+
+		if (order && (isSuccess || isPending)) {
+			document.getElementById('order-details').style.display = 'block';
+
+			var summaryHtml = '<h3>Resumen del pedido</h3>' +
+				'<div class="order-row"><span>' + order.producto + '</span><span>$' + Number(order.precioProducto).toLocaleString('es-CO') + '</span></div>' +
+				'<div class="order-row"><span>Envio</span><span>' + (order.envio > 0 ? '$' + Number(order.envio).toLocaleString('es-CO') : 'Gratis') + '</span></div>' +
+				'<div class="order-row total"><span>Total</span><span>$' + Number(order.total).toLocaleString('es-CO') + '</span></div>';
+			document.getElementById('order-summary').innerHTML = summaryHtml;
+
+			var addressHtml = '<h3>Direccion de envio</h3>' +
+				'<p><strong>' + order.nombre + '</strong><br>' +
+				order.direccion + '<br>' +
+				order.telefono + ' &middot; ' + order.email + '</p>';
+			document.getElementById('address-box').innerHTML = addressHtml;
+
+			// WhatsApp button
+			var waBtn = document.getElementById('btn-whatsapp');
+			var waMsg = encodeURIComponent('Hola! Acabo de hacer un pedido en Gommi (Ref: ' + ref + '). Tengo una pregunta sobre mi pedido.');
+			waBtn.href = 'https://wa.me/573196349730?text=' + waMsg;
+			waBtn.style.display = 'inline-block';
+
+			// Fire Meta Pixel Purchase event
+			if (isSuccess && typeof fbq === 'function') {
+				fbq('track', 'Purchase', {
+					value: order.total,
+					currency: 'COP',
+					content_name: order.producto,
+					content_type: 'product',
+					num_items: order.cantidad
+				});
+			}
+
+			// Clean up localStorage
+			try { localStorage.removeItem('gommi_order'); } catch(e) {}
+		} else if (isSuccess || isPending) {
+			// No localStorage data but still successful - fire pixel with epayco amount
+			if (isSuccess && typeof fbq === 'function' && epaycoAmount) {
+				fbq('track', 'Purchase', {
+					value: Number(epaycoAmount),
+					currency: 'COP',
+					content_type: 'product'
+				});
+			}
+		}
+
+		// Show WhatsApp button for failed payments too
+		if (!isSuccess && !isPending) {
+			var waBtn = document.getElementById('btn-whatsapp');
+			var waMsg = encodeURIComponent('Hola! Intente hacer un pago en Gommi pero hubo un problema (Ref: ' + ref + '). Pueden ayudarme?');
+			waBtn.href = 'https://wa.me/573196349730?text=' + waMsg;
+			waBtn.style.display = 'inline-block';
+		}
+	</script>
+</body>
+</html>
