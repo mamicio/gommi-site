@@ -6,9 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cotizador": "node server/cotizador.mjs"
   },
   "dependencies": {
-    "astro": "^5.16.9"
+    "astro": "^5.16.9",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "puppeteer": "^24.38.0"
   }
 }

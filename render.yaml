@@ -1,0 +1,12 @@
+services:
+  # Backend API for the cotizador
+  - type: web
+    name: gommi-cotizador
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server/cotizador.mjs
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
