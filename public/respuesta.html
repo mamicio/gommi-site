@@ -206,6 +206,14 @@
 				waBtn.style.display = 'inline-block';
 
 				if (isSuccess && typeof fbq === 'function') {
+					fbq('init', '1440892831046288', {
+						em: order.email,
+						ph: order.telefono,
+						fn: (order.nombres || order.nombre.split(' ')[0] || '').toLowerCase(),
+						ln: (order.apellidos || order.nombre.split(' ').slice(1).join(' ') || '').toLowerCase(),
+						ct: (order.ciudad || '').toLowerCase(),
+						country: 'co'
+					});
 					fbq('track', 'Purchase', {
 						value: order.total,
 						currency: 'COP',
