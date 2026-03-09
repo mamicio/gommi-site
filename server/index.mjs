@@ -1,10 +1,12 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { google } from 'googleapis';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Servir sitio estatico desde public/
 app.use(express.static(join(__dirname, '..', 'public')));
@@ -205,6 +207,152 @@ app.post('/api/cotizar', async (req, res) => {
       duracionMs: Date.now() - inicio
     });
   }
+});
+
+// ── Google Sheets ───────────────────────────────────────
+
+const SPREADSHEET_ID = '1JHg-WJusxoeDRm0lPFh7ZCXF50lOBx7X_6UP8lqoLI8';
+
+async function registrarVentaEnSheets({ valorTotal, valorEnvio }) {
+  if (!process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+    console.log('  [Sheets] GOOGLE_SERVICE_ACCOUNT_KEY no configurada, omitiendo registro');
+    return;
+  }
+
+  const auth = new google.auth.GoogleAuth({
+    credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+
+  const sheets = google.sheets({ version: 'v4', auth });
+
+  const hoy = new Date();
+  const fecha = `${hoy.getDate()}/${hoy.getMonth() + 1}/${String(hoy.getFullYear()).slice(2)}`;
+  const valorNeto = valorTotal - valorEnvio;
+
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: SPREADSHEET_ID,
+    range: 'Ingresos!A:F',
+    valueInputOption: 'USER_ENTERED',
+    insertDataOption: 'INSERT_ROWS',
+    requestBody: {
+      values: [[
+        fecha,                                           // A: Fecha
+        valorNeto,                                       // B: Valor (sin envío)
+        'Venta online',                                  // C: Concepto
+        'Ingresos',                                      // D: Rubro
+        'Sitio web',                                     // E: Vendedor
+        `Envío: $${valorEnvio.toLocaleString('es-CO')}, Compra neta: $${valorNeto.toLocaleString('es-CO')}` // F: Observaciones
+      ]],
+    },
+  });
+
+  console.log(`  [Sheets] Venta registrada: $${valorNeto} (envío: $${valorEnvio})`);
+}
+
+// ── ePayco ──────────────────────────────────────────────
+
+// Confirmación (servidor-a-servidor, POST desde ePayco)
+app.post('/api/epayco/confirmacion', async (req, res) => {
+  const data = req.body;
+  console.log('\n[ePayco Confirmación]', JSON.stringify(data, null, 2));
+
+  const refPayco = data.x_ref_payco;
+  const estado = data.x_response;         // "Aceptada", "Rechazada", "Pendiente"
+  const monto = Number(data.x_amount) || 0;
+  const factura = data.x_id_invoice;
+
+  console.log(`  Ref: ${refPayco}, Estado: ${estado}, Monto: $${monto}, Factura: ${factura}`);
+
+  // Si el pago fue aceptado, registrar en Google Sheets
+  if (estado === 'Aceptada') {
+    try {
+      // x_extra1 lo usaremos para enviar el valor del envío desde el checkout
+      const valorEnvio = Number(data.x_extra1) || 0;
+      await registrarVentaEnSheets({ valorTotal: monto, valorEnvio });
+    } catch (err) {
+      console.error('  [Sheets] Error registrando venta:', err.message);
+    }
+  }
+
+  res.status(200).send('OK');
+});
+
+// Respuesta (redirect del cliente después de pagar)
+app.get('/pago/resultado', (req, res) => {
+  res.type('html').send(`<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado del pago - Gommi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #f7f7f7; color: #2D3748; }
+    .page { max-width: 600px; margin: 2rem auto; padding: 1rem; }
+    .volver { color: #6B46C1; text-decoration: none; font-size: 0.9rem; }
+    .volver:hover { text-decoration: underline; }
+    .card {
+      margin-top: 1.5rem; background: white; border-radius: 16px;
+      padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center;
+    }
+    .spinner {
+      width: 40px; height: 40px; border: 4px solid #E2E8F0;
+      border-top-color: #6B46C1; border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin: 0 auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading p { color: #718096; margin-top: 1rem; }
+    .icono { font-size: 3rem; margin-bottom: 0.5rem; }
+    .titulo { font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0; }
+    .detalle { color: #718096; margin: 0.5rem 0; }
+    .ref { font-size: 0.85rem; color: #A0AEC0; margin-top: 1rem; }
+    .aceptada { color: #38A169; }
+    .rechazada { color: #E53E3E; }
+    .pendiente { color: #D69E2E; }
+    .btn {
+      display: inline-block; margin-top: 1.5rem; padding: 0.75rem 2rem;
+      background: #6B46C1; color: white; border-radius: 8px;
+      text-decoration: none; font-weight: 600;
+    }
+    .btn:hover { background: #553C9A; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="/" class="volver">&larr; Volver al inicio</a>
+    <div class="card" id="resultado">
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Consultando estado del pago...</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const el = document.getElementById('resultado');
+    const ref = new URLSearchParams(location.search).get('ref_payco');
+    if (!ref) {
+      el.innerHTML = '<p class="icono">&#9888;&#65039;</p><p class="titulo">No se encontr\\u00f3 referencia de pago</p><a href="/" class="btn">Volver al inicio</a>';
+    } else {
+      fetch('https://secure.epayco.co/validation/v1/reference/' + ref)
+        .then(r => r.json())
+        .then(data => {
+          const tx = data.data;
+          const estado = (tx.x_response || '').toLowerCase();
+          const monto = Number(tx.x_amount || 0).toLocaleString('es-CO');
+          let icono = '&#9203;', clase = 'pendiente', titulo = 'Pago pendiente', msg = 'Tu pago est\\u00e1 siendo procesado.';
+          if (estado === 'aceptada') { icono = '&#9989;'; clase = 'aceptada'; titulo = '\\u00a1Pago exitoso!'; msg = 'Tu pedido ha sido confirmado.'; }
+          else if (estado === 'rechazada' || estado === 'fallida') { icono = '&#10060;'; clase = 'rechazada'; titulo = 'Pago rechazado'; msg = tx.x_response_reason_text || 'La transacci\\u00f3n no fue aprobada.'; }
+          el.innerHTML = '<p class="icono">' + icono + '</p><p class="titulo ' + clase + '">' + titulo + '</p><p class="detalle">' + msg + '</p><p class="detalle">Monto: <strong>$' + monto + '</strong></p><p class="ref">Referencia ePayco: ' + ref + '</p><a href="/" class="btn">Volver al inicio</a>';
+        })
+        .catch(() => {
+          el.innerHTML = '<p class="icono">&#9888;&#65039;</p><p class="titulo">Error consultando el pago</p><p class="detalle">Referencia: ' + ref + '</p><a href="/" class="btn">Volver al inicio</a>';
+        });
+    }
+  </script>
+</body>
+</html>`);
 });
 
 // Fallback: cualquier ruta no-API sirve el index.html
