@@ -213,7 +213,7 @@ app.post('/api/cotizar', async (req, res) => {
 
 const SPREADSHEET_ID = '1JHg-WJusxoeDRm0lPFh7ZCXF50lOBx7X_6UP8lqoLI8';
 
-async function registrarVentaEnSheets({ valorTotal, valorEnvio }) {
+async function registrarVentaEnSheets(venta) {
   if (!process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
     console.log('  [Sheets] GOOGLE_SERVICE_ACCOUNT_KEY no configurada, omitiendo registro');
     return;
@@ -228,11 +228,11 @@ async function registrarVentaEnSheets({ valorTotal, valorEnvio }) {
 
   const hoy = new Date();
   const fecha = `${hoy.getDate()}/${hoy.getMonth() + 1}/${String(hoy.getFullYear()).slice(2)}`;
-  const valorNeto = valorTotal - valorEnvio;
+  const valorNeto = venta.valorTotal - venta.valorEnvio;
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: SPREADSHEET_ID,
-    range: 'Ingresos!A:F',
+    range: 'Ingresos!A:Q',
     valueInputOption: 'USER_ENTERED',
     insertDataOption: 'INSERT_ROWS',
     requestBody: {
@@ -242,12 +242,23 @@ async function registrarVentaEnSheets({ valorTotal, valorEnvio }) {
         'Venta online',                                  // C: Concepto
         'Ingresos',                                      // D: Rubro
         'Sitio web',                                     // E: Vendedor
-        `Envío: $${valorEnvio.toLocaleString('es-CO')}, Compra neta: $${valorNeto.toLocaleString('es-CO')}` // F: Observaciones
+        `Envío: $${venta.valorEnvio.toLocaleString('es-CO')}, Compra neta: $${valorNeto.toLocaleString('es-CO')}`, // F: Observaciones
+        venta.nombres,                                   // G: Nombres
+        venta.apellidos,                                 // H: Apellidos
+        venta.cedula,                                    // I: Cédula
+        venta.telefono,                                  // J: Teléfono
+        venta.email,                                     // K: Correo
+        venta.municipio,                                 // L: Municipio
+        venta.departamento,                              // M: Departamento
+        venta.direccion,                                 // N: Dirección
+        venta.complemento,                               // O: Complemento
+        venta.barrio,                                    // P: Barrio
+        venta.valorEnvio,                                // Q: Valor cotizado envío
       ]],
     },
   });
 
-  console.log(`  [Sheets] Venta registrada: $${valorNeto} (envío: $${valorEnvio})`);
+  console.log(`  [Sheets] Venta registrada: $${valorNeto} (envío: $${venta.valorEnvio}) - ${venta.nombres} ${venta.apellidos}`);
 }
 
 // ── ePayco ──────────────────────────────────────────────
@@ -267,9 +278,20 @@ app.post('/api/epayco/confirmacion', async (req, res) => {
   // Si el pago fue aceptado, registrar en Google Sheets
   if (estado === 'Aceptada') {
     try {
-      // x_extra1 lo usaremos para enviar el valor del envío desde el checkout
-      const valorEnvio = Number(data.x_extra1) || 0;
-      await registrarVentaEnSheets({ valorTotal: monto, valorEnvio });
+      await registrarVentaEnSheets({
+        valorTotal: monto,
+        valorEnvio: Number(data.x_extra1) || 0,
+        nombres: data.x_customer_name || '',
+        apellidos: data.x_customer_lastname || '',
+        cedula: data.x_customer_document || '',
+        telefono: data.x_customer_movil || data.x_customer_phone || '',
+        email: data.x_customer_email || '',
+        municipio: data.x_extra2 || '',
+        departamento: data.x_extra3 || '',
+        direccion: data.x_extra4 || '',
+        complemento: data.x_extra5 || '',
+        barrio: data.x_extra6 || '',
+      });
     } catch (err) {
       console.error('  [Sheets] Error registrando venta:', err.message);
     }
