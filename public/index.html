@@ -2114,16 +2114,10 @@
 					descripcion: '1 Frasco de Gommi (60 gomitas)',
 					pesoKg: 1
 				},
-				promociones: [
-					{
-						fechaInicio: '2026-03-01',
-						fechaFin: '2026-03-31',
-						cantidad: 2,
-						precio: 100000,
-						badge: 'PROMO MARZO',
-						descripcion: '2 Frascos de Gommi (120 gomitas)'
-					}
+				paquetes: [
+					{ cantidad: 2, precio: 150000, descripcion: '2 Frascos de Gommi (120 gomitas)' }
 				],
+				promociones: [],
 				epayco: {
 					publicKey: '5891db6d1d8105d345d8bccd08a90fec',
 					test: false
@@ -2189,7 +2183,21 @@
 					'<ul class="precio-beneficios"><li>60 gomitas (30 porciones)</li><li>1 mes de uso diario</li><li>Envio a toda Colombia</li></ul>' +
 					'<a href="#" class="button primary precio-cta" onclick="abrirCheckout(1); return false;">Comprar ahora</a></div>';
 
-				// Promo option
+				// Paquetes permanentes
+				var paquetes = GOMMI_CONFIG.paquetes || [];
+				for (var i = 0; i < paquetes.length; i++) {
+					var paq = paquetes[i];
+					cards += '<div class="precio-card">' + frasco2 +
+						'<div class="precio-icon">&#x1F4E6;</div>' +
+						'<h3>' + paq.cantidad + ' Frascos de Gommi</h3>' +
+						'<div class="precio-amount"><span class="precio-valor">' + formatCOP(paq.precio) + '</span>' +
+						'<span class="precio-moneda">COP + envio</span></div>' +
+						'<p class="precio-descripcion">' + (paq.cantidad * 60) + ' gomitas - ' + paq.cantidad + ' meses de bienestar</p>' +
+						'<ul class="precio-beneficios"><li>' + (paq.cantidad * 60) + ' gomitas (' + (paq.cantidad * 30) + ' porciones)</li><li>' + paq.cantidad + ' meses de uso diario</li><li>Envio a toda Colombia</li></ul>' +
+						'<a href="#" class="button primary precio-cta" onclick="abrirCheckout(' + paq.cantidad + '); return false;">Comprar ahora</a></div>';
+				}
+
+				// Promo temporal (si hay una activa)
 				if (promo) {
 					var savings = price * promo.cantidad - promo.precio;
 					cards += '<div class="precio-card recomendada">' + frasco2 +
@@ -2199,8 +2207,8 @@
 						'<div class="precio-amount"><span class="precio-valor">' + formatCOP(promo.precio) + '</span>' +
 						'<span class="precio-moneda">COP + envio</span>' +
 						'<span class="precio-antes">Antes: ' + formatCOP(price * promo.cantidad) + '</span></div>' +
-						'<p class="precio-descripcion">120 gomitas - 2 meses de bienestar</p>' +
-						'<ul class="precio-beneficios"><li>120 gomitas (60 porciones)</li><li>2 meses de uso diario</li>' +
+						'<p class="precio-descripcion">' + (promo.cantidad * 60) + ' gomitas - ' + promo.cantidad + ' meses de bienestar</p>' +
+						'<ul class="precio-beneficios"><li>' + (promo.cantidad * 60) + ' gomitas (' + (promo.cantidad * 30) + ' porciones)</li><li>' + promo.cantidad + ' meses de uso diario</li>' +
 						'<li>Ahorras ' + formatCOP(savings) + '</li><li>Envio a toda Colombia</li></ul>' +
 						'<a href="#" class="button primary precio-cta" onclick="abrirCheckout(' + promo.cantidad + '); return false;">Comprar ahora</a></div>';
 				}
@@ -2227,14 +2235,30 @@
 					'<p class="option-price">' + formatCOP(price) + '</p>' +
 					'<p class="option-detail">60 gomitas (1 mes)</p></div>';
 
+				// Paquetes permanentes
+				var paquetes = GOMMI_CONFIG.paquetes || [];
+				for (var i = 0; i < paquetes.length; i++) {
+					var paq = paquetes[i];
+					var frascoImgs = '';
+					for (var j = 0; j < paq.cantidad; j++) frascoImgs += fImg;
+					html += '<div class="product-option" data-qty="' + paq.cantidad + '" onclick="selectProduct(' + paq.cantidad + ')">' +
+						'<h3>' + paq.cantidad + ' Frascos</h3>' +
+						'<div class="frasco-img">' + frascoImgs + '</div>' +
+						'<p class="option-price">' + formatCOP(paq.precio) + '</p>' +
+						'<p class="option-detail">' + (paq.cantidad * 60) + ' gomitas (' + paq.cantidad + ' meses)</p></div>';
+				}
+
+				// Promo temporal (si hay una activa)
 				if (promo) {
+					var frascoImgsPromo = '';
+					for (var j = 0; j < promo.cantidad; j++) frascoImgsPromo += fImg;
 					html += '<div class="product-option" data-qty="' + promo.cantidad + '" onclick="selectProduct(' + promo.cantidad + ')">' +
 						'<span class="savings-badge">-' + formatCOP(price * promo.cantidad - promo.precio) + '</span>' +
 						'<h3>' + promo.cantidad + ' Frascos</h3>' +
-						'<div class="frasco-img">' + fImg + fImg + '</div>' +
+						'<div class="frasco-img">' + frascoImgsPromo + '</div>' +
 						'<p class="option-price">' + formatCOP(promo.precio) + '</p>' +
 						'<p class="option-old-price">' + formatCOP(price * promo.cantidad) + '</p>' +
-						'<p class="option-detail">120 gomitas (2 meses)</p></div>';
+						'<p class="option-detail">' + (promo.cantidad * 60) + ' gomitas (' + promo.cantidad + ' meses)</p></div>';
 				}
 
 				container.innerHTML = html;
@@ -2243,6 +2267,7 @@
 			function selectProduct(qty) {
 				var promo = getActivePromo();
 				var price = GOMMI_CONFIG.producto.precioUnitario;
+				var paquetes = GOMMI_CONFIG.paquetes || [];
 
 				chState.selectedQty = qty;
 				if (qty === 1) {
@@ -2251,6 +2276,14 @@
 				} else if (promo && qty === promo.cantidad) {
 					chState.selectedPrice = promo.precio;
 					chState.selectedLabel = promo.cantidad + ' Frascos de Gommi';
+				} else {
+					for (var i = 0; i < paquetes.length; i++) {
+						if (paquetes[i].cantidad === qty) {
+							chState.selectedPrice = paquetes[i].precio;
+							chState.selectedLabel = paquetes[i].cantidad + ' Frascos de Gommi';
+							break;
+						}
+					}
 				}
 
 				// Update UI
