@@ -1086,27 +1086,45 @@
 				margin-bottom: 1rem;
 			}
 			.promo-popup h2 { font-size: 1.5rem; color: var(--text); margin: 0 0 0.5rem; }
-			.promo-popup .promo-popup-price {
-				font-size: 2.5rem; font-weight: 800; color: var(--secondary);
-				margin: 0.5rem 0 0.25rem;
+			.promo-popup-subtitle {
+				color: #718096; font-size: 0.95rem; margin: 0 0 1.25rem;
 			}
-			.promo-popup .promo-popup-old {
-				text-decoration: line-through; color: var(--text-light); font-size: 1rem;
-				margin: 0 0 0.75rem;
+			.promo-popup-options {
+				display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
 			}
-			.promo-popup .promo-popup-savings {
-				background: #fef3cd; color: #856404; font-weight: 600;
-				font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 8px;
-				display: inline-block; margin-bottom: 1.25rem;
+			.promo-popup-option {
+				border: 2px solid #e2e8f0; border-radius: 14px;
+				padding: 1rem 0.75rem; cursor: pointer; transition: all 0.2s;
+				background: #fff; display: flex; flex-direction: column;
+				align-items: center; text-align: center;
 			}
-			.promo-popup-btn {
-				display: inline-block; width: 100%; padding: 1rem;
-				background: linear-gradient(135deg, #4a967a 0%, #3d7d65 100%);
-				color: white; border: none; border-radius: 50px;
-				font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem;
-				cursor: pointer; transition: all 0.3s;
+			.promo-popup-option:hover {
+				border-color: #4a967a; transform: translateY(-2px);
+				box-shadow: 0 6px 20px rgba(74,150,122,0.15);
 			}
-			.promo-popup-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(74,150,122,0.4); }
+			.promo-popup-option h3 {
+				font-size: 0.95rem; font-weight: 700; color: var(--text);
+				margin: 0 0 0.5rem;
+			}
+			.promo-popup-option-img {
+				display: flex; align-items: center; justify-content: center;
+				height: 90px; margin-bottom: 0.5rem;
+			}
+			.promo-popup-option-img img {
+				height: 90px; width: auto; object-fit: contain;
+			}
+			.promo-popup-option-img img + img { margin-left: -22px; }
+			.promo-popup-option-price {
+				font-size: 1.25rem; font-weight: 800; color: var(--secondary);
+				margin: 0.25rem 0 0.1rem;
+			}
+			.promo-popup-option-detail {
+				font-size: 0.75rem; color: #718096; margin: 0;
+			}
+			@media (max-width: 380px) {
+				.promo-popup-option-img { height: 70px; }
+				.promo-popup-option-img img { height: 70px; }
+			}
 
 			/* Frasco bg in checkout options */
 			.product-option .frasco-img {
@@ -1564,16 +1582,14 @@
 		<script src="https://checkout.epayco.co/checkout.js"></script>
 	</head>
 	<body>
-		<!-- Promo popup (shown once on page load when promo is active) -->
+		<!-- Popup de opciones de compra (aparece una vez al cargar la pagina) -->
 		<div id="promo-popup-overlay" class="promo-popup-overlay" onclick="if(event.target===this)cerrarPromoPopup()">
 			<div class="promo-popup">
 				<button class="promo-popup-close" onclick="cerrarPromoPopup()">&times;</button>
 				<div class="promo-popup-badge" id="promo-popup-badge"></div>
-				<h2 id="promo-popup-title"></h2>
-				<div class="promo-popup-price" id="promo-popup-price"></div>
-				<div class="promo-popup-old" id="promo-popup-old"></div>
-				<div class="promo-popup-savings" id="promo-popup-savings"></div>
-				<button class="promo-popup-btn" id="promo-popup-btn">Comprar ahora</button>
+				<h2 id="promo-popup-title">Empieza hoy con Gommi</h2>
+				<p class="promo-popup-subtitle" id="promo-popup-subtitle">Elige cuantos frascos quieres llevar</p>
+				<div class="promo-popup-options" id="promo-popup-options"></div>
 			</div>
 		</div>
 
@@ -2585,23 +2601,60 @@
 			document.addEventListener('DOMContentLoaded', function() {
 				renderPrecioSection();
 
-				// Promo popup
+				// Popup con opciones de compra (1 o mas frascos)
 				var promo = getActivePromo();
+				var paquetes = GOMMI_CONFIG.paquetes || [];
+				var price = GOMMI_CONFIG.producto.precioUnitario;
+				var badgeEl = document.getElementById('promo-popup-badge');
+
 				if (promo) {
-					var price = GOMMI_CONFIG.producto.precioUnitario;
-					document.getElementById('promo-popup-badge').textContent = promo.badge;
-					document.getElementById('promo-popup-title').textContent = promo.cantidad + ' Frascos de Gommi';
-					document.getElementById('promo-popup-price').textContent = formatCOP(promo.precio);
-					document.getElementById('promo-popup-old').textContent = formatCOP(price * promo.cantidad);
-					document.getElementById('promo-popup-savings').textContent = 'Ahorras ' + formatCOP(price * promo.cantidad - promo.precio);
-					document.getElementById('promo-popup-btn').onclick = function() {
-						cerrarPromoPopup();
-						abrirCheckout(promo.cantidad);
-					};
-					setTimeout(function() {
-						document.getElementById('promo-popup-overlay').classList.add('visible');
-					}, 1500);
+					badgeEl.textContent = promo.badge;
+					badgeEl.style.display = '';
+				} else if (paquetes.length > 0) {
+					badgeEl.textContent = 'OFERTA ESPECIAL';
+					badgeEl.style.display = '';
+				} else {
+					badgeEl.style.display = 'none';
 				}
+
+				var fImg = '<img src="/images/Frasco.png" alt="">';
+				var optionsHtml = '';
+
+				// Opcion 1 frasco (siempre)
+				optionsHtml += '<div class="promo-popup-option" onclick="cerrarPromoPopup(); abrirCheckout(1);">' +
+					'<h3>1 Frasco</h3>' +
+					'<div class="promo-popup-option-img">' + fImg + '</div>' +
+					'<p class="promo-popup-option-price">' + formatCOP(price) + '</p>' +
+					'<p class="promo-popup-option-detail">60 gomitas (1 mes)</p></div>';
+
+				// Paquetes permanentes
+				for (var i = 0; i < paquetes.length; i++) {
+					var paq = paquetes[i];
+					var imgs = '';
+					for (var j = 0; j < paq.cantidad; j++) imgs += fImg;
+					optionsHtml += '<div class="promo-popup-option" onclick="cerrarPromoPopup(); abrirCheckout(' + paq.cantidad + ');">' +
+						'<h3>' + paq.cantidad + ' Frascos</h3>' +
+						'<div class="promo-popup-option-img">' + imgs + '</div>' +
+						'<p class="promo-popup-option-price">' + formatCOP(paq.precio) + '</p>' +
+						'<p class="promo-popup-option-detail">' + (paq.cantidad * 60) + ' gomitas (' + paq.cantidad + ' meses)</p></div>';
+				}
+
+				// Promo temporal activa
+				if (promo) {
+					var imgsPromo = '';
+					for (var j = 0; j < promo.cantidad; j++) imgsPromo += fImg;
+					optionsHtml += '<div class="promo-popup-option" onclick="cerrarPromoPopup(); abrirCheckout(' + promo.cantidad + ');">' +
+						'<h3>' + promo.cantidad + ' Frascos</h3>' +
+						'<div class="promo-popup-option-img">' + imgsPromo + '</div>' +
+						'<p class="promo-popup-option-price">' + formatCOP(promo.precio) + '</p>' +
+						'<p class="promo-popup-option-detail">' + (promo.cantidad * 60) + ' gomitas (' + promo.cantidad + ' meses)</p></div>';
+				}
+
+				document.getElementById('promo-popup-options').innerHTML = optionsHtml;
+
+				setTimeout(function() {
+					document.getElementById('promo-popup-overlay').classList.add('visible');
+				}, 1500);
 			});
 
 			// Menu movil
