@@ -146,12 +146,12 @@
 				card.className = 'card success';
 				icon.textContent = '\u2705';
 				title.textContent = 'Gracias por tu compra!';
-				msg.textContent = 'Tu pedido de Gommi fue procesado correctamente. Pronto recibiras un correo con los detalles y la informacion de envio.';
+				msg.textContent = 'Tu pedido de Gommi fue procesado correctamente. Pronto recibirás un correo con los detalles y la información de envío.';
 			} else if (isPending) {
 				card.className = 'card pending';
 				icon.textContent = '\u23F3';
 				title.textContent = 'Pago pendiente';
-				msg.textContent = 'Tu pago esta siendo procesado. Te notificaremos por correo cuando se confirme. Si usaste PSE o efectivo, puede tardar unas horas.';
+				msg.textContent = 'Tu pago está siendo procesado. Te notificaremos por correo cuando se confirme. Si usaste PSE o efectivo, puede tardar unas horas.';
 			} else {
 				card.className = 'card failed';
 				icon.textContent = '\u274C';
@@ -190,11 +190,11 @@
 
 				var summaryHtml = '<h3>Resumen del pedido</h3>' +
 					'<div class="order-row"><span>' + order.producto + '</span><span>$' + Number(order.precioProducto).toLocaleString('es-CO') + '</span></div>' +
-					'<div class="order-row"><span>Envio</span><span>' + (order.envio > 0 ? '$' + Number(order.envio).toLocaleString('es-CO') : 'Gratis') + '</span></div>' +
+					'<div class="order-row"><span>Envio</span><span>' + (order.envío > 0 ? '$' + Number(order.envío).toLocaleString('es-CO') : 'Gratis') + '</span></div>' +
 					'<div class="order-row total"><span>Total</span><span>$' + Number(order.total).toLocaleString('es-CO') + '</span></div>';
 				document.getElementById('order-summary').innerHTML = summaryHtml;
 
-				var addressHtml = '<h3>Direccion de envio</h3>' +
+				var addressHtml = '<h3>Dirección de envío</h3>' +
 					'<p><strong>' + order.nombre + '</strong><br>' +
 					order.direccion + '<br>' +
 					order.telefono + ' &middot; ' + order.email + '</p>';
