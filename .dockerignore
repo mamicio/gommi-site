@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log*
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store
+dist
+.astro
+.env
+.env.production
+.claude
+README.md
+render.yaml
