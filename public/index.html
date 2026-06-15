@@ -2230,10 +2230,23 @@
 				promociones: [],
 				epayco: {
 					publicKey: '5891db6d1d8105d345d8bccd08a90fec',
-					// Modo prueba solo si la URL lleva ?epaycotest (el sitio normal queda en producción)
-					test: new URLSearchParams(window.location.search).has('epaycotest')
+					// Modo prueba si la URL lleva ?epaycotest (se recuerda durante la sesión).
+					// El sitio normal queda siempre en producción.
+					test: (new URLSearchParams(window.location.search).has('epaycotest')
+						|| (function(){ try { return sessionStorage.getItem('epaycotest') === '1'; } catch(e){ return false; } })())
 				}
 			};
+
+			// Banner visible cuando el modo prueba ePayco está activo
+			if (GOMMI_CONFIG.epayco.test) {
+				try { sessionStorage.setItem('epaycotest', '1'); } catch(e) {}
+				window.addEventListener('DOMContentLoaded', function () {
+					var b = document.createElement('div');
+					b.textContent = '🧪 MODO PRUEBA EPAYCO ACTIVO — los pagos NO se cobran';
+					b.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:999999;background:#ff9800;color:#000;font-weight:700;text-align:center;padding:10px;font-family:sans-serif;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.3)';
+					document.body.appendChild(b);
+				});
+			}
 
 			// ============================================
 			// LOGICA DEL CHECKOUT (no editar salvo necesario)
