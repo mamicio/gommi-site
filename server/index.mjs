@@ -261,6 +261,58 @@ async function registrarVentaEnSheets(venta) {
   console.log(`  [Sheets] Venta registrada: $${valorNeto} (envío: $${venta.valorEnvio}) - ${venta.nombres} ${venta.apellidos}`);
 }
 
+// ── Strapi (CMS) ────────────────────────────────────────
+
+const STRAPI_URL = process.env.STRAPI_URL || 'https://strapi.gommi.co';
+
+async function registrarVentaEnStrapi(venta) {
+  if (!process.env.STRAPI_API_TOKEN) {
+    console.log('  [Strapi] STRAPI_API_TOKEN no configurado, omitiendo registro');
+    return;
+  }
+
+  const hoy = new Date();
+  const fechaISO = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
+  const valorNeto = venta.valorTotal - venta.valorEnvio;
+
+  const data = {
+    fecha: fechaISO,
+    valor: valorNeto,
+    concepto: 'Venta online',
+    rubro: 'Ingresos',
+    vendedor: 'Sitio web',
+    observaciones: `Envío: $${venta.valorEnvio.toLocaleString('es-CO')}, Compra neta: $${valorNeto.toLocaleString('es-CO')}`,
+    origen: 'online',
+    nombres: venta.nombres,
+    apellidos: venta.apellidos,
+    cedula: venta.cedula,
+    telefono: venta.telefono,
+    correo: venta.email,
+    municipio: venta.municipio,
+    departamento: venta.departamento,
+    direccion: venta.direccion,
+    complemento: venta.complemento,
+    barrio: venta.barrio,
+    valorEnvio: venta.valorEnvio,
+  };
+
+  const res = await fetch(`${STRAPI_URL}/api/ingresos`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
+    },
+    body: JSON.stringify({ data }),
+  });
+
+  if (!res.ok) {
+    const txt = await res.text();
+    throw new Error(`Strapi ${res.status}: ${txt.slice(0, 200)}`);
+  }
+
+  console.log(`  [Strapi] Ingreso registrado: $${valorNeto} - ${venta.nombres} ${venta.apellidos}`);
+}
+
 // ── ePayco ──────────────────────────────────────────────
 
 // Confirmación (servidor-a-servidor, POST desde ePayco)
@@ -275,25 +327,33 @@ app.post('/api/epayco/confirmacion', async (req, res) => {
 
   console.log(`  Ref: ${refPayco}, Estado: ${estado}, Monto: $${monto}, Factura: ${factura}`);
 
-  // Si el pago fue aceptado, registrar en Google Sheets
+  // Si el pago fue aceptado, registrar en Google Sheets y Strapi
   if (estado === 'Aceptada') {
+    const venta = {
+      valorTotal: monto,
+      valorEnvio: Number(data.x_extra1) || 0,
+      nombres: data.x_customer_name || '',
+      apellidos: data.x_customer_lastname || '',
+      cedula: data.x_customer_document || '',
+      telefono: data.x_customer_movil || data.x_customer_phone || '',
+      email: data.x_customer_email || '',
+      municipio: data.x_extra2 || '',
+      departamento: data.x_extra3 || '',
+      direccion: data.x_extra4 || '',
+      complemento: data.x_extra5 || '',
+      barrio: data.x_extra6 || '',
+    };
+
     try {
-      await registrarVentaEnSheets({
-        valorTotal: monto,
-        valorEnvio: Number(data.x_extra1) || 0,
-        nombres: data.x_customer_name || '',
-        apellidos: data.x_customer_lastname || '',
-        cedula: data.x_customer_document || '',
-        telefono: data.x_customer_movil || data.x_customer_phone || '',
-        email: data.x_customer_email || '',
-        municipio: data.x_extra2 || '',
-        departamento: data.x_extra3 || '',
-        direccion: data.x_extra4 || '',
-        complemento: data.x_extra5 || '',
-        barrio: data.x_extra6 || '',
-      });
+      await registrarVentaEnSheets(venta);
     } catch (err) {
       console.error('  [Sheets] Error registrando venta:', err.message);
+    }
+
+    try {
+      await registrarVentaEnStrapi(venta);
+    } catch (err) {
+      console.error('  [Strapi] Error registrando venta:', err.message);
     }
   }
 
